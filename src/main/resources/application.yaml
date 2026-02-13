@@ -1,3 +1,10 @@
 spring:
   application:
     name: back_office_service
+  datasource:
+    url: jdbc:postgresql://10.162.214.70:5432/back_office_db
+    username: khoidev
+    password: khoicktv
+
+server:
+  port: 9100

@@ -25,15 +25,15 @@ public class DemandResponse {
     private Unit unit;
 
     @Column(name = "createdAt")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updatedAt")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name = "prodRqstId")
-    private Long prod_rqst_id;
+    private Long prodRqstId;
 
     @Column(name = "providerId")
-    private Long provider_id;
+    private Long providerId;
 
 }
