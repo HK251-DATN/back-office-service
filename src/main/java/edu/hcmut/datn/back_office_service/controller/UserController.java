@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hcmut.datn.back_office_service.dao.User;
-import edu.hcmut.datn.back_office_service.dto.UserDTO;
+import edu.hcmut.datn.back_office_service.dto.request.UserDTO;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.UserService;
 
