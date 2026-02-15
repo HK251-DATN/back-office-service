@@ -8,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import edu.hcmut.datn.back_office_service.dao.User;
-import edu.hcmut.datn.back_office_service.exception.user.DuplicateUserException;
-import edu.hcmut.datn.back_office_service.exception.user.UserNotFound;
+import edu.hcmut.datn.back_office_service.exception.user.UserAlreadyExistsException;
+import edu.hcmut.datn.back_office_service.exception.user.UserNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.UserRepository;
 import edu.hcmut.datn.back_office_service.service.UserService;
 
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) {
         if (userRepository.existsById(user.getUserId())) {
-            throw new DuplicateUserException("Duplicate user");
+            throw new UserAlreadyExistsException("Duplicate user");
         }
 
         return userRepository.save(user);
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User read(Long userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 
     @Override

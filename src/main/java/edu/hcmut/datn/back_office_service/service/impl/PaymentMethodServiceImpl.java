@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import edu.hcmut.datn.back_office_service.dao.PaymentMethod;
-import edu.hcmut.datn.back_office_service.exception.paymentmethod.PaymentMethodNotFound;
+import edu.hcmut.datn.back_office_service.exception.paymentmethod.PaymentMethodNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.PaymentMethodRepository;
 import edu.hcmut.datn.back_office_service.service.PaymentMethodService;
 
@@ -26,7 +26,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     @Override
     public PaymentMethod read(Long paymentMethodId) {
-        return paymentMethodRepository.findById(paymentMethodId).orElseThrow(() -> new PaymentMethodNotFound("Payment Method Not Found"));
+        return paymentMethodRepository.findById(paymentMethodId).orElseThrow(() -> new PaymentMethodNotFoundException("Payment Method Not Found"));
     }
 
     @Override
