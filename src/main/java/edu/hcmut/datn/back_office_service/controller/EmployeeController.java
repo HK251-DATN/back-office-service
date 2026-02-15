@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hcmut.datn.back_office_service.dao.Employee;
+import edu.hcmut.datn.back_office_service.dto.request.EmployeeCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.EmployeeService;
 
@@ -27,9 +28,9 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Employee>> create(@RequestBody Employee employee) {
+    public ResponseEntity<ApiResponse<Employee>> create(@RequestBody EmployeeCreateRequest employee) {
         try {
-            Employee newEmp = employeeService.create(employee);
+            Employee newEmp = employeeService.create(employee.toEntity());
 
             return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create employee successfully", newEmp));
         } catch (Exception e) {
