@@ -33,7 +33,7 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     @Override
     public List<PaymentMethod> readAll(Integer pageNum, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
         Page<PaymentMethod> paymentMethods = paymentMethodRepository.findAll(pageable);
 

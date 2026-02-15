@@ -36,7 +36,7 @@ public class BuyerServiceImpl implements BuyerService {
 
     @Override
     public List<Buyer> readAll(Integer pageNum, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
         return buyerRepository.findAll(pageable).toList();
     }

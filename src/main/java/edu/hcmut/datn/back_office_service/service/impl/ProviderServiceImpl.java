@@ -37,7 +37,7 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public List<Provider> readAll(Integer pageNum, Integer pageSize) {
-        Pageable pageable = PageRequest.of(pageNum, pageSize);
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
         return providerRepository.findAll(pageable).toList();
     }
