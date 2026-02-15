@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import edu.hcmut.datn.back_office_service.dao.PaymentMethod;
 import edu.hcmut.datn.back_office_service.exception.paymentmethod.PaymentMethodNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.PaymentMethodRepository;
 import edu.hcmut.datn.back_office_service.service.PaymentMethodService;
 
+@Service
 public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     private final PaymentMethodRepository paymentMethodRepository;
