@@ -4,34 +4,54 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class PreorderPolicy {
 
     @Column(name="preorder_policy_id")
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Getter
     private Long preorderPolicyId;
 
     @Column(name="is_active")
+    @Getter
+    @Setter
     private Boolean isActive;
 
     @Column(name="require_payment")
+    @Getter
+    @Setter
     private Boolean requirePayment;
 
     @Column(name="deposit_percentage")
+    @Getter
+    @Setter
     private Long depositPercentage;
 
     @Column(name="min_preorder_day")
+    @Getter
+    @Setter
     private Long minPreorderDay;
 
     @Column(name="allow_cancel")
+    @Getter
+    @Setter
     private Boolean allowCancel;
 
     @Column(name="notes")
+    @Getter
+    @Setter
     private String notes;
 
     @Column(name="cancel_deadline")
+    @Getter
+    @Setter
     private Long cancelDeadline;
 
     @Column(name="created_at")
@@ -41,6 +61,31 @@ public class PreorderPolicy {
     private LocalDateTime updatedAt;
 
     @Column(name="created_by")
+    @Getter
     private Long createdBy;
 
+    protected PreorderPolicy() {}
+
+    // For creating purposes
+    public PreorderPolicy(Boolean isActive, Boolean requirePayment, Long depositPercentage, Long minPreorderDay, Boolean allowCancel, String notes, Long cancelDeadline, Long createdBy) {
+        this.isActive = isActive;
+        this.requirePayment = requirePayment;
+        this.depositPercentage = depositPercentage;
+        this.minPreorderDay = minPreorderDay;
+        this.allowCancel = allowCancel;
+        this.notes = notes;
+        this.cancelDeadline = cancelDeadline;
+        this.createdBy = createdBy;
+    }
+
+    // For updating purposes
+    public PreorderPolicy(Boolean isActive, Boolean requirePayment, Long depositPercentage, Long minPreorderDay, Boolean allowCancel, String notes, Long cancelDeadline) {
+        this.isActive = isActive;
+        this.requirePayment = requirePayment;
+        this.depositPercentage = depositPercentage;
+        this.minPreorderDay = minPreorderDay;
+        this.allowCancel = allowCancel;
+        this.notes = notes;
+        this.cancelDeadline = cancelDeadline;
+    }
 }
