@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import edu.hcmut.datn.back_office_service.dao.DemandResponse;
 import edu.hcmut.datn.back_office_service.exception.demandresponse.DemandResponseNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.DemandResponseRepository;
 import edu.hcmut.datn.back_office_service.service.DemandResponseService;
 
+@Service
 public class DemandResponseServiceImpl implements DemandResponseService {
 
     private final DemandResponseRepository demandResponseRepository;

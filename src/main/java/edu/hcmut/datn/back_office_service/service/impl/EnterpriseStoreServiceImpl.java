@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import edu.hcmut.datn.back_office_service.dao.EnterpriseStore;
 import edu.hcmut.datn.back_office_service.exception.enterprisestore.EnterpriseStoreAlreadyExistsException;
@@ -11,6 +12,7 @@ import edu.hcmut.datn.back_office_service.exception.enterprisestore.EnterpriseSt
 import edu.hcmut.datn.back_office_service.repository.EnterpriseStoreRepository;
 import edu.hcmut.datn.back_office_service.service.EnterpriseStoreService;
 
+@Service
 public class EnterpriseStoreServiceImpl implements EnterpriseStoreService {
 
     private final EnterpriseStoreRepository enterpriseStoreRepository;
@@ -21,7 +23,7 @@ public class EnterpriseStoreServiceImpl implements EnterpriseStoreService {
 
     @Override
     public EnterpriseStore create(EnterpriseStore store) {
-        if (enterpriseStoreRepository.existsByProviderId(store.getProviderId())) {
+        if (Boolean.TRUE.equals(enterpriseStoreRepository.existsByProviderId(store.getProviderId()))) {
             throw new EnterpriseStoreAlreadyExistsException("This provider has already linked to a exist store!");
         }
 

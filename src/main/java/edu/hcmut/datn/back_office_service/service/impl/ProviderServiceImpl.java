@@ -23,7 +23,7 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public Provider create(Provider provider) {
-        if (providerRepository.existsByUserId(provider.getUserId())) {
+        if (Boolean.TRUE.equals(providerRepository.existsByUserId(provider.getUserId()))) {
             throw new ProviderAlreadyExistsException("This user id has already linked with one provider account");
         }
 

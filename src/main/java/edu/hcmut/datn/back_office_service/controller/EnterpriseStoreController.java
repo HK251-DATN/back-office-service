@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.hcmut.datn.back_office_service.dao.EnterpriseStore;
 import edu.hcmut.datn.back_office_service.dto.request.EnterpriseStoreCreateRequest;
@@ -19,6 +20,7 @@ import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.EnterpriseStoreService;
 
 @Controller
+@RequestMapping("/api/enterprise-store")
 public class EnterpriseStoreController {
 
     private final EnterpriseStoreService enterpriseStoreService;
