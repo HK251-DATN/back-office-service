@@ -6,34 +6,53 @@ import java.util.List;
 import edu.hcmut.datn.back_office_service.common.enums.DiscountType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 public class CouponPolicy {
 
     @Column(name = "coupon_policy_id")
     @Id
+    @Getter
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long couponPolicyId;
 
     @Column(name = "applicable_cate_ids")
+    @Setter
+    @Getter
     private List<Long> applicableCateIds;
 
     @Column(name = "discount_type")
+    @Setter
+    @Getter
     private DiscountType discountType;
 
     @Column(name = "discount_val")
+    @Setter
+    @Getter
     private Long discountVal;
 
     @Column(name = "max_discount_amount")
+    @Setter
+    @Getter
     private Long maxDiscountAmount;
 
     @Column(name = "min_order_value")
+    @Setter
+    @Getter
     private Long minOrderValue;
 
     @Column(name = "max_uses_per_acc")
+    @Setter
+    @Getter
     private Long maxUsesPerAcc;
 
     @Column(name = "cur_total_uses")
+    @Getter
     private Long curTotalUses;
 
     @Column(name = "created_at")
@@ -43,6 +62,29 @@ public class CouponPolicy {
     private LocalDateTime updatedAt;
 
     @Column(name = "created_by")
+    @Getter
     private Long createdBy;
 
+    protected CouponPolicy() {}
+
+    public CouponPolicy(List<Long> applicableCateIds, DiscountType discountType, Long discountVal, Long maxDiscountAmount, Long minOrderValue, Long maxUsesPerAcc, Long createdBy) {
+        this.applicableCateIds  = applicableCateIds;
+        this.discountType       = discountType;
+        this.discountVal        = discountVal;
+        this.maxDiscountAmount  = maxDiscountAmount;
+        this.minOrderValue      = minOrderValue;
+        this.maxUsesPerAcc      = maxUsesPerAcc;
+        this.curTotalUses       = 0L;
+        this.createdBy          = createdBy;
+    }
+
+    public CouponPolicy(List<Long> applicableCateIds, DiscountType discountType, Long discountVal, Long maxDiscountAmount, Long minOrderValue, Long maxUsesPerAcc) {
+        this.applicableCateIds  = applicableCateIds;
+        this.discountType       = discountType;
+        this.discountVal        = discountVal;
+        this.maxDiscountAmount  = maxDiscountAmount;
+        this.minOrderValue      = minOrderValue;
+        this.maxUsesPerAcc      = maxUsesPerAcc;
+    }
 }
+
