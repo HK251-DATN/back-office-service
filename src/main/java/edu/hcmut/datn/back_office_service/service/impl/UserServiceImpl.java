@@ -1,7 +1,6 @@
 package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,11 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User read(Long userId) {
-        if (!userRepository.existsById(userId)) {
-            throw new UserNotFound("User not found");
-        }
-
-        return userRepository.findById(userId).get();
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFound("User not found"));
     }
 
     @Override
@@ -51,13 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(Long userId, User user) {
-        Optional<User> optionalCurUser = userRepository.findById(userId);
-
-        if (optionalCurUser.isEmpty()) {
-            throw new UserNotFound("User not found");
-        }
-
-        User curUser = optionalCurUser.get();
+        User curUser = read(userId);
 
         if (!user.getFName().isEmpty()) {
             curUser.setFName(user.getFName());
@@ -88,10 +77,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long userId) {
-        if (!userRepository.existsById(userId)) {
-            throw new UserNotFound("User not found");
-        }
+        User curUser = read(userId);
 
-        userRepository.delete(userRepository.findById(userId).get());
+        userRepository.delete(curUser);
     }
 }
