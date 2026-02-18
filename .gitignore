@@ -37,3 +37,6 @@ build/
 
 ### SonarQube ###
 .sonarlint/
+
+### Log files ###
+**/**/*.log
