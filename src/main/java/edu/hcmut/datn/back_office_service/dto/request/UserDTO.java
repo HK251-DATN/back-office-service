@@ -5,7 +5,15 @@ import java.time.LocalDate;
 import edu.hcmut.datn.back_office_service.common.enums.AccountStatus;
 import edu.hcmut.datn.back_office_service.common.enums.Gender;
 import edu.hcmut.datn.back_office_service.dao.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
     private Long userId;
 
@@ -26,19 +34,6 @@ public class UserDTO {
     private AccountStatus accStatus;
 
     public User toEntity() {
-        User user = new User();
-
-        user.setUserId(userId);
-        user.setEmail(email);
-        user.setFName(fName);
-        user.setLName(lName);
-        user.setAvtUrl(avtUrl);
-        user.setDob(dob);
-        user.setPNum(pNum);
-        user.setGender(gender);
-        user.setAccStatus(accStatus);
-
-        return user;
+        return new User(userId, email, fName, lName, avtUrl, dob, pNum, gender, accStatus);
     }
-
 }

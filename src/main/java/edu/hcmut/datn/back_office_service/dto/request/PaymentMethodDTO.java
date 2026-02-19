@@ -3,24 +3,21 @@ package edu.hcmut.datn.back_office_service.dto.request;
 import edu.hcmut.datn.back_office_service.common.enums.PaymentProvider;
 import edu.hcmut.datn.back_office_service.common.enums.PaymentType;
 import edu.hcmut.datn.back_office_service.dao.PaymentMethod;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaymentMethodDTO {
 
-    private final PaymentType paymentType;
-    private final PaymentProvider paymentProvider;
-    private final String accountNum;
-    private final Boolean isActive;
-    private final Boolean isDefault;
-    private final Long buyerId;
-
-    public PaymentMethodDTO(PaymentType paymentType, PaymentProvider paymentProvider, String accountNum, Boolean isActive, Boolean isDefault, Long buyerId) {
-        this.paymentType = paymentType;
-        this.paymentProvider = paymentProvider;
-        this.accountNum = accountNum;
-        this.isActive = isActive;
-        this.isDefault = isDefault;
-        this.buyerId = buyerId;
-    }
+    private PaymentType paymentType;
+    private PaymentProvider paymentProvider;
+    private String accountNum;
+    private Boolean isActive;
+    private Boolean isDefault;
+    private Long buyerId;
 
     public PaymentMethod toEntity() {
         PaymentMethod paymentMethod = new PaymentMethod();
