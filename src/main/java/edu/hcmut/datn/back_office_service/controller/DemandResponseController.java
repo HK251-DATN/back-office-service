@@ -35,9 +35,11 @@ public class DemandResponseController {
         try {
             DemandResponse demandResponse = demandResponseService.create(createRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create demand response successfully", demandResponse));
+            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(),
+                    "Create demand response successfully", demandResponse));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -46,31 +48,40 @@ public class DemandResponseController {
         try {
             DemandResponse demandResponse = demandResponseService.read(demandResponseId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read demand response successfully", demandResponse));
+            return ResponseEntity.ok().body(
+                    ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read demand response successfully", demandResponse));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<DemandResponse>>> read(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<DemandResponse>>> readAll(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<DemandResponse> demandResponses = demandResponseService.readAll(pageNum, pageSize);
 
         if (demandResponses.isEmpty()) {
-            return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No demand response found", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No demand response found", null));
         }
 
-        return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read all demand response successfully", demandResponses));
+        return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(),
+                "Read all demand response successfully", demandResponses));
     }
 
     @PutMapping("/{demandResponseId}")
-    public ResponseEntity<ApiResponse<DemandResponse>> update(@PathVariable Long demandResponseId, @RequestBody DemandResponseUpdateRequest updateRequest) {
+    public ResponseEntity<ApiResponse<DemandResponse>> update(@PathVariable Long demandResponseId,
+            @RequestBody DemandResponseUpdateRequest updateRequest) {
         try {
             DemandResponse demandResponse = demandResponseService.update(demandResponseId, updateRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update demand response successfully", demandResponse));
+            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(),
+                    "Update demand response successfully", demandResponse));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -79,9 +90,11 @@ public class DemandResponseController {
         try {
             demandResponseService.delete(demandResponseId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete demand response successfully", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete demand response successfully", null));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 

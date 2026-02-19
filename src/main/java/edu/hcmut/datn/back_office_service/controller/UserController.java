@@ -12,14 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.hcmut.datn.back_office_service.dao.User;
 import edu.hcmut.datn.back_office_service.dto.request.UserDTO;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/api/user")
 @Controller
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -30,12 +33,18 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<User>> create(@RequestBody UserDTO userDTO) {
+
+        log.info("userDTO: {}", userDTO.toString());
+        log.info("userDTO.toEntity: {}", userDTO.toEntity().toString());
+
         try {
             User newUser = userService.create(userDTO.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create user successfully", newUser));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create user successfully", newUser));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -44,21 +53,26 @@ public class UserController {
         try {
             User user = userService.read(userId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create user successfully", user));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create user successfully", user));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<User>>> readAll(Integer page, Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<User>>> readAll(
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<User> users = userService.readAll(page, pageSize);
 
         if (users.isEmpty()) {
             return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No user exists", null));
         }
 
-        return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all users successfully", users));
+        return ResponseEntity.ok()
+                .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all users successfully", users));
     }
 
     @PutMapping("/{userId}")
@@ -66,9 +80,11 @@ public class UserController {
         try {
             User updatedUser = userService.update(userId, userDTO.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user successfully", updatedUser));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user successfully", updatedUser));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -77,9 +93,11 @@ public class UserController {
         try {
             userService.delete(userId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete user successfully", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete user successfully", null));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 }

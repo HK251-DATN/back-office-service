@@ -35,9 +35,11 @@ public class ProviderController {
         try {
             Provider newProvider = providerService.create(providerCreateRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create provider successfully", newProvider));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create provider successfully", newProvider));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -46,41 +48,52 @@ public class ProviderController {
         try {
             Provider provider = providerService.read(providerId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read provider successfully", provider));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read provider successfully", provider));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Provider>>> readAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<Provider>>> readAll(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<Provider> providers = providerService.readAll(pageNum, pageSize);
 
         if (providers.isEmpty()) {
-            return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No provider found", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No provider found", null));
         }
-        return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "Read all providers successfully", providers));
+        return ResponseEntity.ok()
+                .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "Read all providers successfully", providers));
     }
 
     @PutMapping("/{providerId}")
-    public ResponseEntity<ApiResponse<Provider>> update(@PathVariable Long providerId, @RequestBody ProviderUpdateRequest providerUpdateRequest) {
+    public ResponseEntity<ApiResponse<Provider>> update(@PathVariable Long providerId,
+            @RequestBody ProviderUpdateRequest providerUpdateRequest) {
         try {
             Provider updatedProvider = providerService.update(providerId, providerUpdateRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update provider successfully", updatedProvider));
+            return ResponseEntity.ok().body(
+                    ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update provider successfully", updatedProvider));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @DeleteMapping("{providerId}")
-    public ResponseEntity<ApiResponse<Void>> delete (@PathVariable Long providerId) {
+    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long providerId) {
         try {
             providerService.delete(providerId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete provider successfully", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete provider successfully", null));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 

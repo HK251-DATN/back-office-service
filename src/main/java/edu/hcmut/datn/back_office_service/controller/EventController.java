@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.hcmut.datn.back_office_service.dao.Event;
 import edu.hcmut.datn.back_office_service.dto.request.EventCreateRequest;
@@ -54,7 +55,9 @@ public class EventController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Event>>> readAll(Integer pageNum, Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<Event>>> readAll(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<Event> events = eventService.readAll(pageNum, pageSize);
 
         if (events.isEmpty()) {

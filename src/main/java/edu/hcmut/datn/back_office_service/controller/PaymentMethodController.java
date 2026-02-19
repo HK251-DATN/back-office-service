@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.hcmut.datn.back_office_service.dao.PaymentMethod;
 import edu.hcmut.datn.back_office_service.dto.request.PaymentMethodDTO;
@@ -33,9 +34,11 @@ public class PaymentMethodController {
         try {
             PaymentMethod newPaymentMethod = paymentMethodService.create(paymentMethodDTO.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create payment method successfully", newPaymentMethod));
+            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(),
+                    "Create payment method successfully", newPaymentMethod));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -44,31 +47,40 @@ public class PaymentMethodController {
         try {
             PaymentMethod paymentMethod = paymentMethodService.read(paymentMethodId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read payment method successfully", paymentMethod));
+            return ResponseEntity.ok().body(
+                    ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read payment method successfully", paymentMethod));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<PaymentMethod>>> readAll(Integer pageNum, Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<PaymentMethod>>> readAll(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<PaymentMethod> paymentMethods = paymentMethodService.readAll(pageNum, pageSize);
 
         if (paymentMethods.isEmpty()) {
-            return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Payment Method Exists", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Payment Method Exists", null));
         }
 
-        return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all payment methods successfully", paymentMethods));
+        return ResponseEntity.ok().body(
+                ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all payment methods successfully", paymentMethods));
     }
 
     @PutMapping("/{paymentMethodId}")
-    public ResponseEntity<ApiResponse<PaymentMethod>> update(@PathVariable Long paymentMethodId, @RequestBody PaymentMethodDTO paymentMethodDTO) {
+    public ResponseEntity<ApiResponse<PaymentMethod>> update(@PathVariable Long paymentMethodId,
+            @RequestBody PaymentMethodDTO paymentMethodDTO) {
         try {
             PaymentMethod paymentMethod = paymentMethodService.update(paymentMethodId, paymentMethodDTO.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update payment method successfully", paymentMethod));
+            return ResponseEntity.ok().body(
+                    ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update payment method successfully", paymentMethod));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -77,9 +89,11 @@ public class PaymentMethodController {
         try {
             paymentMethodService.delete(paymentMethodId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete payment method successfully", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete payment method successfully", null));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 

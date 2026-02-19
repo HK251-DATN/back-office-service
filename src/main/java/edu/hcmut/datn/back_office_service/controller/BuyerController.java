@@ -35,9 +35,11 @@ public class BuyerController {
         try {
             Buyer newBuyer = buyerService.create(buyerCreateRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create buyer successfully", newBuyer));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create buyer successfully", newBuyer));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -46,30 +48,39 @@ public class BuyerController {
         try {
             Buyer buyer = buyerService.read(buyerId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read buyer successfully", buyer));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read buyer successfully", buyer));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Buyer>>> readAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+    public ResponseEntity<ApiResponse<List<Buyer>>> readAll(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "20") Integer pageSize) {
         List<Buyer> buyers = buyerService.readAll(pageNum, pageSize);
 
         if (buyers.isEmpty()) {
-            return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No provider found", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No provider found", null));
         }
-        return ResponseEntity.ok().body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "Read all buyers successfully", buyers));
+        return ResponseEntity.ok()
+                .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "Read all buyers successfully", buyers));
     }
 
     @PutMapping("/{buyerId}")
-    public ResponseEntity<ApiResponse<Buyer>> update(@PathVariable Long buyerId, @RequestBody BuyerUpdateRequest buyerUpdateRequest) {
+    public ResponseEntity<ApiResponse<Buyer>> update(@PathVariable Long buyerId,
+            @RequestBody BuyerUpdateRequest buyerUpdateRequest) {
         try {
             Buyer buyer = buyerService.update(buyerId, buyerUpdateRequest.toEntity());
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "update buyer successfully", buyer));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "update buyer successfully", buyer));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 
@@ -78,9 +89,11 @@ public class BuyerController {
         try {
             buyerService.delete(buyerId);
 
-            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete buyer successfully", null));
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete buyer successfully", null));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
 }
