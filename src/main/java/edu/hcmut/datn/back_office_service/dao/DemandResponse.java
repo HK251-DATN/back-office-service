@@ -9,15 +9,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "demand_responses")
+@NoArgsConstructor
 public class DemandResponse {
 
     @Column(name = "demand_resp_id")
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long demandRespId;
 
@@ -48,26 +54,32 @@ public class DemandResponse {
     @Getter
     private Long providerId;
 
-    protected DemandResponse() {}
-
     public DemandResponse(
             DemandResponseStatus status,
             Long quantity,
             Unit unit,
             Long prodRqstId,
-            Long providerId
-    ) {
-        this.status     = status;
-        this.quantity   = quantity;
-        this.unit       = unit;
+            Long providerId) {
+        this.status = status;
+        this.quantity = quantity;
+        this.unit = unit;
         this.prodRqstId = prodRqstId;
         this.providerId = providerId;
     }
 
     public DemandResponse(
-            DemandResponseStatus status
-    ) {
-        this.status     = status;
+            DemandResponseStatus status) {
+        this.status = status;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now(); // Set createdAt on first save
+        updatedAt = LocalDateTime.now(); // Optional: Set initial updatedAt
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now(); // Update on every save after creation
+    }
 }

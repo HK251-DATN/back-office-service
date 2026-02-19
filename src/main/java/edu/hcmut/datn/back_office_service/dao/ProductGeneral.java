@@ -1,12 +1,20 @@
 package edu.hcmut.datn.back_office_service.dao;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "product_generals")
+@NoArgsConstructor
 public class ProductGeneral {
 
     @Column(name = "prod_gen_id")
@@ -20,10 +28,10 @@ public class ProductGeneral {
     private String prodName;
 
     @Column(name = "updated_at")
-    private Long updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name = "created_at")
-    private Long createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "preorder_policy_id")
     @Getter
@@ -34,8 +42,6 @@ public class ProductGeneral {
     @Getter
     @Setter
     private Long enterpriseStoreId;
-
-    protected ProductGeneral() {}
 
     public ProductGeneral(Long prodGenId, String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
         this.prodGenId = prodGenId;
@@ -48,5 +54,16 @@ public class ProductGeneral {
         this.prodName = prodName;
         this.preorderPolicyId = preorderPolicyId;
         this.enterpriseStoreId = enterpriseStoreId;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now(); // Set createdAt on first save
+        updatedAt = LocalDateTime.now(); // Optional: Set initial updatedAt
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now(); // Update on every save after creation
     }
 }
