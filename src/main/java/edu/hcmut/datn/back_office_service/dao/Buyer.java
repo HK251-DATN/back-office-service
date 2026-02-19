@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import edu.hcmut.datn.back_office_service.common.enums.MembershipLevel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -48,6 +50,7 @@ public class Buyer {
     @Column(name = "membership_level")
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private MembershipLevel membershipLevel;
 
     @Column(name = "updated_at")

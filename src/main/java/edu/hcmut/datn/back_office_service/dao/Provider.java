@@ -6,6 +6,8 @@ import edu.hcmut.datn.back_office_service.common.enums.Bank;
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,11 +37,13 @@ public class Provider {
     @Column(name = "verification_status")
     @Setter
     @Getter
+    @Enumerated(EnumType.STRING)
     private VerificationStatus verificationStatus;
 
     @Column(name = "bank_id")
     @Setter
     @Getter
+    @Enumerated(EnumType.STRING)
     private Bank bankId;
 
     @Column(name = "bank_num")

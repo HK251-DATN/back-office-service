@@ -16,10 +16,12 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Column(name = "user_id")
@@ -75,6 +77,19 @@ public class User {
     @Getter
     @Enumerated(EnumType.STRING)
     private AccountStatus accStatus;
+
+    public User(Long userId, String email, String fName, String lName, String avtUrl, LocalDate dob, String pNum,
+            Gender gender, AccountStatus accStatus) {
+        this.userId = userId;
+        this.email = email;
+        this.fName = fName;
+        this.lName = lName;
+        this.avtUrl = avtUrl;
+        this.dob = dob;
+        this.pNum = pNum;
+        this.gender = gender;
+        this.accStatus = accStatus;
+    }
 
     @PrePersist
     protected void onCreate() {

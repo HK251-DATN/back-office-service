@@ -6,6 +6,8 @@ import java.util.List;
 import edu.hcmut.datn.back_office_service.common.enums.DiscountType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,6 +37,7 @@ public class CouponPolicy {
     @Column(name = "discount_type")
     @Setter
     @Getter
+    @Enumerated(EnumType.STRING)
     private DiscountType discountType;
 
     @Column(name = "discount_val")

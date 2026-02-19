@@ -6,6 +6,8 @@ import edu.hcmut.datn.back_office_service.common.enums.DemandResponseStatus;
 import edu.hcmut.datn.back_office_service.common.enums.Unit;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +32,7 @@ public class DemandResponse {
     @Column(name = "status")
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private DemandResponseStatus status;
 
     @Column(name = "quantity")
@@ -38,6 +41,7 @@ public class DemandResponse {
 
     @Column(name = "unit")
     @Getter
+    @Enumerated(EnumType.STRING)
     private Unit unit;
 
     @Column(name = "createdAt")

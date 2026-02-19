@@ -6,6 +6,8 @@ import edu.hcmut.datn.back_office_service.common.enums.PaymentProvider;
 import edu.hcmut.datn.back_office_service.common.enums.PaymentType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -27,11 +29,13 @@ public class PaymentMethod {
     @Column(name = "payment_type")
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
     @Column(name = "payment_provider")
     @Getter
     @Setter
+    @Enumerated(EnumType.STRING)
     private PaymentProvider paymentProvider;
 
     @Column(name = "account_num")

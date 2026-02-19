@@ -8,6 +8,8 @@ import org.hibernate.type.SqlTypes;
 import edu.hcmut.datn.back_office_service.common.enums.EventType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +34,7 @@ public class Event {
 
     @Column(name = "event_type")
     @Getter
+    @Enumerated(EnumType.STRING)
     private EventType eventType;
 
     @Column(name = "cron_exp")
