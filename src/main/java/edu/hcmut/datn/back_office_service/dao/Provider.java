@@ -17,9 +17,11 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
+@ToString
 @Table(name = "providers")
 public class Provider {
 
@@ -32,13 +34,13 @@ public class Provider {
     @Column(name = "reputation_point")
     @Setter
     @Getter
-    private Long reputationPoint;
+    private Long reputationPoint = 100L;
 
     @Column(name = "verification_status")
     @Setter
     @Getter
     @Enumerated(EnumType.STRING)
-    private VerificationStatus verificationStatus;
+    private VerificationStatus verificationStatus = VerificationStatus.UNVERIFIED;
 
     @Column(name = "bank_id")
     @Setter
@@ -62,13 +64,11 @@ public class Provider {
     private LocalDateTime updatedAt;
 
     public Provider(
-            Long reputationPoint,
-            VerificationStatus verificationStatus,
             Bank bankId,
             String bankNum,
             Long userId) {
-        this.reputationPoint = reputationPoint;
-        this.verificationStatus = verificationStatus;
+        this.reputationPoint = 100L;
+        this.verificationStatus = VerificationStatus.UNVERIFIED;
         this.bankId = bankId;
         this.bankNum = bankNum;
         this.userId = userId;

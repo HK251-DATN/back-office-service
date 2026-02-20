@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> readAll(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page - 1, size);
-		Page<User> userPage = userRepository.findAll(pageable);
+        Page<User> userPage = userRepository.findAll(pageable);
 
         return userPage.toList();
     }
@@ -48,15 +48,15 @@ public class UserServiceImpl implements UserService {
     public User update(Long userId, User user) {
         User curUser = read(userId);
 
-        if (!user.getFName().isEmpty()) {
+        if (user.getFName() != null) {
             curUser.setFName(user.getFName());
         }
 
-        if (!user.getLName().isEmpty()) {
+        if (user.getLName() != null) {
             curUser.setLName(user.getLName());
         }
 
-        if (!user.getAvtUrl().isEmpty()) {
+        if (user.getAvtUrl() != null) {
             curUser.setAvtUrl(user.getAvtUrl());
         }
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
             curUser.setDob(user.getDob());
         }
 
-        if (user.getPNum().isBlank()) {
+        if (user.getPNum() != null) {
             curUser.setPNum(user.getPNum());
         }
 

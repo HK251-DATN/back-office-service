@@ -34,9 +34,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<ApiResponse<User>> create(@RequestBody UserDTO userDTO) {
 
-        log.info("userDTO: {}", userDTO.toString());
-        log.info("userDTO.toEntity: {}", userDTO.toEntity().toString());
-
         try {
             User newUser = userService.create(userDTO.toEntity());
 

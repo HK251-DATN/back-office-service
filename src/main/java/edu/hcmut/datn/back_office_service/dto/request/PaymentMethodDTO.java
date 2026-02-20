@@ -30,7 +30,7 @@ public class PaymentMethodDTO {
             paymentMethod.setPaymentProvider(paymentProvider);
         }
 
-        if (!accountNum.isBlank()) {
+        if (accountNum != null) {
             paymentMethod.setAccountNum(accountNum);
         }
 

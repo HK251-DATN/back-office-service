@@ -28,7 +28,8 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
 
     @Override
     public PaymentMethod read(Long paymentMethodId) {
-        return paymentMethodRepository.findById(paymentMethodId).orElseThrow(() -> new PaymentMethodNotFoundException("Payment Method Not Found"));
+        return paymentMethodRepository.findById(paymentMethodId)
+                .orElseThrow(() -> new PaymentMethodNotFoundException("Payment Method Not Found"));
     }
 
     @Override
@@ -48,18 +49,19 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
             curPaymentMethod.setPaymentProvider(updateMethod.getPaymentProvider());
         }
 
-        if (!updateMethod.getAccountNum().isEmpty()) {
+        if (updateMethod.getAccountNum() != null) {
             curPaymentMethod.setAccountNum(updateMethod.getAccountNum());
         }
 
         if (updateMethod.getIsDefault() != null && updateMethod.getIsDefault()) {
-            curPaymentMethod.setIsActive(true);
+            curPaymentMethod.setIsDefault(true);
 
-            List<PaymentMethod> buyerPaymentMethods = paymentMethodRepository.findByBuyerId(curPaymentMethod.getBuyerId());
+            List<PaymentMethod> buyerPaymentMethods = paymentMethodRepository
+                    .findByBuyerId(curPaymentMethod.getBuyerId());
 
             for (PaymentMethod paymentMethod : buyerPaymentMethods) {
                 if (!paymentMethod.getPaymentMethodId().equals(paymentMethodId)) {
-                    paymentMethod.setIsActive(false);
+                    paymentMethod.setIsDefault(false);
                 }
             }
 
