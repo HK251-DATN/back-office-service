@@ -11,8 +11,10 @@ import edu.hcmut.datn.back_office_service.dao.Event;
 import edu.hcmut.datn.back_office_service.exception.event.EventNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.EventRepository;
 import edu.hcmut.datn.back_office_service.service.EventService;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
@@ -23,7 +25,13 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event create(Event event) {
-        return eventRepository.save(event);
+        try {
+            return eventRepository.save(event);
+        } catch (Exception e) {
+            log.info("Error message: {}", e.getMessage());
+
+            return null;
+        }
     }
 
     @Override
@@ -54,10 +62,6 @@ public class EventServiceImpl implements EventService {
 
         if (event.getIsActive() != null) {
             cur.setIsActive(event.getIsActive());
-        }
-
-        if (event.getEventPayload() != null) {
-            cur.setEventPayload(event.getEventPayload());
         }
 
         return eventRepository.save(cur);

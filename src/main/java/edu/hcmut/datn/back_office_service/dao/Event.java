@@ -2,9 +2,6 @@ package edu.hcmut.datn.back_office_service.dao;
 
 import java.time.LocalDateTime;
 
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-
 import edu.hcmut.datn.back_office_service.common.enums.EventType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,11 +16,12 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import tools.jackson.databind.JsonNode;
+import lombok.ToString;
 
 @Entity
 @Table(name = "events")
 @NoArgsConstructor
+@ToString
 public class Event {
 
     @Column(name = "event_id")
@@ -64,12 +62,6 @@ public class Event {
     @Getter
     private LocalDateTime nextTrigger;
 
-    @Column(name = "event_payload")
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Getter
-    @Setter
-    private JsonNode eventPayload;
-
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
@@ -82,7 +74,7 @@ public class Event {
 
     // Constructor for creating purpose
     public Event(EventType eventType, String cronExp, LocalDateTime beginTime, LocalDateTime endTime, Boolean isActive,
-            LocalDateTime lastTrigger, LocalDateTime nextTrigger, JsonNode eventPayload, Long createdBy) {
+            LocalDateTime lastTrigger, LocalDateTime nextTrigger, Long createdBy) {
         this.eventType = eventType;
         this.cronExp = cronExp;
         this.beginTime = beginTime;
@@ -90,16 +82,14 @@ public class Event {
         this.isActive = isActive;
         this.lastTrigger = lastTrigger;
         this.nextTrigger = nextTrigger;
-        this.eventPayload = eventPayload;
         this.createdBy = createdBy;
     }
 
     // Constructor for updating purpose
-    public Event(String cronExp, LocalDateTime endTime, Boolean isActive, JsonNode eventPayload) {
+    public Event(String cronExp, LocalDateTime endTime, Boolean isActive) {
         this.cronExp = cronExp;
         this.endTime = endTime;
         this.isActive = isActive;
-        this.eventPayload = eventPayload;
     }
 
     @PrePersist
