@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.hcmut.datn.back_office_service.dao.Event;
-import edu.hcmut.datn.back_office_service.dto.request.EventCreateRequest;
-import edu.hcmut.datn.back_office_service.dto.request.EventUpdateRequest;
+import edu.hcmut.datn.back_office_service.dao.ProductRequest;
+import edu.hcmut.datn.back_office_service.dao.SaleEvent;
+import edu.hcmut.datn.back_office_service.dto.request.event.EventCreateRequest;
+import edu.hcmut.datn.back_office_service.dto.request.event.EventUpdateRequest;
+import edu.hcmut.datn.back_office_service.dto.request.event.ProductRequestCreateRequest;
+import edu.hcmut.datn.back_office_service.dto.request.event.SaleEventCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.EventService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/api/event")
 @AllArgsConstructor
+@Slf4j
 public class EventController {
 
     private final EventService eventService;
@@ -96,4 +103,35 @@ public class EventController {
         }
     }
 
+    @PostMapping("/sale-event")
+    public ResponseEntity<ApiResponse<Pair<Event, SaleEvent>>> createSaleEventEvent(@RequestBody SaleEventCreateRequest request) {
+        Event newEvent = request.toEntity();
+
+        SaleEvent newSaleEvent = request.toSaleEventEntity();
+
+        try {
+            Pair<Event, SaleEvent> pair = eventService.createLoopableSaleEvent(newEvent, newSaleEvent);
+
+            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create loopable sale event successfully", pair));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("/product-request")
+    public ResponseEntity<ApiResponse<Pair<Event, ProductRequest>>> createProductRequestEvent(@RequestBody ProductRequestCreateRequest request) {
+        Event newEvent = request.toEntity();
+
+        ProductRequest newRequest = request.toProductRequestEntity();
+
+        try {
+            Pair<Event, ProductRequest> pair = eventService.createLoopableProductRequest(newEvent, newRequest);
+
+            return ResponseEntity.ok().body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Create loopable sale event successfully", pair));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
 }

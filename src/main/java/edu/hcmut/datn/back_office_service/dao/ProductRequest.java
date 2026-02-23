@@ -52,10 +52,11 @@ public class ProductRequest {
     private LocalDateTime updatedAt;
 
     @Getter
-    @Column(name = "product_gen_id")
+    @Column(name = "prod_gen_id")
     private Long prodGenId;
 
     @Getter
+    @Setter
     @Column(name = "event_id")
     private Long eventId;
 
@@ -65,6 +66,13 @@ public class ProductRequest {
         this.requiredAfterDays = requiredAfterDays;
         this.prodGenId = prodGenId;
         this.eventId = eventId;
+    }
+
+    public ProductRequest(Unit unit, Long quantity, Long requiredAfterDays, Long prodGenId) {
+        this.unit = unit;
+        this.quantity = quantity;
+        this.requiredAfterDays = requiredAfterDays;
+        this.prodGenId = prodGenId;
     }
 
     public ProductRequest(Long quantity, Long requiredAfterDays) {

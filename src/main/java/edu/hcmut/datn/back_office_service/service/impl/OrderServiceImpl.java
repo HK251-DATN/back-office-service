@@ -67,4 +67,31 @@ public class OrderServiceImpl implements OrderService {
     public void delete(Long orderId) {
         orderRepository.delete(read(orderId));
     }
+
+    @Override
+    public void empConfirmOrder(Long orderId, Long empId) {
+        Order order = read(orderId);
+
+        order.setConfirmedBy(empId);
+
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void empPackageOrder(Long orderId, Long empId) {
+        Order order = read(orderId);
+
+        order.setPackagedBy(empId);
+
+        orderRepository.save(order);
+    }
+
+    @Override
+    public void empShipOrder(Long orderId, Long empId) {
+        Order order = read(orderId);
+
+        order.setShippedBy(empId);
+
+        orderRepository.save(order);
+    }
 }

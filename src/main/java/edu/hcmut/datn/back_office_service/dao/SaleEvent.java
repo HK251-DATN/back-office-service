@@ -75,6 +75,7 @@ public class SaleEvent {
     private LocalTime endTime;
 
     @Getter
+    @Setter
     @Column(name = "event_id")
     private Long eventId;
 

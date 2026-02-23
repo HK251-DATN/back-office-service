@@ -1,4 +1,4 @@
-package edu.hcmut.datn.back_office_service.dto.request;
+package edu.hcmut.datn.back_office_service.dto.request.event;
 
 import java.time.LocalDateTime;
 
