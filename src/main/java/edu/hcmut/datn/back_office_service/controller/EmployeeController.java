@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.hcmut.datn.back_office_service.dao.Employee;
 import edu.hcmut.datn.back_office_service.dto.request.EmployeeCreateRequest;
+import edu.hcmut.datn.back_office_service.dto.request.EmployeeUpdateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.EmployeeService;
 
@@ -67,6 +69,19 @@ public class EmployeeController {
 
         return ResponseEntity.ok()
                 .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all employees successfully", list));
+    }
+
+    @PutMapping("/{employeeId}")
+    public ResponseEntity<ApiResponse<Employee>> update(@PathVariable Long employeeId, @RequestBody EmployeeUpdateRequest request) {
+        try {
+            Employee updatedEmp = employeeService.update(employeeId, request.toEntity());
+
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update employee successfully", updatedEmp));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
     }
 
     @DeleteMapping("/{employeeId}")
