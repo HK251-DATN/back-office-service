@@ -81,4 +81,13 @@ public class UserServiceImpl implements UserService {
 
         userRepository.delete(curUser);
     }
+
+    @Override
+    public User updateUserAvatar(Long userId, String avtUrl) {
+        User user = read(userId);
+
+        user.setAvtUrl(avtUrl);
+
+        return userRepository.save(user);
+    }
 }

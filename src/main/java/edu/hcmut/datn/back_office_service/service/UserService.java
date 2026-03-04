@@ -19,4 +19,6 @@ public interface UserService {
 
     void delete(Long userId);
 
+    User updateUserAvatar(Long userId, String avtUrl);
+
 }

@@ -13,23 +13,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.hcmut.datn.back_office_service.dao.User;
 import edu.hcmut.datn.back_office_service.dto.request.UserDTO;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
+import edu.hcmut.datn.back_office_service.service.R2UploadService;
 import edu.hcmut.datn.back_office_service.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/api/user")
 @Controller
 @Slf4j
+@AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final R2UploadService r2UploadService;
 
     @PostMapping
     public ResponseEntity<ApiResponse<User>> create(@RequestBody UserDTO userDTO) {
@@ -92,6 +94,23 @@ public class UserController {
 
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete user successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("/{userId}/avt-image")
+    public ResponseEntity<ApiResponse<User>> uploadAvtImg(@PathVariable Long userId, @RequestParam("file") MultipartFile avtImage) {
+        try {
+            String avtUrl = r2UploadService.upload(avtImage);
+            
+            User user = userService.updateUserAvatar(userId, avtUrl);
+            
+            // TODO: Remove user old avatar file
+
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user avatar success", user));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
