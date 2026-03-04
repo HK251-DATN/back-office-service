@@ -46,6 +46,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee update(Long employeeId, Employee employee) {
+        Employee curEmp = read(employeeId);
+
+        curEmp.setEmpStatus(employee.getEmpStatus());
+
+        return employeeRepository.save(curEmp);
+    }
+
+    @Override
     public void delete(Long employeeId) {
         employeeRepository.delete(read(employeeId));
     }

@@ -76,6 +76,20 @@ CREATE TYPE public.discount_type_enum AS ENUM (
 
 
 --
+-- Name: employee_status_enum; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.employee_status_enum AS ENUM (
+    'ACTIVE',
+    'INACTIVE',
+    'PROBATION',
+    'SUSPENDED',
+    'RESIGNED',
+    'TERMINATED'
+);
+
+
+--
 -- Name: event_enum; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -301,6 +315,7 @@ ALTER TABLE public.demand_responses ALTER COLUMN demand_resp_id ADD GENERATED AL
 CREATE TABLE public.employees (
     emp_id bigint NOT NULL,
     hire_date date,
+    emp_status public.employee_status_enum NOT NULL,
     user_id bigint,
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
