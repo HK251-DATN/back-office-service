@@ -19,12 +19,15 @@ cloudflare:
     endpoint: https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com
     access-key: ${R2_ACCESS_KEY}
     secret-key: ${R2_SECRET_KEY}
-    bucket: back-office-user-avts
     region: auto
 
 app:
   kafka-url:
     ${KAFKA_HOST}:${KAFKA_PORT}
+  user-avater-bucket:
+    back-office-user-avts
+  product-general-img-bucket:
+    product-general-img
   user-avatar-public-bucket-url:
     ${USER_AVATER_PUBLIC_BUCKET_URL}
 

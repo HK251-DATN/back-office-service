@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,22 +14,29 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.hcmut.datn.back_office_service.dao.ProductGeneral;
 import edu.hcmut.datn.back_office_service.dto.request.ProductGeneralCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.request.ProductGeneralUpdateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.ProductGeneralService;
+import edu.hcmut.datn.back_office_service.service.R2UploadService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/api/product-general")
+@RequiredArgsConstructor
+@Slf4j
 public class ProductGeneralController {
 
     private final ProductGeneralService productGeneralService;
 
-    public ProductGeneralController(ProductGeneralService productGeneralService) {
-        this.productGeneralService = productGeneralService;
-    }
+    private final R2UploadService r2UploadService;
+
+    @Value("${product-general-img-bucket}")
+    private String productGeneralImgBucket;
 
     @PostMapping
     public ResponseEntity<ApiResponse<ProductGeneral>> create(@RequestBody ProductGeneralCreateRequest request) {
@@ -92,6 +100,22 @@ public class ProductGeneralController {
 
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete product general successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse<ProductGeneral>> uploadProductGeneralImg(@PathVariable Long productGeneralId, @RequestParam("file") MultipartFile img) {
+        try {
+            String imgUrl = r2UploadService.upload(img, productGeneralImgBucket);
+
+            ProductGeneral productGeneral = productGeneralService.updateProductMainImage(productGeneralId, imgUrl);
+
+            // TODO: Remove user old avatar file
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update product general main image success", productGeneral));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));

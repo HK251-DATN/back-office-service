@@ -18,9 +18,6 @@ public class R2UploadServiceImpl implements R2UploadService {
 
     private final S3Client s3Client;
 
-    @Value("${cloudflare.r2.bucket}")
-    private String bucket;
-
     @Value("${cloudflare.r2.account-id}")
     private String accountId;
 
@@ -28,7 +25,7 @@ public class R2UploadServiceImpl implements R2UploadService {
     private String bucketPublicUrl;
 
     @Override
-    public String upload(MultipartFile file) {
+    public String upload(MultipartFile file, String bucket) {
         try {
             String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
@@ -40,13 +37,26 @@ public class R2UploadServiceImpl implements R2UploadService {
 
             s3Client.putObject(request, RequestBody.fromBytes(file.getBytes()));
 
-            return buildFileUrl(fileName);
+            return buildFileUrl(fileName, bucket);
         } catch (Exception e) {
             throw new RuntimeException("Upload failed", e);
         }
     }
 
-    private String buildFileUrl(String key) {
-    return bucketPublicUrl + "/" + key;
+    private String buildFileUrl(String key, String bucket) {
+        String buckerPublicUrl = getBucketPublicUrl(bucket);
+
+        return bucketPublicUrl + "/" + key;
+    }
+
+    private String getBucketPublicUrl(String bucket) {
+        String publicUrl = "";
+        switch (bucket) {
+            case "back-office-user-avts" ->
+                publicUrl = bucketPublicUrl;
+            default ->
+                throw new AssertionError();
+        }
+        return publicUrl;
     }
 }

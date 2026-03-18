@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,18 +21,21 @@ import edu.hcmut.datn.back_office_service.dto.request.UserDTO;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.R2UploadService;
 import edu.hcmut.datn.back_office_service.service.UserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/api/user")
 @Controller
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     private final R2UploadService r2UploadService;
+
+    @Value("${user-avater-bucket}")
+    private String userAvtBucket;
 
     @PostMapping
     public ResponseEntity<ApiResponse<User>> create(@RequestBody UserDTO userDTO) {
@@ -103,12 +107,11 @@ public class UserController {
     @PostMapping("/{userId}/avt-image")
     public ResponseEntity<ApiResponse<User>> uploadAvtImg(@PathVariable Long userId, @RequestParam("file") MultipartFile avtImage) {
         try {
-            String avtUrl = r2UploadService.upload(avtImage);
-            
-            User user = userService.updateUserAvatar(userId, avtUrl);
-            
-            // TODO: Remove user old avatar file
+            String avtUrl = r2UploadService.upload(avtImage, userAvtBucket);
 
+            User user = userService.updateUserAvatar(userId, avtUrl);
+
+            // TODO: Remove user old avatar file
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user avatar success", user));
         } catch (Exception e) {

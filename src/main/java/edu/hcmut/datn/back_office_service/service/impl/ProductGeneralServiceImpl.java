@@ -62,4 +62,11 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
     public void delete(Long productGeneralId) {
         productGeneralRepository.delete(read(productGeneralId));
     }
+
+    @Override
+    public ProductGeneral updateProductMainImage(Long productGeneralId, String imageUrl) {
+        ProductGeneral curProductGeneral = read(productGeneralId);
+
+        return productGeneralRepository.save(curProductGeneral);
+    }
 }

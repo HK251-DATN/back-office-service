@@ -27,6 +27,16 @@ public class ProductGeneral {
     @Setter
     private String prodName;
 
+    @Column(name = "img")
+    @Getter
+    @Setter
+    private String imgUrl;
+
+    @Column(name = "description")
+    @Getter
+    @Setter
+    private String description;
+
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
@@ -42,6 +52,11 @@ public class ProductGeneral {
     @Getter
     @Setter
     private Long enterpriseStoreId;
+
+    @Column(name = "category_id")
+    @Getter
+    @Setter
+    private Long categoryId;
 
     public ProductGeneral(Long prodGenId, String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
         this.prodGenId = prodGenId;
