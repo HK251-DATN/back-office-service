@@ -14,4 +14,11 @@ public interface OrderService {
     Order update(Long orderId, Order order);
 
     void delete(Long orderId);
+
+    void empConfirmOrder(Long orderId, Long empId);
+    
+    void empPackageOrder(Long orderId, Long empId);
+    
+    void empShipOrder(Long orderId, Long empId);
+    
 }
