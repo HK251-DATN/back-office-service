@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,10 @@ import edu.hcmut.datn.back_office_service.service.EnterpriseStoreService;
 
 @Controller
 @RequestMapping("/api/enterprise-store")
+@RequiredArgsConstructor
 public class EnterpriseStoreController {
 
     private final EnterpriseStoreService enterpriseStoreService;
-
-    public EnterpriseStoreController(EnterpriseStoreService enterpriseStoreService) {
-        this.enterpriseStoreService = enterpriseStoreService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<EnterpriseStore>> create(

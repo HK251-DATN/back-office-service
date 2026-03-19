@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,14 +23,11 @@ import edu.hcmut.datn.back_office_service.service.ProviderService;
 
 @Controller
 @RequestMapping("/api/provider")
+@RequiredArgsConstructor
 public class ProviderController {
 
     private final ProviderService providerService;
-
-    public ProviderController(ProviderService providerService) {
-        this.providerService = providerService;
-    }
-
+    
     @PostMapping
     public ResponseEntity<ApiResponse<Provider>> create(@RequestBody ProviderCreateRequest providerCreateRequest) {
         try {

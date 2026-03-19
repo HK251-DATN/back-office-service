@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,14 +23,11 @@ import edu.hcmut.datn.back_office_service.service.OrderService;
 
 @Controller
 @RequestMapping("/api/order")
+@RequiredArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
-
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
+    
     @PostMapping
     public ResponseEntity<ApiResponse<Order>> create(@RequestBody OrderCreateRequest request) {
         try {

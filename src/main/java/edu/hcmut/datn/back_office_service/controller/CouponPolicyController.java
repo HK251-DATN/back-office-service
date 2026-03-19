@@ -2,6 +2,8 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +24,10 @@ import edu.hcmut.datn.back_office_service.service.CouponPolicyService;
 
 @Controller
 @RequestMapping("/api/coupon-policy")
+@RequiredArgsConstructor
 public class CouponPolicyController {
 
     private final CouponPolicyService couponPolicyService;
-
-    public CouponPolicyController(CouponPolicyService couponPolicyService) {
-        this.couponPolicyService = couponPolicyService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<CouponPolicy>> create(@RequestBody CouponPolicyCreateRequest request) {

@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,10 @@ import edu.hcmut.datn.back_office_service.service.DemandResponseService;
 
 @Controller
 @RequestMapping("/api/demand-response")
+@RequiredArgsConstructor
 public class DemandResponseController {
 
     private final DemandResponseService demandResponseService;
-
-    public DemandResponseController(DemandResponseService demandResponseService) {
-        this.demandResponseService = demandResponseService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<DemandResponse>> create(@RequestBody DemandResponseCreateRequest createRequest) {

@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,10 @@ import edu.hcmut.datn.back_office_service.service.PreorderPolicyService;
 
 @Controller
 @RequestMapping("/api/preorder-policy")
+@RequiredArgsConstructor
 public class PreorderPolicyController {
 
     private final PreorderPolicyService preorderPolicyService;
-
-    public PreorderPolicyController(PreorderPolicyService preorderPolicyService) {
-        this.preorderPolicyService = preorderPolicyService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<PreorderPolicy>> create(@RequestBody PreorderPolicyCreateRequest request) {

@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/api/event")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class EventController {
 

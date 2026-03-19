@@ -24,7 +24,7 @@ cloudflare:
 app:
   kafka-url:
     ${KAFKA_HOST}:${KAFKA_PORT}
-  user-avater-bucket:
+  user-avatar-bucket:
     back-office-user-avts
   product-general-img-bucket:
     product-general-img

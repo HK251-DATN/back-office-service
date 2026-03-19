@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,10 @@ import edu.hcmut.datn.back_office_service.service.BuyerService;
 
 @Controller
 @RequestMapping("/api/buyer")
+@RequiredArgsConstructor
 public class BuyerController {
 
     private final BuyerService buyerService;
-
-    public BuyerController(BuyerService buyerService) {
-        this.buyerService = buyerService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<Buyer>> create(@RequestBody BuyerCreateRequest buyerCreateRequest) {

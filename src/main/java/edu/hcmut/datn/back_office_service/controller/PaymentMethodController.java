@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,10 @@ import edu.hcmut.datn.back_office_service.service.PaymentMethodService;
 
 @Controller
 @RequestMapping("/api/payment-method")
+@RequiredArgsConstructor
 public class PaymentMethodController {
 
     private final PaymentMethodService paymentMethodService;
-
-    public PaymentMethodController(PaymentMethodService paymentMethodService) {
-        this.paymentMethodService = paymentMethodService;
-    }
 
     @PostMapping
     public ResponseEntity<ApiResponse<PaymentMethod>> create(@RequestBody PaymentMethodDTO paymentMethodDTO) {

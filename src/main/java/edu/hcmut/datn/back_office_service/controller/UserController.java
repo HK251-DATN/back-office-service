@@ -34,7 +34,7 @@ public class UserController {
 
     private final R2UploadService r2UploadService;
 
-    @Value("${app.user-avater-bucket}")
+    @Value("${app.user-avatar-bucket}")
     private String userAvtBucket;
 
     @PostMapping
