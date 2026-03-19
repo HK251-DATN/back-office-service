@@ -35,7 +35,7 @@ public class ProductGeneralController {
 
     private final R2UploadService r2UploadService;
 
-    @Value("${product-general-img-bucket}")
+    @Value("${app.product-general-img-bucket}")
     private String productGeneralImgBucket;
 
     @PostMapping
@@ -106,7 +106,7 @@ public class ProductGeneralController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/{productGeneralId}/upload-img")
     public ResponseEntity<ApiResponse<ProductGeneral>> uploadProductGeneralImg(@PathVariable Long productGeneralId, @RequestParam("file") MultipartFile img) {
         try {
             String imgUrl = r2UploadService.upload(img, productGeneralImgBucket);

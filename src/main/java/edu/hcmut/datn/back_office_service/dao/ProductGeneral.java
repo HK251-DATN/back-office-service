@@ -20,6 +20,7 @@ public class ProductGeneral {
     @Column(name = "prod_gen_id")
     @Id
     @Getter
+    @Setter
     private Long prodGenId;
 
     @Column(name = "prod_name")

@@ -245,20 +245,6 @@ CREATE TABLE public.categories (
 
 
 --
--- Name: categories_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-ALTER TABLE public.categories ALTER COLUMN category_id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public.categories_category_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
 -- Name: coupon_policies; Type: TABLE; Schema: public; Owner: -
 --
 

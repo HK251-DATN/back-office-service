@@ -13,13 +13,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "product_generals")
+@Table(name = "categories")
 @NoArgsConstructor
 public class Category {
 
     @Column(name = "category_id")
     @Id
     @Getter
+    @Setter
     private Long categoryId;
 
     @Column(name = "name")
@@ -27,15 +28,15 @@ public class Category {
     @Setter
     private String name;
 
-    @Column(name = "name")
+    @Column(name = "description")
     @Getter
     @Setter
     private String description;
 
-    @Column(name = "name")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "name")
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist
