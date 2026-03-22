@@ -21,9 +21,9 @@ public class ProductGeneralCreatedConsumer {
         try {
             productGeneralService.create(event.toProductGeneralEntity());
 
-            log.info("Create user {} success", event.getProdGenId());
+            log.info("Create product general {} success", event.getProdGenId());
         } catch (Exception e) {
-            log.error("Create user {} fail due to: {}", event.getProdGenId(), e.getMessage());
+            log.error("Create product general {} fail due to: {}", event.getProdGenId(), e.getMessage());
         }
     }
 }
