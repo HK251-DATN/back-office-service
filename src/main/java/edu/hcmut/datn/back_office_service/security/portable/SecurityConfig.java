@@ -37,7 +37,8 @@ public class SecurityConfig {
                         .accessDeniedHandler(accessDeniedHandler)
                         .authenticationEntryPoint(authenticationEntryPoint))
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
+                                .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                                .anyRequest().authenticated()
                 // .requestMatchers(HttpMethod.POST, "/api/user/login").permitAll()
                 // .requestMatchers(HttpMethod.POST, "/api/user/registration").permitAll()
                 // .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
