@@ -1,7 +1,11 @@
 package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
+import edu.hcmut.datn.back_office_service.service.R2UploadService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,13 +18,21 @@ import edu.hcmut.datn.back_office_service.repository.UserRepository;
 import edu.hcmut.datn.back_office_service.service.UserService;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    
+    private final R2UploadService r2UploadService;
+    
+    @Value("${app.user-avatar-bucket}")
+    private String userAvtBucket;
+    
+    @Value("${app.user-avatar-public-bucket-url}")
+    private String userAvtPubUrlPrefix;
+    
+    @Value("${app.user-avatar-default-url}")
+    private String userDefaultAvtUrl;
 
     @Override
     public User create(User user) {
@@ -67,6 +79,10 @@ public class UserServiceImpl implements UserService {
         if (user.getPNum() != null) {
             curUser.setPNum(user.getPNum());
         }
+        
+        if (user.getGender() != null) {
+            curUser.setGender(user.getGender());
+        }
 
         if (user.getAccStatus() != null) {
             curUser.setAccStatus(user.getAccStatus());
@@ -85,6 +101,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUserAvatar(Long userId, String avtUrl) {
         User user = read(userId);
+        
+        String oldAvtUrl = user.getAvtUrl();
+        
+        if (!Objects.equals(oldAvtUrl, userDefaultAvtUrl)) {
+            String key = oldAvtUrl.substring(userAvtPubUrlPrefix.length() + 1);
+            r2UploadService.delete(key, userAvtBucket);
+        }
 
         user.setAvtUrl(avtUrl);
 

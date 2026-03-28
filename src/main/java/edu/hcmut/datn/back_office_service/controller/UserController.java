@@ -2,9 +2,11 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.security.portable.AuthenticatedUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +39,50 @@ public class UserController {
     @Value("${app.user-avatar-bucket}")
     private String userAvtBucket;
 
-    @PostMapping
+    // USER ENDPOINTS
+    // User update their information
+    @PutMapping
+    public ResponseEntity<ApiResponse<User>> userUpdate(
+            @RequestBody UserDTO userDTO,
+            @AuthenticationPrincipal AuthenticatedUser principal)
+    {
+        try {
+            Long userId = principal.getId();
+            
+            User updatedUser = userService.update(userId, userDTO.toEntity());
+            
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user successfully", updatedUser));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+    
+    // User update their avatar images
+    @PostMapping("avt-image")
+    public ResponseEntity<ApiResponse<User>> userUploadAvtImg(
+            @RequestParam("file") MultipartFile avtImage,
+            @AuthenticationPrincipal AuthenticatedUser principal)
+    {
+        try {
+            Long userId = principal.getId();
+            
+            String avtUrl = r2UploadService.upload(avtImage, userAvtBucket);
+            
+            User user = userService.updateUserAvatar(userId, avtUrl);
+            
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update user avatar success", user));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+    
+    // ADMIN ENDPOINTS
+    
+    @PostMapping("/admin")
     public ResponseEntity<ApiResponse<User>> create(@RequestBody UserDTO userDTO) {
 
         try {
@@ -50,8 +95,8 @@ public class UserController {
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
-
-    @GetMapping("/{userId}")
+    
+    @GetMapping("/admin/{userId}")
     public ResponseEntity<ApiResponse<User>> read(@PathVariable Long userId) {
         try {
             User user = userService.read(userId);
@@ -64,7 +109,7 @@ public class UserController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/admin")
     public ResponseEntity<ApiResponse<List<User>>> readAll(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "20") Integer pageSize) {
@@ -78,7 +123,7 @@ public class UserController {
                 .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all users successfully", users));
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/admin/{userId}")
     public ResponseEntity<ApiResponse<User>> update(@PathVariable Long userId, @RequestBody UserDTO userDTO) {
         try {
             User updatedUser = userService.update(userId, userDTO.toEntity());
@@ -91,7 +136,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/admin/{userId}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long userId) {
         try {
             userService.delete(userId);
@@ -104,7 +149,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{userId}/avt-image")
+    @PostMapping("/admin/{userId}/avt-image")
     public ResponseEntity<ApiResponse<User>> uploadAvtImg(@PathVariable Long userId, @RequestParam("file") MultipartFile avtImage) {
         try {
             String avtUrl = r2UploadService.upload(avtImage, userAvtBucket);
