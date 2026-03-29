@@ -30,7 +30,7 @@ public class UserCreatedConsumer {
 
             log.info("Create user {} success", event.getUserId());
             
-            Buyer buyer = new Buyer(event.getUserId());
+            Buyer buyer = event.toBuyerEntity();
             
             buyerService.create(buyer);
             

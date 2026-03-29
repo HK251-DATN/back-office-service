@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,36 +21,26 @@ import lombok.Setter;
 @Entity
 @Table(name = "buyers")
 @NoArgsConstructor
+@Data
 public class Buyer {
 
     @Column(name = "buyer_id")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Long buyerId;
 
     @Column(name = "user_id")
-    @Getter
     private Long userId;
 
     @Column(name = "loyalty_point")
-    @Getter
-    @Setter
     private Long loyaltyPoint;
 
     @Column(name = "total_orders")
-    @Getter
-    @Setter
     private Long totalOrders;
 
     @Column(name = "total_spent_amount")
-    @Getter
-    @Setter
     private Long totalSpentAmount;
 
     @Column(name = "membership_level")
-    @Getter
-    @Setter
     @Enumerated(EnumType.STRING)
     private MembershipLevel membershipLevel;
 
@@ -61,6 +52,7 @@ public class Buyer {
 
     // For creating purpose
     public Buyer(Long userId) {
+        this.buyerId = userId;
         this.userId = userId;
         this.loyaltyPoint = 50L;
         this.totalOrders = 0L;

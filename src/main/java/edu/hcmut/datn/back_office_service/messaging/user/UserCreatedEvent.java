@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import edu.hcmut.datn.back_office_service.common.enums.AccountStatus;
 import edu.hcmut.datn.back_office_service.common.enums.Gender;
+import edu.hcmut.datn.back_office_service.dao.Buyer;
 import edu.hcmut.datn.back_office_service.dao.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,5 +50,9 @@ public class UserCreatedEvent {
         newUser.setAccStatus(AccountStatus.ACTIVE);
 
         return newUser;
+    }
+    
+    public Buyer toBuyerEntity() {
+        return new Buyer(userId);
     }
 }
