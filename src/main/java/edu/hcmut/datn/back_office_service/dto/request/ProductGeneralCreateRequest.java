@@ -9,12 +9,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductGeneralCreateRequest {
-    private Long prodGenId;
+    
     private String prodName;
+    private String imgUrl;
+    private String description;
     private Long preorderPolicyId;
     private Long enterpriseStoreId;
-
+    private Long subSubcategoryId;
+    
     public ProductGeneral toEntity() {
-        return new ProductGeneral(prodGenId, prodName, preorderPolicyId, enterpriseStoreId);
+        ProductGeneral productGeneral = new ProductGeneral();
+        
+        productGeneral.setProdName(prodName);
+        productGeneral.setImgUrl(imgUrl);
+        productGeneral.setDescription(description);
+        productGeneral.setPreorderPolicyId(preorderPolicyId);
+        productGeneral.setEnterpriseStoreId(enterpriseStoreId);
+        productGeneral.setSubSubcategoryId(subSubcategoryId);
+        
+        return productGeneral;
     }
 }

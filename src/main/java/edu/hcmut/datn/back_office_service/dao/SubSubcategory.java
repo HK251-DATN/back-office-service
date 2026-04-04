@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "sub_subcategories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class SubSubcategory {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Long categoryId;
+    @Column(name = "sub_subcategory_id")
+    private Long subSubcategoryId;
     
     @Column(name = "name", nullable = false)
     private String name;
@@ -27,17 +27,11 @@ public class Category {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     
-    @Column(name = "display_order")
-    private Integer displayOrder;
-    
     @Column(name = "icon_url")
     private String iconUrl;
     
-    @Column(name = "is_sub_category", length = 1)
-    private String isSubCategory; // "N" for main category, "Y" for subcategory
-    
-    @Column(name = "belong_to_category")
-    private Long belongToCategory; // Parent category ID (null for main categories)
+    @Column(name = "subcategory_id", nullable = false)
+    private Long subcategoryId; // References Category where isSubCategory = "Y"
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;

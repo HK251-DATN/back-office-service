@@ -2,12 +2,8 @@ package edu.hcmut.datn.back_office_service.dao;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,10 +13,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductGeneral {
 
-    @Column(name = "prod_gen_id")
     @Id
+    @Column(name = "prod_gen_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    @Setter
     private Long prodGenId;
 
     @Column(name = "prod_name")
@@ -54,23 +50,10 @@ public class ProductGeneral {
     @Setter
     private Long enterpriseStoreId;
 
-    @Column(name = "category_id")
+    @Column(name = "sub_subcategory_id")
     @Getter
     @Setter
-    private Long categoryId;
-
-    public ProductGeneral(Long prodGenId, String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
-        this.prodGenId = prodGenId;
-        this.prodName = prodName;
-        this.preorderPolicyId = preorderPolicyId;
-        this.enterpriseStoreId = enterpriseStoreId;
-    }
-
-    public ProductGeneral(String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
-        this.prodName = prodName;
-        this.preorderPolicyId = preorderPolicyId;
-        this.enterpriseStoreId = enterpriseStoreId;
-    }
+    private Long subSubcategoryId;
 
     @PrePersist
     protected void onCreate() {
