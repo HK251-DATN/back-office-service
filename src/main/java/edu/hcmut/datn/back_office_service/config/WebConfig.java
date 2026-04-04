@@ -21,8 +21,10 @@ public class WebConfig {
         // Allow your frontend origin
         config.addAllowedOrigin("http://10.205.183.122:5173");
         config.addAllowedOrigin("http://10.185.89.85:5173");// Vite default port
+        config.addAllowedOrigin("http://192.168.1.75:3000");// Vite default port
         config.addAllowedOrigin("http://localhost:5173"); // Alternative port
         config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("http://10.194.144.9:3000");
 
         // Allow all headers
         config.addAllowedHeader("*");

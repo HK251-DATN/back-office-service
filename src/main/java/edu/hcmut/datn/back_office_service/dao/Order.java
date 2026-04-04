@@ -23,6 +23,7 @@ public class Order {
     @Column(name = "order_id")
     @Id
     @Getter
+    @Setter
     private Long orderId;
 
     @Column(name = "status")
@@ -33,6 +34,7 @@ public class Order {
 
     @Column(name = "owned_by")
     @Getter
+    @Setter
     private Long ownedBy;
 
     @Column(name = "confirmed_by")
@@ -49,6 +51,11 @@ public class Order {
     @Getter
     @Setter
     private Long shippedBy;
+    
+    @Column(name = "total_price")
+    @Getter
+    @Setter
+    private Long totalPrice;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
