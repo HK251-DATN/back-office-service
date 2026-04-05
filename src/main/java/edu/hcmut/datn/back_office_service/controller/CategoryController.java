@@ -113,6 +113,20 @@ public class CategoryController {
         }
     }
     
+    @GetMapping("/sub-subcategories")
+    public ResponseEntity<ApiResponse<List<SubSubcategory>>> getAllSubSubcategory() {
+        try {
+            List<SubSubcategory> subSubcategories = categoryService.readAllSubSubcategories_v2();
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(),
+                            "Sub-subcategory retrieved successfully", subSubcategories));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(),
+                            e.getMessage(), null));
+        }
+    }
+    
     @GetMapping("/sub-subcategories/{subSubcategoryId}")
     public ResponseEntity<ApiResponse<SubSubcategory>> getSubSubcategory(
             @PathVariable Long subSubcategoryId) {

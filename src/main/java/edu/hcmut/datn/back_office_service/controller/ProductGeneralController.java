@@ -108,12 +108,20 @@ public class ProductGeneralController {
 
     @PostMapping("/{productGeneralId}/upload-img")
     public ResponseEntity<ApiResponse<ProductGeneral>> uploadProductGeneralImg(@PathVariable Long productGeneralId, @RequestParam("file") MultipartFile img) {
+        
+        log.info(img.getContentType());
+        
         try {
+//            log.info("bucket: {}", productGeneralImgBucket);
+            
             String imgUrl = r2UploadService.upload(img, productGeneralImgBucket);
 
+//            log.info("url: {}", imgUrl);
+            
             ProductGeneral productGeneral = productGeneralService.updateProductMainImage(productGeneralId, imgUrl);
-
-            // TODO: Remove user old avatar file
+            
+//            log.info("productGeneral Id: {}", productGeneral.getProdGenId().toString());
+            
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update product general main image success", productGeneral));
         } catch (Exception e) {

@@ -39,6 +39,23 @@ public class UserController {
     @Value("${app.user-avatar-bucket}")
     private String userAvtBucket;
 
+    @GetMapping
+    public ResponseEntity<ApiResponse<User>> readUser(
+            @AuthenticationPrincipal AuthenticatedUser principal
+    ) {
+        try {
+            Long userId = principal.getId();
+            
+            User user = userService.read(userId);
+            
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Read user successfully", user));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+    
     // USER ENDPOINTS
     // User update their information
     @PutMapping

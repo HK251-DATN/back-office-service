@@ -27,38 +27,48 @@ public class R2UploadServiceImpl implements R2UploadService {
     private String accountId;
 
     @Value("${app.user-avatar-public-bucket-url}")
-    private String bucketPublicUrl;
+    private String userAvtPublicBucketUrl;
+    
+    @Value("${app.product-general-image-public-bucket-url}")
+    private String productGeneralImgPublicBucketUrl;
 
     @Override
     public String upload(MultipartFile file, String bucket) {
         try {
             String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            
+            log.info("Get filename success");
 
             PutObjectRequest request = PutObjectRequest.builder()
                     .bucket(bucket)
                     .key(fileName)
                     .contentType(file.getContentType())
                     .build();
+            
+            log.info("Create PutObjectRequest success");
 
             s3Client.putObject(request, RequestBody.fromBytes(file.getBytes()));
 
             return buildFileUrl(fileName, bucket);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Upload failed", e);
         }
     }
 
     private String buildFileUrl(String key, String bucket) {
-        String buckerPublicUrl = getBucketPublicUrl(bucket);
+        String buckerPublicUrl = getPublicUrl(bucket);
 
-        return bucketPublicUrl + "/" + key;
+        return buckerPublicUrl + "/" + key;
     }
 
-    private String getBucketPublicUrl(String bucket) {
+    private String getPublicUrl (String bucket) {
         String publicUrl = "";
         switch (bucket) {
             case "back-office-user-avts" ->
-                publicUrl = bucketPublicUrl;
+                publicUrl = userAvtPublicBucketUrl;
+            case "product-general-img" ->
+                publicUrl = productGeneralImgPublicBucketUrl;
             default ->
                 throw new AssertionError();
         }

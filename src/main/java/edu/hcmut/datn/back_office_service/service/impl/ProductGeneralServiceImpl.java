@@ -1,13 +1,16 @@
 package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
 import edu.hcmut.datn.back_office_service.dao.SubSubcategory;
 import edu.hcmut.datn.back_office_service.messaging.productgeneral.ProductGeneralCreatedEvent;
 import edu.hcmut.datn.back_office_service.messaging.productgeneral.ProductGeneralProducer;
 import edu.hcmut.datn.back_office_service.repository.SubSubcategoryRepository;
+import edu.hcmut.datn.back_office_service.service.R2UploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +33,16 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
     
     private final ProductGeneralProducer productGeneralProducer;
     
+    private final R2UploadService r2UploadService;
     
+    @Value("${app.product-general-img-bucket}")
+    private String productGeneralImgBucket;
+    
+    @Value("${app.product-general-img-default-url}")
+    private String productGeneralDefaultImgUrl;
+    
+    @Value("${app.product-general-image-public-bucket-url}")
+    private String productGeneralImgPubUrlPrefix;
     
     @Override
     @Transactional
@@ -54,8 +66,10 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
         ProductGeneralCreatedEvent event = new ProductGeneralCreatedEvent(
                 saved.getProdGenId(),
                 saved.getProdName(),
-                null,  // imgUrl - to be added if needed
-                null,  // description - to be added if needed
+                productGeneralDefaultImgUrl,  // imgUrl
+                saved.getDescription(),  // description
+                saved.getUnit(),
+                saved.getUnitQuantity(),
                 saved.getSubSubcategoryId(),
                 subcategoryId  // This is the subcategory ID for ecommerce
         );
@@ -97,6 +111,14 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
             cur.setDescription(productGeneral.getDescription());
         }
         
+        if (productGeneral.getUnit() != null) {
+            cur.setUnit(productGeneral.getUnit());
+        }
+        
+        if (productGeneral.getUnitQuantity() != null) {
+            cur.setUnitQuantity(productGeneral.getUnitQuantity());
+        }
+        
         if (productGeneral.getSubSubcategoryId() != null) {
             cur.setSubSubcategoryId(productGeneral.getSubSubcategoryId());
         }
@@ -108,6 +130,10 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
         if (productGeneral.getEnterpriseStoreId() != null) {
             cur.setEnterpriseStoreId(productGeneral.getEnterpriseStoreId());
         }
+        
+        if (productGeneral.getTags() != null) {
+            cur.setTags(productGeneral.getTags());
+        }
 
         return productGeneralRepository.save(cur);
     }
@@ -116,11 +142,21 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
     public void delete(Long productGeneralId) {
         productGeneralRepository.delete(read(productGeneralId));
     }
-
+    
     @Override
     public ProductGeneral updateProductMainImage(Long productGeneralId, String imageUrl) {
         ProductGeneral curProductGeneral = read(productGeneralId);
-
+        
+        String oldImgUrl = curProductGeneral.getImgUrl();
+        
+        // Only delete old image if it's not the default one
+        if (oldImgUrl != null && !Objects.equals(oldImgUrl, productGeneralDefaultImgUrl)) {
+            String key = oldImgUrl.substring(productGeneralImgPubUrlPrefix.length() + 1);
+            r2UploadService.delete(key, productGeneralImgBucket);
+        }
+        
+        curProductGeneral.setImgUrl(imageUrl);
+        
         return productGeneralRepository.save(curProductGeneral);
     }
 }

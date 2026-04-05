@@ -130,6 +130,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
     
     @Override
+    public List<SubSubcategory> readAllSubSubcategories_v2() {
+        return subSubcategoryRepository.findAll();
+    }
+    
+    @Override
     public List<SubSubcategory> readAllSubSubcategories(Long subcategoryId) {
         return subSubcategoryRepository.findBySubcategoryId(subcategoryId);
     }

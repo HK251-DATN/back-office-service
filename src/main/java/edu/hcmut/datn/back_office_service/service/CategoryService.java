@@ -16,6 +16,7 @@ public interface CategoryService {
     // Sub-subcategory operations
     SubSubcategory createSubSubcategory(SubSubcategory subSubcategory);
     SubSubcategory readSubSubcategory(Long subSubcategoryId);
+    List<SubSubcategory> readAllSubSubcategories_v2();
     List<SubSubcategory> readAllSubSubcategories(Long subcategoryId);
     SubSubcategory updateSubSubcategory(Long subSubcategoryId, SubSubcategory subSubcategory);
     void deleteSubSubcategory(Long subSubcategoryId);
