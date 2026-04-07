@@ -33,94 +33,92 @@ public class DataSeeder {
             }
 
             log.info("Starting database seeding...");
-
-            // Seed Main Categories - Fresh Food Focus (Vietnamese)
-            Category fruitsVegetables = createCategory("Trái Cây & Rau Củ", "Trái cây và rau củ tươi sạch", 1, null, "N", null);
-            Category meatSeafood = createCategory("Thịt & Hải Sản", "Thịt tươi, gia cầm và hải sản", 2, null, "N", null);
-            Category dairyEggs = createCategory("Sữa & Trứng", "Sản phẩm sữa và trứng tươi", 3, null, "N", null);
-            Category bakery = createCategory("Bánh Mì & Bánh Ngọt", "Bánh mì và bánh nướng tươi", 4, null, "N", null);
-            Category beverages = createCategory("Đồ Uống", "Nước ép tươi và đồ uống", 5, null, "N", null);
-
-            log.info("Seeded {} main categories", categoryRepository.count());
-
-            // Seed Subcategories under Fruits & Vegetables
-            Category fruits = createCategory("Trái Cây", "Trái cây tươi theo mùa", 1, null, "Y", fruitsVegetables.getCategoryId());
-            Category vegetables = createCategory("Rau Củ", "Rau củ tươi sạch", 2, null, "Y", fruitsVegetables.getCategoryId());
-            Category herbs = createCategory("Rau Thơm & Gia Vị", "Rau thơm và gia vị tươi", 3, null, "Y", fruitsVegetables.getCategoryId());
-
-            // Seed Subcategories under Meat & Seafood
-            Category poultry = createCategory("Gia Cầm", "Gà, vịt và các loại gia cầm tươi", 1, null, "Y", meatSeafood.getCategoryId());
-            Category redMeat = createCategory("Thịt Đỏ", "Thịt bò, heo và cừu tươi", 2, null, "Y", meatSeafood.getCategoryId());
-            Category seafood = createCategory("Hải Sản", "Cá và hải sản tươi sống", 3, null, "Y", meatSeafood.getCategoryId());
-
-            // Seed Subcategories under Dairy & Eggs
-            Category milkProducts = createCategory("Sản Phẩm Sữa", "Sữa tươi và kem", 1, null, "Y", dairyEggs.getCategoryId());
-            Category cheeseProducts = createCategory("Phô Mai", "Phô mai tươi và ủ", 2, null, "Y", dairyEggs.getCategoryId());
-            Category eggsProducts = createCategory("Trứng", "Trứng tươi", 3, null, "Y", dairyEggs.getCategoryId());
-
-            // Seed Subcategories under Bakery
-            Category bread = createCategory("Bánh Mì", "Bánh mì nướng tươi", 1, null, "Y", bakery.getCategoryId());
-            Category pastries = createCategory("Bánh Ngọt", "Bánh ngọt và bánh kem tươi", 2, null, "Y", bakery.getCategoryId());
-
-            // Seed Subcategories under Beverages
-            Category freshJuice = createCategory("Nước Ép Tươi", "Nước ép trái cây tươi vắt", 1, null, "Y", beverages.getCategoryId());
-            Category plantBasedMilk = createCategory("Sữa Thực Vật", "Sữa hạnh nhân, đậu nành và yến mạch", 2, null, "Y", beverages.getCategoryId());
-
-            log.info("Seeded {} total categories (including subcategories)", categoryRepository.count());
-
-            // Seed SubSubcategories - Fruits
-            SubSubcategory tropicalFruits = createSubSubcategory("Trái Cây Nhiệt Đới", "Xoài, dứa, đu đủ", null, fruits.getCategoryId());
-            SubSubcategory citrusFruits = createSubSubcategory("Trái Cây Có Múi", "Cam, chanh, quýt", null, fruits.getCategoryId());
-            SubSubcategory berries = createSubSubcategory("Quả Mọng", "Dâu tây, việt quất, mâm xôi", null, fruits.getCategoryId());
-            SubSubcategory applesPears = createSubSubcategory("Táo & Lê", "Các loại táo và lê", null, fruits.getCategoryId());
-
-            // Seed SubSubcategories - Vegetables
-            SubSubcategory leafyGreens = createSubSubcategory("Rau Lá Xanh", "Xà lách, rau bina, cải xoăn", null, vegetables.getCategoryId());
-            SubSubcategory rootVegetables = createSubSubcategory("Củ Quả", "Cà rốt, khoai tây, củ cải", null, vegetables.getCategoryId());
-            SubSubcategory tomatoesCucumbers = createSubSubcategory("Cà Chua & Dưa Leo", "Cà chua và dưa leo tươi", null, vegetables.getCategoryId());
-            SubSubcategory mushrooms = createSubSubcategory("Nấm", "Nấm tươi các loại", null, vegetables.getCategoryId());
-
-            // Seed SubSubcategories - Herbs
-            SubSubcategory freshHerbs = createSubSubcategory("Rau Thơm Tươi", "Húng quế, rau mùi, ngò tây", null, herbs.getCategoryId());
-            SubSubcategory aromatics = createSubSubcategory("Gia Vị", "Tỏi, hành, gừng", null, herbs.getCategoryId());
-
-            // Seed SubSubcategories - Poultry
-            SubSubcategory chicken = createSubSubcategory("Thịt Gà", "Gà tươi nguyên con và từng phần", null, poultry.getCategoryId());
-            SubSubcategory duck = createSubSubcategory("Thịt Vịt", "Thịt vịt tươi", null, poultry.getCategoryId());
-
-            // Seed SubSubcategories - Red Meat
-            SubSubcategory beef = createSubSubcategory("Thịt Bò", "Các loại thịt bò tươi", null, redMeat.getCategoryId());
-            SubSubcategory pork = createSubSubcategory("Thịt Heo", "Các loại thịt heo tươi", null, redMeat.getCategoryId());
-
-            // Seed SubSubcategories - Seafood
-            SubSubcategory fish = createSubSubcategory("Cá", "Phi lê cá và cá nguyên con tươi", null, seafood.getCategoryId());
-            SubSubcategory shellfish = createSubSubcategory("Hải Sản Có Vỏ", "Tôm, cua, tôm hùm", null, seafood.getCategoryId());
-
-            // Seed SubSubcategories - Milk Products
-            SubSubcategory freshMilk = createSubSubcategory("Sữa Tươi", "Sữa nguyên kem, tách béo và ít béo", null, milkProducts.getCategoryId());
-            SubSubcategory yogurt = createSubSubcategory("Sữa Chua", "Sữa chua nguyên chất và có hương vị", null, milkProducts.getCategoryId());
-
-            // Seed SubSubcategories - Cheese
-            SubSubcategory softCheese = createSubSubcategory("Phô Mai Mềm", "Mozzarella, ricotta, phô mai kem", null, cheeseProducts.getCategoryId());
-            SubSubcategory hardCheese = createSubSubcategory("Phô Mai Cứng", "Cheddar, parmesan, gouda", null, cheeseProducts.getCategoryId());
-
-            // Seed SubSubcategories - Eggs
-            SubSubcategory chickenEggs = createSubSubcategory("Trứng Gà", "Trứng gà trắng và nâu", null, eggsProducts.getCategoryId());
-
-            // Seed SubSubcategories - Bread
-            SubSubcategory wheatBread = createSubSubcategory("Bánh Mì Lúa Mì", "Bánh mì lúa mì nguyên cám và đa곡céréales", null, bread.getCategoryId());
-            SubSubcategory whiteBread = createSubSubcategory("Bánh Mì Trắng", "Bánh mì trắng và bánh mì Pháp", null, bread.getCategoryId());
-
-            // Seed SubSubcategories - Pastries
-            SubSubcategory croissants = createSubSubcategory("Bánh Sừng Bò & Bánh Ngọt", "Bánh sừng bò và bánh ngọt Đan Mạch tươi", null, pastries.getCategoryId());
-
-            // Seed SubSubcategories - Fresh Juice
-            SubSubcategory orangeJuice = createSubSubcategory("Nước Cam", "Nước cam vắt tươi", null, freshJuice.getCategoryId());
-            SubSubcategory mixedJuice = createSubSubcategory("Nước Ép Hỗn Hợp", "Hỗn hợp trái cây và rau củ", null, freshJuice.getCategoryId());
-
-            // Seed SubSubcategories - Plant-Based Milk
-            SubSubcategory almondMilk = createSubSubcategory("Sữa Hạnh Nhân", "Sữa hạnh nhân tươi", null, plantBasedMilk.getCategoryId());
-            SubSubcategory oatMilk = createSubSubcategory("Sữa Yến Mạch", "Sữa yến mạch tươi", null, plantBasedMilk.getCategoryId());
+            
+            // ==================== CATEGORY 1: Thịt & Hải Sản ====================
+            Category thitHaiSan = createCategory("Thịt & Hải Sản", "Thịt tươi, gia cầm và hải sản", 1, null, "N", null);
+            
+            Category giaCam = createCategory("Gia Cầm", "Các loại thịt gia cầm tươi", 1, null, "Y", thitHaiSan.getCategoryId());
+            createSubSubcategory("Thịt Gà", "Thịt gà tươi nguyên con và các phần", null, giaCam.getCategoryId());
+            createSubSubcategory("Thịt Vịt", "Thịt vịt tươi nguyên con và các phần", null, giaCam.getCategoryId());
+            createSubSubcategory("Thịt Ngan", "Thịt ngan tươi", null, giaCam.getCategoryId());
+            createSubSubcategory("Thịt Chim Cút", "Chim cút tươi nguyên con", null, giaCam.getCategoryId());
+            createSubSubcategory("Lòng Gia Cầm", "Gan, mề, tim gia cầm tươi", null, giaCam.getCategoryId());
+            
+            Category thitDo = createCategory("Thịt Đỏ", "Các loại thịt đỏ tươi", 2, null, "Y", thitHaiSan.getCategoryId());
+            createSubSubcategory("Thịt Bò", "Thịt bò tươi các loại", null, thitDo.getCategoryId());
+            createSubSubcategory("Thịt Heo", "Thịt heo tươi các loại", null, thitDo.getCategoryId());
+            createSubSubcategory("Thịt Dê", "Thịt dê tươi", null, thitDo.getCategoryId());
+            createSubSubcategory("Thịt Cừu", "Thịt cừu tươi nhập khẩu", null, thitDo.getCategoryId());
+            createSubSubcategory("Xúc Xích Tươi", "Xúc xích tươi chưa qua chế biến", null, thitDo.getCategoryId());
+            
+            Category haiSan = createCategory("Hải Sản", "Hải sản tươi sống", 3, null, "Y", thitHaiSan.getCategoryId());
+            createSubSubcategory("Tôm Tươi", "Tôm sú, tôm thẻ tươi sống", null, haiSan.getCategoryId());
+            createSubSubcategory("Cá Tươi", "Các loại cá tươi nguyên con và phi lê", null, haiSan.getCategoryId());
+            createSubSubcategory("Mực Tươi", "Mực ống, mực nang tươi", null, haiSan.getCategoryId());
+            createSubSubcategory("Cua Ghẹ", "Cua biển, ghẹ tươi sống", null, haiSan.getCategoryId());
+            createSubSubcategory("Nghêu Sò", "Nghêu, sò, hàu tươi", null, haiSan.getCategoryId());
+            
+            // ==================== CATEGORY 2: Rau Củ Quả ====================
+            Category rauCuQua = createCategory("Rau Củ Quả", "Rau xanh, củ quả và trái cây tươi", 2, null, "N", null);
+            
+            Category rauAnLa = createCategory("Rau Ăn Lá", "Các loại rau xanh ăn lá", 1, null, "Y", rauCuQua.getCategoryId());
+            createSubSubcategory("Rau Muống", "Rau muống tươi", null, rauAnLa.getCategoryId());
+            createSubSubcategory("Cải Xanh", "Cải xanh, cải ngọt tươi", null, rauAnLa.getCategoryId());
+            createSubSubcategory("Xà Lách", "Xà lách các loại tươi", null, rauAnLa.getCategoryId());
+            createSubSubcategory("Rau Dền", "Rau dền đỏ và rau dền xanh", null, rauAnLa.getCategoryId());
+            createSubSubcategory("Cải Thìa", "Cải thìa, cải bẹ trắng tươi", null, rauAnLa.getCategoryId());
+            
+            Category cuQua = createCategory("Củ Quả", "Các loại củ và quả tươi", 2, null, "Y", rauCuQua.getCategoryId());
+            createSubSubcategory("Cà Rốt", "Cà rốt tươi", null, cuQua.getCategoryId());
+            createSubSubcategory("Khoai Tây", "Khoai tây tươi", null, cuQua.getCategoryId());
+            createSubSubcategory("Củ Cải", "Củ cải trắng, củ cải đỏ tươi", null, cuQua.getCategoryId());
+            createSubSubcategory("Bắp", "Bắp ngô tươi các loại", null, cuQua.getCategoryId());
+            createSubSubcategory("Su Su", "Su su tươi", null, cuQua.getCategoryId());
+            
+            Category traiCay = createCategory("Trái Cây", "Trái cây tươi trong nước và nhập khẩu", 3, null, "Y", rauCuQua.getCategoryId());
+            createSubSubcategory("Xoài", "Xoài tươi các loại", null, traiCay.getCategoryId());
+            createSubSubcategory("Chuối", "Chuối tươi các loại", null, traiCay.getCategoryId());
+            createSubSubcategory("Dưa Hấu", "Dưa hấu tươi", null, traiCay.getCategoryId());
+            createSubSubcategory("Ổi", "Ổi tươi các loại", null, traiCay.getCategoryId());
+            createSubSubcategory("Thanh Long", "Thanh long ruột đỏ và ruột trắng", null, traiCay.getCategoryId());
+            
+            Category rauGiaVi = createCategory("Rau Gia Vị", "Các loại rau và củ gia vị", 4, null, "Y", rauCuQua.getCategoryId());
+            createSubSubcategory("Hành Lá", "Hành lá tươi", null, rauGiaVi.getCategoryId());
+            createSubSubcategory("Tỏi", "Tỏi tươi và tỏi khô", null, rauGiaVi.getCategoryId());
+            createSubSubcategory("Gừng", "Gừng tươi", null, rauGiaVi.getCategoryId());
+            createSubSubcategory("Ớt", "Ớt sừng, ớt hiểm tươi", null, rauGiaVi.getCategoryId());
+            createSubSubcategory("Sả", "Sả tươi nguyên cây", null, rauGiaVi.getCategoryId());
+            
+            // ==================== CATEGORY 3: Sữa & Trứng ====================
+            Category suaTrung = createCategory("Sữa & Trứng", "Sữa tươi, sản phẩm từ sữa và trứng", 3, null, "N", null);
+            
+            Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, null, "Y", suaTrung.getCategoryId());
+            createSubSubcategory("Sữa Tươi Không Đường", "Sữa tươi tiệt trùng không đường", null, suaTuoi.getCategoryId());
+            createSubSubcategory("Sữa Tươi Có Đường", "Sữa tươi tiệt trùng có đường", null, suaTuoi.getCategoryId());
+            createSubSubcategory("Sữa Hữu Cơ", "Sữa tươi hữu cơ nguyên chất", null, suaTuoi.getCategoryId());
+            createSubSubcategory("Sữa Ít Béo", "Sữa tươi ít béo tách một phần kem", null, suaTuoi.getCategoryId());
+            createSubSubcategory("Sữa Tách Béo", "Sữa tươi tách hoàn toàn chất béo", null, suaTuoi.getCategoryId());
+            
+            Category spTuSua = createCategory("Sản Phẩm Từ Sữa", "Bơ, phô mai, kem và sữa chua", 2, null, "Y", suaTrung.getCategoryId());
+            createSubSubcategory("Bơ Tươi", "Bơ động vật tươi các loại", null, spTuSua.getCategoryId());
+            createSubSubcategory("Phô Mai", "Phô mai tươi và phô mai chế biến", null, spTuSua.getCategoryId());
+            createSubSubcategory("Kem Tươi", "Kem tươi whipping cream", null, spTuSua.getCategoryId());
+            createSubSubcategory("Sữa Chua", "Sữa chua ăn các loại", null, spTuSua.getCategoryId());
+            createSubSubcategory("Sữa Đặc", "Sữa đặc có đường và không đường", null, spTuSua.getCategoryId());
+            
+            Category trung = createCategory("Trứng", "Các loại trứng tươi", 3, null, "Y", suaTrung.getCategoryId());
+            createSubSubcategory("Trứng Gà Công Nghiệp", "Trứng gà tươi công nghiệp", null, trung.getCategoryId());
+            createSubSubcategory("Trứng Gà Ta", "Trứng gà ta thả vườn", null, trung.getCategoryId());
+            createSubSubcategory("Trứng Vịt", "Trứng vịt tươi", null, trung.getCategoryId());
+            createSubSubcategory("Trứng Cút", "Trứng cút tươi", null, trung.getCategoryId());
+            createSubSubcategory("Trứng Vịt Lộn", "Trứng vịt lộn ấp sẵn", null, trung.getCategoryId());
+            
+            Category doUongTuSua = createCategory("Đồ Uống Từ Sữa", "Sữa đậu nành, sữa hạt và các loại sữa uống", 4, null, "Y", suaTrung.getCategoryId());
+            createSubSubcategory("Sữa Đậu Nành", "Sữa đậu nành tươi nguyên chất", null, doUongTuSua.getCategoryId());
+            createSubSubcategory("Sữa Hạt", "Sữa hạnh nhân, sữa óc chó, sữa hạt điều", null, doUongTuSua.getCategoryId());
+            createSubSubcategory("Yaourt Uống", "Sữa chua uống các loại", null, doUongTuSua.getCategoryId());
+            createSubSubcategory("Kefir", "Kefir lên men tự nhiên", null, doUongTuSua.getCategoryId());
+            createSubSubcategory("Sữa Chua Uống Nha Đam", "Sữa chua uống kết hợp nha đam", null, doUongTuSua.getCategoryId());
 
             log.info("Seeded {} sub-subcategories", subSubcategoryRepository.count());
 
@@ -132,204 +130,256 @@ public class DataSeeder {
             log.info("Seeded {} payment methods", paymentMethodRepository.count());
 
             // Seed Sample Product Generals - Fresh Food (Vietnamese)
+                    // Thịt Gà (subSubcategoryId: 1)
+            createProductGeneral("Gà Ta Nguyên Con", "Gà ta thả vườn tươi ngon, thịt chắc thơm ngon", new String[]{"gà ta", "gà nguyên con", "thịt gà"}, Unit.KILOGRAM, 1L, 1L);
+            createProductGeneral("Ức Gà Phi Lê", "Ức gà phi lê không xương, thịt trắng mềm", new String[]{"ức gà", "phi lê", "thịt gà"}, Unit.GRAM, 500L, 1L);
+            createProductGeneral("Đùi Gà Tươi", "Đùi gà tươi có xương, thịt ngọt đậm đà", new String[]{"đùi gà", "thịt gà", "gà tươi"}, Unit.GRAM, 500L, 1L);
 
-            // Trái Cây
-            ProductGeneral redApples = createProductGeneral(
-                "Táo Đỏ Fuji",
-                "Táo đỏ Fuji giòn ngọt, hoàn hảo cho bữa ăn nhẹ",
-                new String[]{"tươi", "hữu-cơ", "theo-mùa", "vitamin-c"},
-                Unit.KILOGRAM,
-                1L,
-                applesPears.getSubSubcategoryId()
-            );
+            // Thịt Vịt (subSubcategoryId: 2)
+            createProductGeneral("Vịt Trời Nguyên Con", "Vịt trời tươi nguyên con, thịt chắc thơm", new String[]{"vịt trời", "vịt nguyên con", "thịt vịt"}, Unit.KILOGRAM, 1L, 2L);
+            createProductGeneral("Ức Vịt Phi Lê", "Ức vịt phi lê không da, ít mỡ", new String[]{"ức vịt", "phi lê", "thịt vịt"}, Unit.GRAM, 500L, 2L);
+            createProductGeneral("Đùi Vịt Bó Xôi", "Đùi vịt bó xôi tươi ngon, thịt đậm đà", new String[]{"đùi vịt", "vịt bó xôi", "thịt vịt"}, Unit.GRAM, 500L, 2L);
 
-            ProductGeneral bananas = createProductGeneral(
-                "Chuối Hữu Cơ",
-                "Chuối hữu cơ chín mọng, giàu kali",
-                new String[]{"tươi", "hữu-cơ", "nhiệt-đới", "năng-lượng"},
-                Unit.KILOGRAM,
-                1L,
-                tropicalFruits.getSubSubcategoryId()
-            );
+            // Thịt Ngan (subSubcategoryId: 3)
+            createProductGeneral("Ngan Nguyên Con", "Ngan tươi nguyên con, thịt thơm béo", new String[]{"ngan", "ngan nguyên con", "thịt ngan"}, Unit.KILOGRAM, 1L, 3L);
+            createProductGeneral("Ức Ngan Phi Lê", "Ức ngan phi lê cao cấp, thịt đỏ thơm", new String[]{"ức ngan", "phi lê", "thịt ngan"}, Unit.GRAM, 500L, 3L);
+            createProductGeneral("Đùi Ngan Tươi", "Đùi ngan tươi ngon, thịt chắc", new String[]{"đùi ngan", "thịt ngan", "ngan tươi"}, Unit.GRAM, 500L, 3L);
 
-            ProductGeneral oranges = createProductGeneral(
-                "Cam Valencia",
-                "Cam Valencia mọng nước, thích hợp vắt nước",
-                new String[]{"tươi", "có-múi", "vitamin-c", "mọng-nước"},
-                Unit.KILOGRAM,
-                1L,
-                citrusFruits.getSubSubcategoryId()
-            );
+            // Thịt Chim Cút (subSubcategoryId: 4)
+            createProductGeneral("Chim Cút Nguyên Con", "Chim cút tươi nguyên con, thịt thơm ngọt", new String[]{"chim cút", "cút nguyên con", "thịt cút"}, Unit.GRAM, 200L, 4L);
+            createProductGeneral("Chim Cút Rút Xương", "Chim cút rút xương sẵn, tiện chế biến", new String[]{"chim cút", "rút xương", "thịt cút"}, Unit.GRAM, 200L, 4L);
+            createProductGeneral("Chim Cút Loại 1", "Chim cút loại 1 to đều, tươi ngon", new String[]{"chim cút", "cút loại 1", "thịt cút"}, Unit.GRAM, 300L, 4L);
 
-            ProductGeneral strawberries = createProductGeneral(
-                "Dâu Tây Tươi",
-                "Dâu tây tươi ngọt thơm",
-                new String[]{"tươi", "quả-mọng", "theo-mùa", "vitamin-c"},
-                Unit.GRAM,
-                250L,
-                berries.getSubSubcategoryId()
-            );
+            // Lòng Gia Cầm (subSubcategoryId: 5)
+            createProductGeneral("Gan Gà Tươi", "Gan gà tươi ngon, giàu dinh dưỡng", new String[]{"gan gà", "lòng gà", "nội t장"}, Unit.GRAM, 300L, 5L);
+            createProductGeneral("Mề Gà Tươi", "Mề gà tươi sạch, giòn ngọt", new String[]{"mề gà", "lòng gà", "dạ dày gà"}, Unit.GRAM, 300L, 5L);
+            createProductGeneral("Tim Gà Tươi", "Tim gà tươi ngon, dai giòn", new String[]{"tim gà", "lòng gà", "nội tạng"}, Unit.GRAM, 200L, 5L);
 
-            // Rau Củ
-            ProductGeneral spinach = createProductGeneral(
-                "Rau Bina Non",
-                "Lá rau bina non mềm, đã rửa sạch",
-                new String[]{"tươi", "rau-lá-xanh", "sắt", "hữu-cơ"},
-                Unit.GRAM,
-                200L,
-                leafyGreens.getSubSubcategoryId()
-            );
+            // Thịt Bò (subSubcategoryId: 6)
+            createProductGeneral("Thịt Bò Úc Phi Lê", "Thịt bò Úc nhập khẩu phi lê mềm", new String[]{"thịt bò", "bò Úc", "phi lê"}, Unit.GRAM, 500L, 6L);
+            createProductGeneral("Thịt Bò Nạm", "Thịt bò nạm tươi, thích hợp nấu phở", new String[]{"thịt bò", "bò nạm", "bò tươi"}, Unit.GRAM, 500L, 6L);
+            createProductGeneral("Thịt Bò Vai", "Thịt bò vai tươi ngon, thơm mềm", new String[]{"thịt bò", "bò vai", "bò tươi"}, Unit.GRAM, 500L, 6L);
 
-            ProductGeneral carrots = createProductGeneral(
-                "Cà Rốt Tươi",
-                "Cà rốt cam giòn, giàu beta-carotene",
-                new String[]{"tươi", "củ-quả", "vitamin-a", "hữu-cơ"},
-                Unit.KILOGRAM,
-                1L,
-                rootVegetables.getSubSubcategoryId()
-            );
+            // Thịt Heo (subSubcategoryId: 7)
+            createProductGeneral("Thịt Heo Ba Chỉ", "Thịt heo ba chỉ tươi, vừa nạc vừa mỡ", new String[]{"thịt heo", "ba chỉ", "thịt lợn"}, Unit.GRAM, 500L, 7L);
+            createProductGeneral("Thịt Heo Nạc Vai", "Thịt heo nạc vai tươi, ít mỡ", new String[]{"thịt heo", "nạc vai", "thịt lợn"}, Unit.GRAM, 500L, 7L);
+            createProductGeneral("Thịt Heo Nạc Dăm", "Thịt heo nạc dăm tươi ngon", new String[]{"thịt heo", "nạc dăm", "thịt lợn"}, Unit.GRAM, 500L, 7L);
 
-            ProductGeneral tomatoes = createProductGeneral(
-                "Cà Chua Cherry",
-                "Cà chua cherry ngọt trên cây",
-                new String[]{"tươi", "chín-cây", "salad", "hữu-cơ"},
-                Unit.GRAM,
-                250L,
-                tomatoesCucumbers.getSubSubcategoryId()
-            );
+            // Thịt Dê (subSubcategoryId: 8)
+            createProductGeneral("Thịt Dê Nạc", "Thịt dê nạc tươi, thơm ngon bổ dưỡng", new String[]{"thịt dê", "dê nạc", "dê tươi"}, Unit.GRAM, 500L, 8L);
+            createProductGeneral("Thịt Dê Có Xương", "Thịt dê có xương nấu cháo, hầm", new String[]{"thịt dê", "dê xương", "dê tươi"}, Unit.GRAM, 500L, 8L);
+            createProductGeneral("Sườn Dê Tươi", "Sườn dê tươi ngon, nướng hoặc hầm", new String[]{"sườn dê", "thịt dê", "dê tươi"}, Unit.GRAM, 500L, 8L);
 
-            ProductGeneral whiteMushrooms = createProductGeneral(
-                "Nấm Trắng",
-                "Nấm trắng tươi",
-                new String[]{"tươi", "umami", "nấu-ăn", "protein"},
-                Unit.GRAM,
-                200L,
-                mushrooms.getSubSubcategoryId()
-            );
+            // Thịt Cừu (subSubcategoryId: 9)
+            createProductGeneral("Thịt Cừu Úc Phi Lê", "Thịt cừu Úc nhập khẩu phi lê cao cấp", new String[]{"thịt cừu", "cừu Úc", "phi lê"}, Unit.GRAM, 500L, 9L);
+            createProductGeneral("Thịt Cừu New Zealand", "Thịt cừu New Zealand tươi ngon", new String[]{"thịt cừu", "cừu NZ", "cừu nhập khẩu"}, Unit.GRAM, 500L, 9L);
+            createProductGeneral("Sườn Cừu Cao Cấp", "Sườn cừu cao cấp nướng BBQ", new String[]{"sườn cừu", "thịt cừu", "cừu nướng"}, Unit.GRAM, 500L, 9L);
 
-            // Thịt & Gia Cầm
-            ProductGeneral chickenBreast = createProductGeneral(
-                "Ức Gà Phi Lê",
-                "Ức gà tươi không xương, không da",
-                new String[]{"tươi", "protein", "ít-béo", "halal"},
-                Unit.KILOGRAM,
-                1L,
-                chicken.getSubSubcategoryId()
-            );
+            // Xúc Xích Tươi (subSubcategoryId: 10)
+            createProductGeneral("Xúc Xích Heo Tươi", "Xúc xích heo tươi chưa nướng", new String[]{"xúc xích", "xúc xích heo", "lạp xưởng"}, Unit.GRAM, 500L, 10L);
+            createProductGeneral("Xúc Xích Bò Tươi", "Xúc xích bò tươi nguyên chất", new String[]{"xúc xích", "xúc xích bò", "lạp xưởng"}, Unit.GRAM, 500L, 10L);
+            createProductGeneral("Xúc Xích Gà Tươi", "Xúc xích gà tươi ít béo, healthy", new String[]{"xúc xích", "xúc xích gà", "lạp xưởng"}, Unit.GRAM, 500L, 10L);
 
-            ProductGeneral beefSteak = createProductGeneral(
-                "Bít Tết Bò Ribeye",
-                "Bít tết bò ribeye cao cấp có vân mỡ",
-                new String[]{"tươi", "cao-cấp", "protein", "vân-mỡ"},
-                Unit.GRAM,
-                500L,
-                beef.getSubSubcategoryId()
-            );
+            // Tôm Tươi (subSubcategoryId: 11)
+            createProductGeneral("Tôm Sú Tươi Sống", "Tôm sú tươi sống size lớn", new String[]{"tôm sú", "tôm tươi", "hải sản"}, Unit.KILOGRAM, 1L, 11L);
+            createProductGeneral("Tôm Thẻ Tươi", "Tôm thẻ tươi ngọt thịt chắc", new String[]{"tôm thẻ", "tôm tươi", "hải sản"}, Unit.GRAM, 500L, 11L);
+            createProductGeneral("Tôm Càng Xanh", "Tôm càng xanh tươi sống to", new String[]{"tôm càng", "tôm tươi", "hải sản"}, Unit.KILOGRAM, 1L, 11L);
 
-            // Hải Sản
-            ProductGeneral salmon = createProductGeneral(
-                "Phi Lê Cá Hồi Đại Tây Dương",
-                "Phi lê cá hồi Đại Tây Dương tươi, giàu Omega-3",
-                new String[]{"tươi", "hải-sản", "omega-3", "cao-cấp"},
-                Unit.GRAM,
-                500L,
-                fish.getSubSubcategoryId()
-            );
+            // Cá Tươi (subSubcategoryId: 12)
+            createProductGeneral("Cá Hồi Phi Lê", "Cá hồi phi lê tươi Nauy", new String[]{"cá hồi", "phi lê", "cá tươi"}, Unit.GRAM, 500L, 12L);
+            createProductGeneral("Cá Basa Phi Lê", "Cá basa phi lê không xương", new String[]{"cá basa", "phi lê", "cá tươi"}, Unit.GRAM, 500L, 12L);
+            createProductGeneral("Cá Diêu Hồng Tươi", "Cá diêu hồng tươi nguyên con", new String[]{"cá diêu hồng", "cá nguyên con", "cá tươi"}, Unit.KILOGRAM, 1L, 12L);
 
-            ProductGeneral shrimp = createProductGeneral(
-                "Tôm Càng Tươi",
-                "Tôm càng lớn, đã lột vỏ và bỏ chỉ",
-                new String[]{"tươi", "hải-sản", "protein", "cao-cấp"},
-                Unit.GRAM,
-                300L,
-                shellfish.getSubSubcategoryId()
-            );
+            // Mực Tươi (subSubcategoryId: 13)
+            createProductGeneral("Mực Ống Tươi", "Mực ống tươi size lớn", new String[]{"mực ống", "mực tươi", "hải sản"}, Unit.KILOGRAM, 1L, 13L);
+            createProductGeneral("Mực Nang Tươi", "Mực nang tươi ngọt thịt dai", new String[]{"mực nang", "mực tươi", "hải sản"}, Unit.GRAM, 500L, 13L);
+            createProductGeneral("Mực Lá Tươi", "Mực lá tươi sống nhỏ", new String[]{"mực lá", "mực tươi", "hải sản"}, Unit.GRAM, 500L, 13L);
 
-            // Sữa & Trứng
-            ProductGeneral wholeMilk = createProductGeneral(
-                "Sữa Tươi Nguyên Kem",
-                "Sữa tươi nguyên kem 3.5% béo, nguồn gốc địa phương",
-                new String[]{"sữa", "tươi", "canxi", "vitamin-d"},
-                Unit.LITER,
-                1L,
-                freshMilk.getSubSubcategoryId()
-            );
+            // Cua Ghẹ (subSubcategoryId: 14)
+            createProductGeneral("Cua Biển Tươi Sống", "Cua biển tươi sống size to", new String[]{"cua biển", "cua tươi", "hải sản"}, Unit.KILOGRAM, 1L, 14L);
+            createProductGeneral("Ghẹ Xanh Tươi", "Ghẹ xanh tươi sống thịt ngọt", new String[]{"ghẹ", "cua tươi", "hải sản"}, Unit.KILOGRAM, 1L, 14L);
+            createProductGeneral("Cua Gạch Tươi", "Cua gạch tươi đầy gạch béo ngậy", new String[]{"cua gạch", "cua tươi", "hải sản"}, Unit.KILOGRAM, 1L, 14L);
 
-            ProductGeneral greekYogurt = createProductGeneral(
-                "Sữa Chua Hy Lạp Nguyên Chất",
-                "Sữa chua Hy Lạp đặc và béo",
-                new String[]{"sữa", "probiotic", "protein", "lành-mạnh"},
-                Unit.GRAM,
-                500L,
-                yogurt.getSubSubcategoryId()
-            );
+            // Nghêu Sò (subSubcategoryId: 15)
+            createProductGeneral("Nghêu Tươi Sống", "Nghêu tươi sống vỏ to thịt ngọt", new String[]{"nghêu", "sò tươi", "hải sản"}, Unit.KILOGRAM, 1L, 15L);
+            createProductGeneral("Sò Huyết Tươi", "Sò huyết tươi sống ngon ngọt", new String[]{"sò huyết", "sò tươi", "hải sản"}, Unit.KILOGRAM, 1L, 15L);
+            createProductGeneral("Hàu Sữa Tươi", "Hàu sữa tươi sống béo ngậy", new String[]{"hàu", "sò tươi", "hải sản"}, Unit.KILOGRAM, 1L, 15L);
 
-            ProductGeneral mozzarella = createProductGeneral(
-                "Phô Mai Mozzarella Tươi",
-                "Phô mai Mozzarella tươi dạng viên",
-                new String[]{"sữa", "phô-mai", "ý", "mềm"},
-                Unit.GRAM,
-                250L,
-                softCheese.getSubSubcategoryId()
-            );
+            // Rau Muống (subSubcategoryId: 16)
+            createProductGeneral("Rau Muống Xanh", "Rau muống xanh tươi non mơn mởn", new String[]{"rau muống", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 16L);
+            createProductGeneral("Rau Muống Dại", "Rau muống dại tươi thơm ngon", new String[]{"rau muống", "rau dại", "rau xanh"}, Unit.GRAM, 500L, 16L);
+            createProductGeneral("Rau Muống Cọng To", "Rau muống cọng to tươi giòn", new String[]{"rau muống", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 16L);
 
-            ProductGeneral cheddar = createProductGeneral(
-                "Phô Mai Cheddar Ủ",
-                "Phô mai Cheddar ủ vị đậm dạng khối",
-                new String[]{"sữa", "phô-mai", "ủ", "đậm-đà"},
-                Unit.GRAM,
-                400L,
-                hardCheese.getSubSubcategoryId()
-            );
+            // Cải Xanh (subSubcategoryId: 17)
+            createProductGeneral("Cải Xanh Tươi", "Cải xanh tươi ngọt mát", new String[]{"cải xanh", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 17L);
+            createProductGeneral("Cải Ngọt Baby", "Cải ngọt baby non mềm", new String[]{"cải ngọt", "rau xanh", "rau ăn lá"}, Unit.GRAM, 300L, 17L);
+            createProductGeneral("Cải Ngồng Tươi", "Cải ngồng tươi giòn ngọt", new String[]{"cải ngồng", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 17L);
 
-            ProductGeneral eggs = createProductGeneral(
-                "Trứng Gà Trang Trại",
-                "Trứng gà thả vườn, size lớn",
-                new String[]{"tươi", "protein", "thả-vườn", "omega-3"},
-                Unit.DOZEN,
-                12L,
-                chickenEggs.getSubSubcategoryId()
-            );
+            // Xà Lách (subSubcategoryId: 18)
+            createProductGeneral("Xà Lách Xoong", "Xà lách xoong tươi giòn", new String[]{"xà lách", "rau xanh", "rau salad"}, Unit.GRAM, 300L, 18L);
+            createProductGeneral("Xà Lách Lô Lô", "Xà lách lô lô đỏ tím tươi", new String[]{"xà lách", "rau xanh", "rau salad"}, Unit.GRAM, 300L, 18L);
+            createProductGeneral("Xà Lách Tím", "Xà lách tím tươi giàu anthocyanin", new String[]{"xà lách", "rau xanh", "rau salad"}, Unit.GRAM, 300L, 18L);
 
-            // Bánh Mì & Bánh Ngọt
-            ProductGeneral wholeWheatBread = createProductGeneral(
-                "Bánh Mì Lúa Mì Nguyên Cám",
-                "Bánh mì lúa mì nguyên cám nướng tươi",
-                new String[]{"bánh", "tươi", "nguyên-cám", "chất-xơ"},
-                Unit.PIECE,
-                1L,
-                wheatBread.getSubSubcategoryId()
-            );
+            // Rau Dền (subSubcategoryId: 19)
+            createProductGeneral("Rau Dền Đỏ", "Rau dền đỏ tươi giàu sắt", new String[]{"rau dền", "rau đỏ", "rau xanh"}, Unit.GRAM, 500L, 19L);
+            createProductGeneral("Rau Dền Xanh", "Rau dền xanh tươi mát", new String[]{"rau dền", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 19L);
+            createProductGeneral("Rau Dền Cơm", "Rau dền cơm non mềm thơm", new String[]{"rau dền", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 19L);
 
-            ProductGeneral croissant = createProductGeneral(
-                "Bánh Sừng Bò Bơ",
-                "Bánh sừng bò Pháp giòn tan bơ thơm",
-                new String[]{"bánh", "tươi", "pháp", "bơ"},
-                Unit.PIECE,
-                1L,
-                croissants.getSubSubcategoryId()
-            );
+            // Cải Thìa (subSubcategoryId: 20)
+            createProductGeneral("Cải Thìa Tươi", "Cải thìa tươi ngọt mát", new String[]{"cải thìa", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 20L);
+            createProductGeneral("Cải Bẹ Trắng", "Cải bẹ trắng tươi giòn ngọt", new String[]{"cải bẹ", "rau xanh", "rau ăn lá"}, Unit.GRAM, 500L, 20L);
+            createProductGeneral("Cải Thìa Baby", "Cải thìa baby non mềm", new String[]{"cải thìa", "rau xanh", "rau ăn lá"}, Unit.GRAM, 300L, 20L);
 
-            // Đồ Uống
-            ProductGeneral freshOrangeJuice = createProductGeneral(
-                "Nước Cam Vắt Tươi",
-                "Nước cam vắt tươi 100%, không chất phụ gia",
-                new String[]{"đồ-uống", "tươi", "vitamin-c", "không-đường"},
-                Unit.LITER,
-                1L,
-                orangeJuice.getSubSubcategoryId()
-            );
+            // Cà Rốt (subSubcategoryId: 21)
+            createProductGeneral("Cà Rốt Đà Lạt", "Cà rốt Đà Lạt tươi giòn ngọt", new String[]{"cà rốt", "củ quả", "rau củ"}, Unit.GRAM, 500L, 21L);
+            createProductGeneral("Cà Rốt Nhật", "Cà rốt Nhật to đều màu đẹp", new String[]{"cà rốt", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 21L);
+            createProductGeneral("Cà Rốt Baby", "Cà rốt baby nhỏ xinh ăn salad", new String[]{"cà rốt", "củ quả", "rau củ"}, Unit.GRAM, 300L, 21L);
 
-            ProductGeneral almondMilkProduct = createProductGeneral(
-                "Sữa Hạnh Nhân Không Đường",
-                "Sữa hạnh nhân tươi không đường, không lactose",
-                new String[]{"đồ-uống", "thực-vật", "không-lactose", "chay"},
-                Unit.LITER,
-                1L,
-                almondMilk.getSubSubcategoryId()
-            );
+            // Khoai Tây (subSubcategoryId: 22)
+            createProductGeneral("Khoai Tây Đà Lạt", "Khoai tây Đà Lạt tươi ngon", new String[]{"khoai tây", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 22L);
+            createProductGeneral("Khoai Tây Ai Cập", "Khoai tây Ai Cập nhập khẩu", new String[]{"khoai tây", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 22L);
+            createProductGeneral("Khoai Tây Tím", "Khoai tây tím giàu chất chống oxy hóa", new String[]{"khoai tây", "củ quả", "rau củ"}, Unit.GRAM, 500L, 22L);
+
+            // Củ Cải (subSubcategoryId: 23)
+            createProductGeneral("Củ Cải Trắng", "Củ cải trắng tươi giòn ngọt", new String[]{"củ cải", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 23L);
+            createProductGeneral("Củ Cải Đỏ", "Củ cải đỏ tươi giàu vitamin", new String[]{"củ cải", "củ quả", "rau củ"}, Unit.GRAM, 500L, 23L);
+            createProductGeneral("Củ Cải Muối", "Củ cải trắng dùng làm dưa muối", new String[]{"củ cải", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 23L);
+
+            // Bắp (subSubcategoryId: 24)
+            createProductGeneral("Bắp Ngọt Tươi", "Bắp ngọt tươi hạt vàng căng mọng", new String[]{"bắp ngô", "ngô", "rau củ"}, Unit.KILOGRAM, 1L, 24L);
+            createProductGeneral("Bắp Nếp Tươi", "Bắp nếp tươi dẻo thơm", new String[]{"bắp nếp", "ngô", "rau củ"}, Unit.KILOGRAM, 1L, 24L);
+            createProductGeneral("Bắp Mỹ Tươi", "Bắp Mỹ tươi hạt to ngọt", new String[]{"bắp ngô", "ngô Mỹ", "rau củ"}, Unit.KILOGRAM, 1L, 24L);
+
+            // Su Su (subSubcategoryId: 25)
+            createProductGeneral("Su Su Xanh", "Su su xanh tươi giòn ngọt", new String[]{"su su", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 25L);
+            createProductGeneral("Su Su Trắng", "Su su trắng tươi mềm ngọt", new String[]{"su su", "củ quả", "rau củ"}, Unit.KILOGRAM, 1L, 25L);
+            createProductGeneral("Su Su Non", "Su su non tươi giòn ăn salad", new String[]{"su su", "củ quả", "rau củ"}, Unit.GRAM, 500L, 25L);
+
+            // Xoài (subSubcategoryId: 26)
+            createProductGeneral("Xoài Cát Hòa Lộc", "Xoài cát Hòa Lộc ngọt thơm", new String[]{"xoài", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 26L);
+            createProductGeneral("Xoài Úc", "Xoài Úc nhập khẩu to ngọt", new String[]{"xoài", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 26L);
+            createProductGeneral("Xoài Tượng", "Xoài tượng xanh giòn chua ngọt", new String[]{"xoài", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 26L);
+
+            // Chuối (subSubcategoryId: 27)
+            createProductGeneral("Chuối Già", "Chuối già ngọt thơm bổ dưỡng", new String[]{"chuối", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 27L);
+            createProductGeneral("Chuối Tiêu Hương", "Chuối tiêu hương thơm ngọt", new String[]{"chuối", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 27L);
+            createProductGeneral("Chuối Sứ", "Chuối sứ nhỏ ngọt đậm", new String[]{"chuối", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 27L);
+
+            // Dưa Hấu (subSubcategoryId: 28)
+            createProductGeneral("Dưa Hấu Không Hạt", "Dưa hấu không hạt ngọt mát", new String[]{"dưa hấu", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 28L);
+            createProductGeneral("Dưa Hấu Ruột Đỏ", "Dưa hấu ruột đỏ ngọt tươi", new String[]{"dưa hấu", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 28L);
+            createProductGeneral("Dưa Hấu Vàng", "Dưa hấu vàng giòn ngọt thanh", new String[]{"dưa hấu", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 28L);
+
+            // Ổi (subSubcategoryId: 29)
+            createProductGeneral("Ổi Nữ Hoàng", "Ổi nữ hoàng giòn ngọt thơm", new String[]{"ổi", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 29L);
+            createProductGeneral("Ổi Ruột Đỏ", "Ổi ruột đỏ ngọt giàu lycopene", new String[]{"ổi", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 29L);
+            createProductGeneral("Ổi Xanh", "Ổi xanh giòn chua nhẹ", new String[]{"ổi", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 29L);
+
+            // Thanh Long (subSubcategoryId: 30)
+            createProductGeneral("Thanh Long Ruột Đỏ", "Thanh long ruột đỏ ngọt thơm", new String[]{"thanh long", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 30L);
+            createProductGeneral("Thanh Long Ruột Trắng", "Thanh long ruột trắng ngọt mát", new String[]{"thanh long", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 30L);
+            createProductGeneral("Thanh Long Vàng", "Thanh long vàng Ecuador cao cấp", new String[]{"thanh long", "trái cây", "hoa quả"}, Unit.KILOGRAM, 1L, 30L);
+
+            // Hành Lá (subSubcategoryId: 31)
+            createProductGeneral("Hành Lá Tươi", "Hành lá tươi thơm dùng nêm nếm", new String[]{"hành lá", "gia vị", "rau thơm"}, Unit.GRAM, 200L, 31L);
+            createProductGeneral("Hành Tây Tươi", "Hành tây tươi cay thơm", new String[]{"hành tây", "gia vị", "rau thơm"}, Unit.KILOGRAM, 1L, 31L);
+            createProductGeneral("Hành Tím Tươi", "Hành tím tươi cay nồng", new String[]{"hành tím", "gia vị", "rau thơm"}, Unit.GRAM, 500L, 31L);
+
+            // Tỏi (subSubcategoryId: 32)
+            createProductGeneral("Tỏi Lý Sơn", "Tỏi Lý Sơn đặc sản thơm cay", new String[]{"tỏi", "gia vị", "rau thơm"}, Unit.GRAM, 500L, 32L);
+            createProductGeneral("Tỏi Tươi Cà Mau", "Tỏi tươi Cà Mau múi to", new String[]{"tỏi", "gia vị", "rau thơm"}, Unit.GRAM, 500L, 32L);
+            createProductGeneral("Tỏi Tây", "Tỏi tây nhập khẩu múi lớn", new String[]{"tỏi", "gia vị", "rau thơm"}, Unit.GRAM, 500L, 32L);
+
+            // Gừng (subSubcategoryId: 33)
+            createProductGeneral("Gừng Già", "Gừng già cay nồng dùng nấu ăn", new String[]{"gừng", "gia vị", "rau củ"}, Unit.GRAM, 500L, 33L);
+            createProductGeneral("Gừng Non", "Gừng non ít cay giòn ngọt", new String[]{"gừng", "gia vị", "rau củ"}, Unit.GRAM, 300L, 33L);
+            createProductGeneral("Gừng Khô", "Gừng khô cay thơm lâu", new String[]{"gừng", "gia vị", "rau củ"}, Unit.GRAM, 200L, 33L);
+
+            // Ớt (subSubcategoryId: 34)
+            createProductGeneral("Ớt Sừng Xanh", "Ớt sừng xanh tươi cay nhẹ", new String[]{"ớt", "gia vị", "rau thơm"}, Unit.GRAM, 200L, 34L);
+            createProductGeneral("Ớt Hiểm Đỏ", "Ớt hiểm đỏ tươi cay nồng", new String[]{"ớt", "gia vị", "rau thơm"}, Unit.GRAM, 200L, 34L);
+            createProductGeneral("Ớt Chuông", "Ớt chuông tươi ngọt màu sắc", new String[]{"ớt", "gia vị", "rau thơm"}, Unit.GRAM, 500L, 34L);
+
+            // Sả (subSubcategoryId: 35)
+            createProductGeneral("Sả Tươi Nguyên Cây", "Sả tươi nguyên cây thơm nồng", new String[]{"sả", "gia vị", "rau thơm"}, Unit.GRAM, 300L, 35L);
+            createProductGeneral("Sả Tía Tươi", "Sả tía tươi thơm đặc biệt", new String[]{"sả", "gia vị", "rau thơm"}, Unit.GRAM, 300L, 35L);
+            createProductGeneral("Sả Tôm Tươi", "Sả tôm tươi thơm nhẹ", new String[]{"sả", "gia vị", "rau thơm"}, Unit.GRAM, 300L, 35L);
 
             log.info("Seeded {} sample fresh food products", productGeneralRepository.count());
+            
+            // Seed User
+            
+            User user1 = createUser(
+                    2L,
+                    "buyer@gmail.com",
+                    "Fbuyer",
+                    "Lbuyer",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.MALE,
+                    AccountStatus.ACTIVE
+            );
+            
+            User user2 = createUser(
+                    3L,
+                    "minh.tran@gmail.com",
+                    "minh",
+                    "tran",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.MALE,
+                    AccountStatus.ACTIVE
+            );
+            
+            User user3 = createUser(
+                    4L,
+                    "huong.le@gmail.com",
+                    "huong",
+                    "le",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.FEMALE,
+                    AccountStatus.ACTIVE
+            );
+            
+            User user4 = createUser(
+                    5L,
+                    "tuan.pham@gmail.com",
+                    "tuan",
+                    "pham",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.MALE,
+                    AccountStatus.ACTIVE
+            );
+            
+            User user5 = createUser(
+                    6L,
+                    "linh.vo@gmail.com",
+                    "linh",
+                    "vo",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.FEMALE,
+                    AccountStatus.ACTIVE
+            );
+            
+            log.info("Seeded {} sample users", userRepository.count());
+            
+            // Seed Buyer
+            
+            Buyer buyer1 = createBuyer(user1.getUserId());
+            Buyer buyer2 = createBuyer(user2.getUserId());
+            Buyer buyer3 = createBuyer(user3.getUserId());
+            Buyer buyer4 = createBuyer(user4.getUserId());
+            Buyer buyer5 = createBuyer(user5.getUserId());
+            
+            log.info("Seeded {} sample buyers", userRepository.count());
 
             log.info("Database seeding completed successfully!");
         };
