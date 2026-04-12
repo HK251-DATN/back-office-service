@@ -57,6 +57,11 @@ public class Order {
     @Setter
     private Long totalPrice;
 
+    @Column(name = "packaging_progress")
+    @Getter
+    @Setter
+    private Integer packagingProgress;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

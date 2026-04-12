@@ -21,4 +21,7 @@ public interface OrderService {
     
     void empShipOrder(Long orderId, Long empId);
     
+    void updatePackagingProgress(Long orderId, int progress);
+    
+    void empDeliverOrder(Long orderId, Long empId);
 }

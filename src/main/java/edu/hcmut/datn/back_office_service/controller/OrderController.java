@@ -20,6 +20,8 @@ import edu.hcmut.datn.back_office_service.dto.request.OrderCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.request.OrderUpdateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.service.OrderService;
+import org.springframework.security.core.context.SecurityContextHolder;
+import edu.hcmut.datn.back_office_service.security.portable.AuthenticatedUser;
 
 @Controller
 @RequestMapping("/api/order")
@@ -27,6 +29,11 @@ import edu.hcmut.datn.back_office_service.service.OrderService;
 public class OrderController {
 
     private final OrderService orderService;
+
+    private Long getCurrentUserId() {
+        AuthenticatedUser user = (AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return user.getId();
+    }
     
     @PostMapping
     public ResponseEntity<ApiResponse<Order>> create(@RequestBody OrderCreateRequest request) {
@@ -96,21 +103,63 @@ public class OrderController {
         }
     }
 
-    @PutMapping("/confirm")
-    public ResponseEntity<ApiResponse<Void>> confirmOrder() {
-        // Temp
-        return null;
+    @PutMapping("/{orderId}/confirm")
+    public ResponseEntity<ApiResponse<Void>> confirmOrder(@PathVariable Long orderId) {
+        try {
+            orderService.empConfirmOrder(orderId, getCurrentUserId());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Confirm order successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
     }
 
-    @PutMapping("/package")
-    public ResponseEntity<ApiResponse<Void>> packageOrder() {
-        // Temp
-        return null;
+    @PutMapping("/{orderId}/package")
+    public ResponseEntity<ApiResponse<Void>> packageOrder(@PathVariable Long orderId) {
+        try {
+            orderService.empPackageOrder(orderId, getCurrentUserId());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Package order successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
     }
 
-    @PutMapping("/ship")
-    public ResponseEntity<ApiResponse<Void>> shipOrder() {
-        // Temp
-        return null;
+    @PutMapping("/{orderId}/ship")
+    public ResponseEntity<ApiResponse<Void>> shipOrder(@PathVariable Long orderId) {
+        try {
+            orderService.empShipOrder(orderId, getCurrentUserId());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Ship order successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PutMapping("/{orderId}/progress")
+    public ResponseEntity<ApiResponse<Void>> updatePackagingProgress(@PathVariable Long orderId, @RequestBody edu.hcmut.datn.back_office_service.dto.request.PackagingProgressUpdateRequest request) {
+        try {
+            orderService.updatePackagingProgress(orderId, request.getProgress());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Update packaging progress successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PutMapping("/{orderId}/deliver")
+    public ResponseEntity<ApiResponse<Void>> deliverOrder(@PathVariable Long orderId) {
+        try {
+            orderService.empDeliverOrder(orderId, getCurrentUserId());
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Order delivered successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
     }
 }

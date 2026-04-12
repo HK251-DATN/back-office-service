@@ -309,6 +309,18 @@ public class DataSeeder {
             
             // Seed User
             
+            User admin = createUser(
+                    1L,
+                    "admin@gmail.com",
+                    "FAdmin",
+                    "LAdmin",
+                    "https://pub-954e99f131cf4cc896de1ad360338682.r2.dev/128c271e-c0a6-433e-bcd1-f3bbc4243401-default-user-avt.png",
+                    LocalDate.of(2004, 3, 20),
+                    "0123456789",
+                    Gender.MALE,
+                    AccountStatus.ACTIVE
+            );
+            
             User user1 = createUser(
                     2L,
                     "buyer@gmail.com",
