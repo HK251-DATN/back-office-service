@@ -25,6 +25,7 @@ public class OrderCreatedEvent {
         Order newOrder = new Order();
         newOrder.setOrderId(orderId);
         newOrder.setStatus(OrderStatus.CREATED);
+        newOrder.setTotalPrice(totalPrice);
         newOrder.setOwnedBy(Long.valueOf(buyerId));
         return newOrder;
     }

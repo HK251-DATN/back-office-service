@@ -3,6 +3,7 @@ package edu.hcmut.datn.back_office_service.service;
 import java.util.List;
 
 import edu.hcmut.datn.back_office_service.dao.Order;
+import edu.hcmut.datn.back_office_service.repository.projection.OrderInformation;
 
 public interface OrderService {
     Order create(Order order);
@@ -10,6 +11,8 @@ public interface OrderService {
     Order read(Long orderId);
 
     List<Order> readAll(Integer pageNum, Integer pageSize);
+    
+    List<OrderInformation> adminReadAll();
 
     Order update(Long orderId, Order order);
 

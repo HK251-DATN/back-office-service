@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.repository.projection.OrderInformation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,11 +62,9 @@ public class OrderController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<List<Order>>> readAll(
-            @RequestParam(defaultValue = "1") Integer pageNum,
-            @RequestParam(defaultValue = "20") Integer pageSize) {
-        List<Order> orders = orderService.readAll(pageNum, pageSize);
+    @GetMapping("/admin")
+    public ResponseEntity<ApiResponse<List<OrderInformation>>> readAll() {
+        List<OrderInformation> orders = orderService.adminReadAll();
 
         if (orders.isEmpty()) {
             return ResponseEntity.ok()

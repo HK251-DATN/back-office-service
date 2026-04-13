@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.repository.projection.OrderInformation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,7 +43,12 @@ public class OrderServiceImpl implements OrderService {
 
         return page.toList();
     }
-
+    
+    @Override
+    public List<OrderInformation> adminReadAll () {
+        return orderRepository.getOrderInformationList();
+    }
+    
     @Override
     public Order update(Long orderId, Order order) {
         Order cur = read(orderId);
