@@ -19,6 +19,9 @@ public interface OrderInformation {
     @JsonProperty("total_price")
     Long getTotalPrice();
     
+    @JsonProperty("packaging_progress")
+    Integer getPackagingProgress();
+    
     @JsonProperty("f_name")
     String getBuyerFName();
     

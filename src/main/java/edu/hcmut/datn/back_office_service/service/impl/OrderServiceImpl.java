@@ -45,8 +45,8 @@ public class OrderServiceImpl implements OrderService {
     }
     
     @Override
-    public List<OrderInformation> adminReadAll () {
-        return orderRepository.getOrderInformationList();
+    public List<OrderInformation> adminReadAll (String status, Long packagingEmpId, Long deliveringEmpId, Long orderId) {
+        return orderRepository.getOrderInformationList(status, packagingEmpId, deliveringEmpId, orderId);
     }
     
     @Override
@@ -159,7 +159,7 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Order must be in SHIPPING status to be delivered. Current status: " + order.getStatus());
         }
 
-        order.setStatus(OrderStatus.DELIVERY);
+        order.setStatus(OrderStatus.DELIVERED);
 
         orderRepository.save(order);
 

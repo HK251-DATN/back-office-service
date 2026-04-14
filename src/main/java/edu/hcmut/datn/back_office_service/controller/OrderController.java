@@ -2,10 +2,12 @@ package edu.hcmut.datn.back_office_service.controller;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.common.enums.OrderStatus;
 import edu.hcmut.datn.back_office_service.repository.projection.OrderInformation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,14 +65,31 @@ public class OrderController {
     }
 
     @GetMapping("/admin")
-    public ResponseEntity<ApiResponse<List<OrderInformation>>> readAll() {
-        List<OrderInformation> orders = orderService.adminReadAll();
+    public ResponseEntity<ApiResponse<List<OrderInformation>>> readAll(
+            @RequestParam(defaultValue = "") String status
+            ) {
+        List<OrderInformation> orders = orderService.adminReadAll(status, 0L, 0L,0L);
 
         if (orders.isEmpty()) {
             return ResponseEntity.ok()
                     .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Order Exists", null));
         }
 
+        return ResponseEntity.ok()
+                .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all orders successfully", orders));
+    }
+    
+    @GetMapping("/admin/{orderId}")
+    public ResponseEntity<ApiResponse<List<OrderInformation>>> adminRead(
+            @PathVariable Long orderId
+    ) {
+        List<OrderInformation> orders = orderService.adminReadAll("", 0L, 0L, orderId);
+        
+        if (orders.isEmpty()) {
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Order Exists", null));
+        }
+        
         return ResponseEntity.ok()
                 .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all orders successfully", orders));
     }
@@ -161,4 +180,40 @@ public class OrderController {
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
         }
     }
+    
+    @GetMapping("/emp/packaging-tasks")
+    public ResponseEntity<?> empGetPackageTask(
+            @AuthenticationPrincipal AuthenticatedUser principle
+    ) {
+        Long packagingEmpId = principle.getId();
+        List<OrderInformation> orders = orderService.adminReadAll("PACKING", packagingEmpId, 0L, 0L);
+        
+        if (orders.isEmpty()) {
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Order Exists", null));
+        }
+        
+        return ResponseEntity.ok()
+                .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all orders successfully", orders));
+    }
+    
+    @GetMapping("/emp/delivering-tasks")
+    public ResponseEntity<?> empGetDeliverTask(
+            @AuthenticationPrincipal AuthenticatedUser principle
+    ) {
+        Long deliveryEmpId = principle.getId();
+        List<OrderInformation> orders = orderService.adminReadAll("SHIPPING", 0L, deliveryEmpId, 0L);
+        
+        if (orders.isEmpty()) {
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SKIP_AS_GOOD(HttpStatus.OK.toString(), "No Order Exists", null));
+        }
+        
+        return ResponseEntity.ok()
+                .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Get all orders successfully", orders));
+    }
+    
+    
+    
+    
 }

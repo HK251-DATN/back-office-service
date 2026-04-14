@@ -2,6 +2,7 @@ package edu.hcmut.datn.back_office_service.service;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.common.enums.OrderStatus;
 import edu.hcmut.datn.back_office_service.dao.Order;
 import edu.hcmut.datn.back_office_service.repository.projection.OrderInformation;
 
@@ -12,7 +13,7 @@ public interface OrderService {
 
     List<Order> readAll(Integer pageNum, Integer pageSize);
     
-    List<OrderInformation> adminReadAll();
+    List<OrderInformation> adminReadAll(String status, Long packagingEmpId, Long deliveringEmpId, Long orderId);
 
     Order update(Long orderId, Order order);
 

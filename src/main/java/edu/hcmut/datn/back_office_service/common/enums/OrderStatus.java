@@ -10,7 +10,7 @@ public enum OrderStatus {
     PACKING,
     READY_FOR_PICKUP,
     SHIPPING,
-    DELIVERY,
+    DELIVERED,
     COMPLETED,
     RETURN_REQUESTED,
     RETURNED,
