@@ -114,7 +114,8 @@ public class CategoryServiceImpl implements CategoryService {
                 saved.getName(),
                 saved.getDescription(),
                 saved.getIconUrl(),
-                saved.getSubcategoryId()
+                saved.getSubcategoryId(),
+                saved.getAvgShelfDays()
         );
         
         categoryProducer.publishSubSubcategoryCreated(event);

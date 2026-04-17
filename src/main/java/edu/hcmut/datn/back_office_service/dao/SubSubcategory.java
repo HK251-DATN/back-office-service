@@ -39,6 +39,9 @@ public class SubSubcategory {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     
+    @Column(name = "avg_shelf_days")
+    private Integer avgShelfDays;
+    
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

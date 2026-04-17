@@ -38,87 +38,88 @@ public class DataSeeder {
             Category thitHaiSan = createCategory("Thịt & Hải Sản", "Thịt tươi, gia cầm và hải sản", 1, null, "N", null);
             
             Category giaCam = createCategory("Gia Cầm", "Các loại thịt gia cầm tươi", 1, null, "Y", thitHaiSan.getCategoryId());
-            createSubSubcategory("Thịt Gà", "Thịt gà tươi nguyên con và các phần", null, giaCam.getCategoryId());
-            createSubSubcategory("Thịt Vịt", "Thịt vịt tươi nguyên con và các phần", null, giaCam.getCategoryId());
-            createSubSubcategory("Thịt Ngan", "Thịt ngan tươi", null, giaCam.getCategoryId());
-            createSubSubcategory("Thịt Chim Cút", "Chim cút tươi nguyên con", null, giaCam.getCategoryId());
-            createSubSubcategory("Lòng Gia Cầm", "Gan, mề, tim gia cầm tươi", null, giaCam.getCategoryId());
+            SubSubcategory chickenMeat = createSubSubcategory("Thịt Gà", "Thịt gà tươi nguyên con và các phần", null, 2L, 3);
+            SubSubcategory duckMeat = createSubSubcategory("Thịt Vịt", "Thịt vịt tươi nguyên con và các phần", null, 2L, 3);
+            SubSubcategory gooseMeat = createSubSubcategory("Thịt Ngan", "Thịt ngan tươi", null, 2L, 3);
+            SubSubcategory quailMeat = createSubSubcategory("Thịt Chim Cút", "Chim cút tươi nguyên con", null, 2L, 2);
+            SubSubcategory poultryOffal = createSubSubcategory("Lòng Gia Cầm", "Gan, mề, tim gia cầm tươi", null, 2L, 2);
             
             Category thitDo = createCategory("Thịt Đỏ", "Các loại thịt đỏ tươi", 2, null, "Y", thitHaiSan.getCategoryId());
-            createSubSubcategory("Thịt Bò", "Thịt bò tươi các loại", null, thitDo.getCategoryId());
-            createSubSubcategory("Thịt Heo", "Thịt heo tươi các loại", null, thitDo.getCategoryId());
-            createSubSubcategory("Thịt Dê", "Thịt dê tươi", null, thitDo.getCategoryId());
-            createSubSubcategory("Thịt Cừu", "Thịt cừu tươi nhập khẩu", null, thitDo.getCategoryId());
-            createSubSubcategory("Xúc Xích Tươi", "Xúc xích tươi chưa qua chế biến", null, thitDo.getCategoryId());
+            SubSubcategory beefMeat = createSubSubcategory("Thịt Bò", "Thịt bò tươi các loại", null, 3L, 4);
+            SubSubcategory porkMeat = createSubSubcategory("Thịt Heo", "Thịt heo tươi các loại", null, 3L, 3);
+            SubSubcategory goatMeat = createSubSubcategory("Thịt Dê", "Thịt dê tươi", null, 3L, 3);
+            SubSubcategory lambMeat = createSubSubcategory("Thịt Cừu", "Thịt cừu tươi nhập khẩu", null, 3L, 4);
+            SubSubcategory freshSausage = createSubSubcategory("Xúc Xích Tươi", "Xúc xích tươi chưa qua chế biến", null, 3L, 3);
             
             Category haiSan = createCategory("Hải Sản", "Hải sản tươi sống", 3, null, "Y", thitHaiSan.getCategoryId());
-            createSubSubcategory("Tôm Tươi", "Tôm sú, tôm thẻ tươi sống", null, haiSan.getCategoryId());
-            createSubSubcategory("Cá Tươi", "Các loại cá tươi nguyên con và phi lê", null, haiSan.getCategoryId());
-            createSubSubcategory("Mực Tươi", "Mực ống, mực nang tươi", null, haiSan.getCategoryId());
-            createSubSubcategory("Cua Ghẹ", "Cua biển, ghẹ tươi sống", null, haiSan.getCategoryId());
-            createSubSubcategory("Nghêu Sò", "Nghêu, sò, hàu tươi", null, haiSan.getCategoryId());
+            SubSubcategory freshShrimp = createSubSubcategory("Tôm Tươi", "Tôm sú, tôm thẻ tươi sống", null, 4L, 2);
+            SubSubcategory freshFish = createSubSubcategory("Cá Tươi", "Các loại cá tươi nguyên con và phi lê", null, 4L, 3);
+            SubSubcategory freshSquid = createSubSubcategory("Mực Tươi", "Mực ống, mực nang tươi", null, 4L, 2);
+            SubSubcategory freshCrab = createSubSubcategory("Cua Ghẹ", "Cua biển, ghẹ tươi sống", null, 4L, 2);
+            SubSubcategory freshClams = createSubSubcategory("Nghêu Sò", "Nghêu, sò, hàu tươi", null, 4L, 1);
             
             // ==================== CATEGORY 2: Rau Củ Quả ====================
             Category rauCuQua = createCategory("Rau Củ Quả", "Rau xanh, củ quả và trái cây tươi", 2, null, "N", null);
             
+            
             Category rauAnLa = createCategory("Rau Ăn Lá", "Các loại rau xanh ăn lá", 1, null, "Y", rauCuQua.getCategoryId());
-            createSubSubcategory("Rau Muống", "Rau muống tươi", null, rauAnLa.getCategoryId());
-            createSubSubcategory("Cải Xanh", "Cải xanh, cải ngọt tươi", null, rauAnLa.getCategoryId());
-            createSubSubcategory("Xà Lách", "Xà lách các loại tươi", null, rauAnLa.getCategoryId());
-            createSubSubcategory("Rau Dền", "Rau dền đỏ và rau dền xanh", null, rauAnLa.getCategoryId());
-            createSubSubcategory("Cải Thìa", "Cải thìa, cải bẹ trắng tươi", null, rauAnLa.getCategoryId());
+            SubSubcategory waterSpinach = createSubSubcategory("Rau Muống", "Rau muống tươi", null, 6L, 1);
+            SubSubcategory greenCabbage = createSubSubcategory("Cải Xanh", "Cải xanh, cải ngọt tươi", null, 6L, 3);
+            SubSubcategory lettuce = createSubSubcategory("Xà Lách", "Xà lách các loại tươi", null, 6L, 3);
+            SubSubcategory amaranth = createSubSubcategory("Rau Dền", "Rau dền đỏ và rau dền xanh", null, 6L, 2);
+            SubSubcategory mustardGreens = createSubSubcategory("Cải Thìa", "Cải thìa, cải bẹ trắng tươi", null, 6L, 2);
             
             Category cuQua = createCategory("Củ Quả", "Các loại củ và quả tươi", 2, null, "Y", rauCuQua.getCategoryId());
-            createSubSubcategory("Cà Rốt", "Cà rốt tươi", null, cuQua.getCategoryId());
-            createSubSubcategory("Khoai Tây", "Khoai tây tươi", null, cuQua.getCategoryId());
-            createSubSubcategory("Củ Cải", "Củ cải trắng, củ cải đỏ tươi", null, cuQua.getCategoryId());
-            createSubSubcategory("Bắp", "Bắp ngô tươi các loại", null, cuQua.getCategoryId());
-            createSubSubcategory("Su Su", "Su su tươi", null, cuQua.getCategoryId());
+            SubSubcategory carrot = createSubSubcategory("Cà Rốt", "Cà rốt tươi", null, 7L, 14);
+            SubSubcategory potato = createSubSubcategory("Khoai Tây", "Khoai tây tươi", null, 7L, 30);
+            SubSubcategory radish = createSubSubcategory("Củ Cải", "Củ cải trắng, củ cải đỏ tươi", null, 7L, 7);
+            SubSubcategory corn = createSubSubcategory("Bắp", "Bắp ngô tươi các loại", null, 7L, 3);
+            SubSubcategory chayote = createSubSubcategory("Su Su", "Su su tươi", null, 7L, 5);
             
             Category traiCay = createCategory("Trái Cây", "Trái cây tươi trong nước và nhập khẩu", 3, null, "Y", rauCuQua.getCategoryId());
-            createSubSubcategory("Xoài", "Xoài tươi các loại", null, traiCay.getCategoryId());
-            createSubSubcategory("Chuối", "Chuối tươi các loại", null, traiCay.getCategoryId());
-            createSubSubcategory("Dưa Hấu", "Dưa hấu tươi", null, traiCay.getCategoryId());
-            createSubSubcategory("Ổi", "Ổi tươi các loại", null, traiCay.getCategoryId());
-            createSubSubcategory("Thanh Long", "Thanh long ruột đỏ và ruột trắng", null, traiCay.getCategoryId());
+            SubSubcategory mango = createSubSubcategory("Xoài", "Xoài tươi các loại", null, 8L, 7);
+            SubSubcategory banana = createSubSubcategory("Chuối", "Chuối tươi các loại", null, 8L, 5);
+            SubSubcategory watermelon = createSubSubcategory("Dưa Hấu", "Dưa hấu tươi", null, 8L, 7);
+            SubSubcategory guava = createSubSubcategory("Ổi", "Ổi tươi các loại", null, 8L, 5);
+            SubSubcategory dragonFruit = createSubSubcategory("Thanh Long", "Thanh long ruột đỏ và ruột trắng", null, 8L, 7);
             
             Category rauGiaVi = createCategory("Rau Gia Vị", "Các loại rau và củ gia vị", 4, null, "Y", rauCuQua.getCategoryId());
-            createSubSubcategory("Hành Lá", "Hành lá tươi", null, rauGiaVi.getCategoryId());
-            createSubSubcategory("Tỏi", "Tỏi tươi và tỏi khô", null, rauGiaVi.getCategoryId());
-            createSubSubcategory("Gừng", "Gừng tươi", null, rauGiaVi.getCategoryId());
-            createSubSubcategory("Ớt", "Ớt sừng, ớt hiểm tươi", null, rauGiaVi.getCategoryId());
-            createSubSubcategory("Sả", "Sả tươi nguyên cây", null, rauGiaVi.getCategoryId());
+            SubSubcategory greenOnion = createSubSubcategory("Hành Lá", "Hành lá tươi", null, 9L, 7);
+            SubSubcategory garlic = createSubSubcategory("Tỏi", "Tỏi tươi và tỏi khô", null, 9L, 30);
+            SubSubcategory ginger = createSubSubcategory("Gừng", "Gừng tươi", null, 9L, 14);
+            SubSubcategory chili = createSubSubcategory("Ớt", "Ớt sừng, ớt hiểm tươi", null, 9L, 7);
+            SubSubcategory lemongrass = createSubSubcategory("Sả", "Sả tươi nguyên cây", null, 9L, 7);
             
             // ==================== CATEGORY 3: Sữa & Trứng ====================
             Category suaTrung = createCategory("Sữa & Trứng", "Sữa tươi, sản phẩm từ sữa và trứng", 3, null, "N", null);
             
             Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, null, "Y", suaTrung.getCategoryId());
-            createSubSubcategory("Sữa Tươi Không Đường", "Sữa tươi tiệt trùng không đường", null, suaTuoi.getCategoryId());
-            createSubSubcategory("Sữa Tươi Có Đường", "Sữa tươi tiệt trùng có đường", null, suaTuoi.getCategoryId());
-            createSubSubcategory("Sữa Hữu Cơ", "Sữa tươi hữu cơ nguyên chất", null, suaTuoi.getCategoryId());
-            createSubSubcategory("Sữa Ít Béo", "Sữa tươi ít béo tách một phần kem", null, suaTuoi.getCategoryId());
-            createSubSubcategory("Sữa Tách Béo", "Sữa tươi tách hoàn toàn chất béo", null, suaTuoi.getCategoryId());
+            SubSubcategory freshMilkUnsweetened = createSubSubcategory("Sữa Tươi Không Đường", "Sữa tươi tiệt trùng không đường", null, 11L, 7);
+            SubSubcategory freshMilkSweetened = createSubSubcategory("Sữa Tươi Có Đường", "Sữa tươi tiệt trùng có đường", null, 11L, 7);
+            SubSubcategory organicMilk = createSubSubcategory("Sữa Hữu Cơ", "Sữa tươi hữu cơ nguyên chất", null, 11L, 7);
+            SubSubcategory lowFatMilk = createSubSubcategory("Sữa Ít Béo", "Sữa tươi ít béo tách một phần kem", null, 11L, 7);
+            SubSubcategory skimmedMilk = createSubSubcategory("Sữa Tách Béo", "Sữa tươi tách hoàn toàn chất béo", null, 11L, 7);
             
             Category spTuSua = createCategory("Sản Phẩm Từ Sữa", "Bơ, phô mai, kem và sữa chua", 2, null, "Y", suaTrung.getCategoryId());
-            createSubSubcategory("Bơ Tươi", "Bơ động vật tươi các loại", null, spTuSua.getCategoryId());
-            createSubSubcategory("Phô Mai", "Phô mai tươi và phô mai chế biến", null, spTuSua.getCategoryId());
-            createSubSubcategory("Kem Tươi", "Kem tươi whipping cream", null, spTuSua.getCategoryId());
-            createSubSubcategory("Sữa Chua", "Sữa chua ăn các loại", null, spTuSua.getCategoryId());
-            createSubSubcategory("Sữa Đặc", "Sữa đặc có đường và không đường", null, spTuSua.getCategoryId());
+            SubSubcategory freshButter = createSubSubcategory("Bơ Tươi", "Bơ động vật tươi các loại", null, 12L, 14);
+            SubSubcategory cheese = createSubSubcategory("Phô Mai", "Phô mai tươi và phô mai chế biến", null, 12L, 30);
+            SubSubcategory whippingCream = createSubSubcategory("Kem Tươi", "Kem tươi whipping cream", null, 12L, 7);
+            SubSubcategory yogurt = createSubSubcategory("Sữa Chua", "Sữa chua ăn các loại", null, 12L, 14);
+            SubSubcategory condensedMilk = createSubSubcategory("Sữa Đặc", "Sữa đặc có đường và không đường", null, 12L, 180);
             
             Category trung = createCategory("Trứng", "Các loại trứng tươi", 3, null, "Y", suaTrung.getCategoryId());
-            createSubSubcategory("Trứng Gà Công Nghiệp", "Trứng gà tươi công nghiệp", null, trung.getCategoryId());
-            createSubSubcategory("Trứng Gà Ta", "Trứng gà ta thả vườn", null, trung.getCategoryId());
-            createSubSubcategory("Trứng Vịt", "Trứng vịt tươi", null, trung.getCategoryId());
-            createSubSubcategory("Trứng Cút", "Trứng cút tươi", null, trung.getCategoryId());
-            createSubSubcategory("Trứng Vịt Lộn", "Trứng vịt lộn ấp sẵn", null, trung.getCategoryId());
+            SubSubcategory industrialEggs = createSubSubcategory("Trứng Gà Công Nghiệp", "Trứng gà tươi công nghiệp", null, 13L, 21);
+            SubSubcategory nativeChickenEggs = createSubSubcategory("Trứng Gà Ta", "Trứng gà ta thả vườn", null, 13L, 14);
+            SubSubcategory duckEggs = createSubSubcategory("Trứng Vịt", "Trứng vịt tươi", null, 13L, 14);
+            SubSubcategory quailEggs = createSubSubcategory("Trứng Cút", "Trứng cút tươi", null, 13L, 7);
+            SubSubcategory balutEggs = createSubSubcategory("Trứng Vịt Lộn", "Trứng vịt lộn ấp sẵn", null, 13L, 1);
             
             Category doUongTuSua = createCategory("Đồ Uống Từ Sữa", "Sữa đậu nành, sữa hạt và các loại sữa uống", 4, null, "Y", suaTrung.getCategoryId());
-            createSubSubcategory("Sữa Đậu Nành", "Sữa đậu nành tươi nguyên chất", null, doUongTuSua.getCategoryId());
-            createSubSubcategory("Sữa Hạt", "Sữa hạnh nhân, sữa óc chó, sữa hạt điều", null, doUongTuSua.getCategoryId());
-            createSubSubcategory("Yaourt Uống", "Sữa chua uống các loại", null, doUongTuSua.getCategoryId());
-            createSubSubcategory("Kefir", "Kefir lên men tự nhiên", null, doUongTuSua.getCategoryId());
-            createSubSubcategory("Sữa Chua Uống Nha Đam", "Sữa chua uống kết hợp nha đam", null, doUongTuSua.getCategoryId());
+            SubSubcategory soybeanMilk = createSubSubcategory("Sữa Đậu Nành", "Sữa đậu nành tươi nguyên chất", null, 14L, 5);
+            SubSubcategory nutMilk = createSubSubcategory("Sữa Hạt", "Sữa hạnh nhân, sữa óc chó, sữa hạt điều", null, 14L, 7);
+            SubSubcategory drinkableYogurt = createSubSubcategory("Yaourt Uống", "Sữa chua uống các loại", null, 14L, 14);
+            SubSubcategory kefir = createSubSubcategory("Kefir", "Kefir lên men tự nhiên", null, 14L, 14);
+            SubSubcategory aloeVeraYogurt = createSubSubcategory("Sữa Chua Uống Nha Đam", "Sữa chua uống kết hợp nha đam", null, 14L, 14);
 
             log.info("Seeded {} sub-subcategories", subSubcategoryRepository.count());
 
@@ -434,13 +435,18 @@ public class DataSeeder {
         return categoryRepository.save(category);
     }
 
-    private SubSubcategory createSubSubcategory(String name, String description,
-                                               String iconUrl, Long subcategoryId) {
+    private SubSubcategory createSubSubcategory(
+            String name,
+            String description,
+            String iconUrl,
+            Long subcategoryId,
+            Integer avgShelfDays) {
         SubSubcategory subSubcategory = new SubSubcategory();
         subSubcategory.setName(name);
         subSubcategory.setDescription(description);
         subSubcategory.setIconUrl(iconUrl);
         subSubcategory.setSubcategoryId(subcategoryId);
+        subSubcategory.setAvgShelfDays(avgShelfDays);
         return subSubcategoryRepository.save(subSubcategory);
     }
 

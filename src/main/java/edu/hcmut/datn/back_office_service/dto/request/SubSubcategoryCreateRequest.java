@@ -18,12 +18,15 @@ public class SubSubcategoryCreateRequest {
     
     private Long subcategoryId;
     
+    private Integer avgShelfDays;
+    
     public SubSubcategory toEntity() {
         SubSubcategory subSubcategory = new SubSubcategory();
         subSubcategory.setName(this.name);
         subSubcategory.setDescription(this.description);
         subSubcategory.setIconUrl(this.iconUrl);
         subSubcategory.setSubcategoryId(this.subcategoryId);
+        subSubcategory.setAvgShelfDays(avgShelfDays);
         return subSubcategory;
     }
 }
