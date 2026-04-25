@@ -1,7 +1,11 @@
 package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
+import java.util.Objects;
 
+import edu.hcmut.datn.back_office_service.service.R2UploadService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,13 +18,21 @@ import edu.hcmut.datn.back_office_service.repository.UserRepository;
 import edu.hcmut.datn.back_office_service.service.UserService;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    
+    private final R2UploadService r2UploadService;
+    
+    @Value("${app.user-avatar-bucket}")
+    private String userAvtBucket;
+    
+    @Value("${app.user-avatar-public-bucket-url}")
+    private String userAvtPubUrlPrefix;
+    
+    @Value("${app.user-avatar-default-url}")
+    private String userDefaultAvtUrl;
 
     @Override
     public User create(User user) {
@@ -39,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> readAll(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page - 1, size);
-		Page<User> userPage = userRepository.findAll(pageable);
+        Page<User> userPage = userRepository.findAll(pageable);
 
         return userPage.toList();
     }
@@ -48,15 +60,15 @@ public class UserServiceImpl implements UserService {
     public User update(Long userId, User user) {
         User curUser = read(userId);
 
-        if (!user.getFName().isEmpty()) {
+        if (user.getFName() != null) {
             curUser.setFName(user.getFName());
         }
 
-        if (!user.getLName().isEmpty()) {
+        if (user.getLName() != null) {
             curUser.setLName(user.getLName());
         }
 
-        if (!user.getAvtUrl().isEmpty()) {
+        if (user.getAvtUrl() != null) {
             curUser.setAvtUrl(user.getAvtUrl());
         }
 
@@ -64,8 +76,12 @@ public class UserServiceImpl implements UserService {
             curUser.setDob(user.getDob());
         }
 
-        if (user.getPNum().isBlank()) {
+        if (user.getPNum() != null) {
             curUser.setPNum(user.getPNum());
+        }
+        
+        if (user.getGender() != null) {
+            curUser.setGender(user.getGender());
         }
 
         if (user.getAccStatus() != null) {
@@ -80,5 +96,21 @@ public class UserServiceImpl implements UserService {
         User curUser = read(userId);
 
         userRepository.delete(curUser);
+    }
+
+    @Override
+    public User updateUserAvatar(Long userId, String avtUrl) {
+        User user = read(userId);
+        
+        String oldAvtUrl = user.getAvtUrl();
+        
+        if (!Objects.equals(oldAvtUrl, userDefaultAvtUrl)) {
+            String key = oldAvtUrl.substring(userAvtPubUrlPrefix.length() + 1);
+            r2UploadService.delete(key, userAvtBucket);
+        }
+
+        user.setAvtUrl(avtUrl);
+
+        return userRepository.save(user);
     }
 }

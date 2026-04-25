@@ -2,7 +2,7 @@ package edu.hcmut.datn.back_office_service.common.enums;
 
 public enum OrderStatus {
     CREATED,
-    COMFIRMED,
+    CONFIRMED,
     CANCELLED,
     WAITING_FOR_SUPPLY,
     SUPPLY_CONFIRM,
@@ -10,7 +10,7 @@ public enum OrderStatus {
     PACKING,
     READY_FOR_PICKUP,
     SHIPPING,
-    DELIVERY,
+    DELIVERED,
     COMPLETED,
     RETURN_REQUESTED,
     RETURNED,

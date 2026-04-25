@@ -2,6 +2,8 @@ package edu.hcmut.datn.back_office_service.service.impl;
 
 import java.util.List;
 
+import edu.hcmut.datn.back_office_service.dto.response.BuyerUserDTO;
+import edu.hcmut.datn.back_office_service.repository.projection.BuyerUserProjection;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -69,5 +71,15 @@ public class BuyerServiceImpl implements BuyerService {
         Buyer buyer = read(buyerId);
 
         buyerRepository.delete(buyer);
+    }
+    
+    @Override
+    public BuyerUserProjection readBuyerInfo (Long userId) {
+        return buyerRepository.getBuyerInfo(userId);
+    }
+    
+    @Override
+    public List<BuyerUserProjection> readBuyersInfo () {
+        return buyerRepository.getAllBuyerInfo();
     }
 }

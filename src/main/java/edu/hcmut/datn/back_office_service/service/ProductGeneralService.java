@@ -5,6 +5,7 @@ import java.util.List;
 import edu.hcmut.datn.back_office_service.dao.ProductGeneral;
 
 public interface ProductGeneralService {
+
     ProductGeneral create(ProductGeneral productGeneral);
 
     ProductGeneral read(Long productGeneralId);
@@ -14,4 +15,6 @@ public interface ProductGeneralService {
     ProductGeneral update(Long productGeneralId, ProductGeneral productGeneral);
 
     void delete(Long productGeneralId);
+
+    ProductGeneral updateProductMainImage(Long productGeneralId, String imageUrl);
 }

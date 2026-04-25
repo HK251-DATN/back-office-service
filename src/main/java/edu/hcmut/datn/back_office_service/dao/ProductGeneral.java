@@ -1,16 +1,23 @@
 package edu.hcmut.datn.back_office_service.dao;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.time.LocalDateTime;
+
+import edu.hcmut.datn.back_office_service.common.enums.Unit;
+import jakarta.persistence.*;
+import lombok.Generated;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 @Entity
+@Table(name = "product_generals")
+@NoArgsConstructor
 public class ProductGeneral {
 
-    @Column(name = "prod_gen_id")
     @Id
+    @Column(name = "prod_gen_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long prodGenId;
 
@@ -19,11 +26,39 @@ public class ProductGeneral {
     @Setter
     private String prodName;
 
+    @Column(name = "img")
+    @Getter
+    @Setter
+    private String imgUrl;
+    
+    // array of tags
+    @Column(name = "tags", columnDefinition = "text[]")
+    @Setter
+    @Getter
+    private String[] tags;
+
+    @Column(name = "description")
+    @Getter
+    @Setter
+    private String description;
+
     @Column(name = "updated_at")
-    private Long updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name = "created_at")
-    private Long createdAt;
+    private LocalDateTime createdAt;
+    
+    @Column(name = "unit")
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private Unit unit;
+    
+    @Column(name = "unit_quantity")
+    @Getter
+    @Setter
+    private Long unitQuantity;
+    
 
     @Column(name = "preorder_policy_id")
     @Getter
@@ -35,18 +70,19 @@ public class ProductGeneral {
     @Setter
     private Long enterpriseStoreId;
 
-    protected ProductGeneral() {}
+    @Column(name = "sub_subcategory_id")
+    @Getter
+    @Setter
+    private Long subSubcategoryId;
 
-    public ProductGeneral(Long prodGenId, String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
-        this.prodGenId = prodGenId;
-        this.prodName = prodName;
-        this.preorderPolicyId = preorderPolicyId;
-        this.enterpriseStoreId = enterpriseStoreId;
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now(); // Set createdAt on first save
+        updatedAt = LocalDateTime.now(); // Optional: Set initial updatedAt
     }
 
-    public ProductGeneral(String prodName, Long preorderPolicyId, Long enterpriseStoreId) {
-        this.prodName = prodName;
-        this.preorderPolicyId = preorderPolicyId;
-        this.enterpriseStoreId = enterpriseStoreId;
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now(); // Update on every save after creation
     }
 }
