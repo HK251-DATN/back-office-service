@@ -35,7 +35,7 @@ public class DataSeeder {
             log.info("Starting database seeding...");
             
             // ==================== CATEGORY 1: Thịt & Hải Sản ====================
-            Category thitHaiSan = createCategory("Thịt & Hải Sản", "Thịt tươi, gia cầm và hải sản", 1, null, "N", null);
+            Category thitHaiSan = createCategory("Thịt & Hải Sản", "Thịt tươi, gia cầm và hải sản", 1, "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/meat.png", "N", null);
             
             Category giaCam = createCategory("Gia Cầm", "Các loại thịt gia cầm tươi", 1, null, "Y", thitHaiSan.getCategoryId());
             SubSubcategory chickenMeat = createSubSubcategory("Thịt Gà", "Thịt gà tươi nguyên con và các phần", null, 2L, 3);
@@ -59,7 +59,7 @@ public class DataSeeder {
             SubSubcategory freshClams = createSubSubcategory("Nghêu Sò", "Nghêu, sò, hàu tươi", null, 4L, 1);
             
             // ==================== CATEGORY 2: Rau Củ Quả ====================
-            Category rauCuQua = createCategory("Rau Củ Quả", "Rau xanh, củ quả và trái cây tươi", 2, null, "N", null);
+            Category rauCuQua = createCategory("Rau Củ Quả", "Rau xanh, củ quả và trái cây tươi", 2, "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/vegetable.png", "N", null);
             
             
             Category rauAnLa = createCategory("Rau Ăn Lá", "Các loại rau xanh ăn lá", 1, null, "Y", rauCuQua.getCategoryId());
@@ -93,7 +93,7 @@ public class DataSeeder {
             // ==================== CATEGORY 3: Sữa & Trứng ====================
             Category suaTrung = createCategory("Sữa & Trứng", "Sữa tươi, sản phẩm từ sữa và trứng", 3, null, "N", null);
             
-            Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, null, "Y", suaTrung.getCategoryId());
+            Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/dairy-products.png", "Y", suaTrung.getCategoryId());
             SubSubcategory freshMilkUnsweetened = createSubSubcategory("Sữa Tươi Không Đường", "Sữa tươi tiệt trùng không đường", null, 11L, 7);
             SubSubcategory freshMilkSweetened = createSubSubcategory("Sữa Tươi Có Đường", "Sữa tươi tiệt trùng có đường", null, 11L, 7);
             SubSubcategory organicMilk = createSubSubcategory("Sữa Hữu Cơ", "Sữa tươi hữu cơ nguyên chất", null, 11L, 7);

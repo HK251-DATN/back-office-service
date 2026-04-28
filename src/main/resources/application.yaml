@@ -26,6 +26,14 @@ spring:
 server:
   port: 9100
 
+services:
+  identity:
+    url: http://${IDENTITY_HOST:localhost}:${IDENTITY_PORT:9000}
+  product-storage:
+    url: http://${PRODUCT_STORAGE_HOST:localhost}:${PRODUCT_STORAGE_PORT:9200}
+  ecommerce:
+    url: http://${ECOMMERCE_HOST:localhost}:${ECOMMERCE_PORT:9300}
+
 cloudflare:
   r2:
     account-id: ${R2_ACCOUNT_ID}
