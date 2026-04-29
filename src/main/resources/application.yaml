@@ -20,8 +20,8 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
+      max-file-size: 500MB
+      max-request-size: 500MB
 
 server:
   port: 9100
@@ -57,6 +57,14 @@ app:
     https://pub-0365edd1781141cdb68675969c7cdb87.r2.dev
   product-general-img-default-url:
     https://pub-0365edd1781141cdb68675969c7cdb87.r2.dev/5fe95e6c-c064-49c4-8712-1c8f54472502.jpg
+  provider-cert-bucket:
+    provider-certificates
+  provider-cert-public-bucket-url:
+    https://pub-b72d8c021b3848f8b4d8805e93e18af6.r2.dev
+  provider-video-bucket:
+    provider-verification-videos
+  provider-video-public-bucket-url:
+    https://pub-1b4c6325308a40f68dc9dca3d1771fbd.r2.dev
 
 
 logging:

@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
 import edu.hcmut.datn.back_office_service.exception.provider.ProviderAlreadyExistsException;
 import edu.hcmut.datn.back_office_service.exception.provider.ProviderNotFoundException;
@@ -36,8 +37,18 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
-    public List<Provider> readAll(Integer pageNum, Integer pageSize) {
+    public Provider readByUserId(Long userId) {
+        return providerRepository.findByUserId(userId)
+                .orElseThrow(() -> new ProviderNotFoundException("No provider account found for this user"));
+    }
+
+    @Override
+    public List<Provider> readAll(Integer pageNum, Integer pageSize, VerificationStatus status) {
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+        if (status != null) {
+            return providerRepository.findAllByVerificationStatus(status, pageable);
+        }
 
         return providerRepository.findAll(pageable).toList();
     }
