@@ -10,6 +10,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.hcmut.datn.back_office_service.common.enums.CertificateType;
 import edu.hcmut.datn.back_office_service.common.enums.ReviewStatus;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationMethod;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
 import edu.hcmut.datn.back_office_service.dao.ProviderCertificate;
 import edu.hcmut.datn.back_office_service.exception.providercertificate.ProviderCertificateNotFoundException;
@@ -77,6 +79,14 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
         certificate.setReviewNote(reviewNote);
         certificate.setReviewedBy(reviewedBy);
         certificate.setReviewedAt(LocalDateTime.now());
+
+        if (status == ReviewStatus.APPROVED) {
+            Provider provider = providerRepository.findById(certificate.getProviderId())
+                    .orElseThrow(() -> new ProviderNotFoundException("Provider not found: " + certificate.getProviderId()));
+            provider.setVerificationStatus(VerificationStatus.APPROVED);
+            provider.setVerificationMethod(VerificationMethod.CERTIFICATE);
+            providerRepository.save(provider);
+        }
 
         return certificateRepository.save(certificate);
     }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import edu.hcmut.datn.back_office_service.common.enums.AccountStatus;
 import edu.hcmut.datn.back_office_service.common.enums.Bank;
 import edu.hcmut.datn.back_office_service.common.enums.Gender;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationMethod;
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
 import edu.hcmut.datn.back_office_service.dao.User;
@@ -22,6 +23,7 @@ public class ProviderDetailResponse {
     // Provider fields
     private Long providerId;
     private VerificationStatus verificationStatus;
+    private VerificationMethod verificationMethod;
     private Long reputationPoint;
     private Bank bankId;
     private String bankNum;
@@ -41,6 +43,7 @@ public class ProviderDetailResponse {
         return ProviderDetailResponse.builder()
                 .providerId(provider.getProviderId())
                 .verificationStatus(provider.getVerificationStatus())
+                .verificationMethod(provider.getVerificationMethod())
                 .reputationPoint(provider.getReputationPoint())
                 .bankId(provider.getBankId())
                 .bankNum(provider.getBankNum())

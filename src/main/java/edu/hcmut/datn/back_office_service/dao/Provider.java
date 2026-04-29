@@ -3,6 +3,7 @@ package edu.hcmut.datn.back_office_service.dao;
 import java.time.LocalDateTime;
 
 import edu.hcmut.datn.back_office_service.common.enums.Bank;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationMethod;
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,6 +43,12 @@ public class Provider {
     @Enumerated(EnumType.STRING)
     private VerificationStatus verificationStatus = VerificationStatus.UNVERIFIED;
 
+    @Column(name = "verification_method")
+    @Setter
+    @Getter
+    @Enumerated(EnumType.STRING)
+    private VerificationMethod verificationMethod;
+
     @Column(name = "bank_id")
     @Setter
     @Getter
@@ -77,10 +84,12 @@ public class Provider {
     public Provider(
             Long reputationPoint,
             VerificationStatus verificationStatus,
+            VerificationMethod verificationMethod,
             Bank bankId,
             String bankNum) {
         this.reputationPoint = reputationPoint;
         this.verificationStatus = verificationStatus;
+        this.verificationMethod = verificationMethod;
         this.bankId = bankId;
         this.bankNum = bankNum;
     }

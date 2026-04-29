@@ -65,6 +65,10 @@ public class ProviderServiceImpl implements ProviderService {
             curProvider.setVerificationStatus(provider.getVerificationStatus());
         }
 
+        if (provider.getVerificationMethod() != null) {
+            curProvider.setVerificationMethod(provider.getVerificationMethod());
+        }
+
         if (provider.getBankId() != null) {
             curProvider.setBankId(provider.getBankId());
         }

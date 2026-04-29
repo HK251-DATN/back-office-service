@@ -67,6 +67,7 @@ public class ProviderController {
             ProviderVerificationStatusResponse response = ProviderVerificationStatusResponse.builder()
                     .providerId(provider.getProviderId())
                     .verificationStatus(provider.getVerificationStatus())
+                    .verificationMethod(provider.getVerificationMethod())
                     .certificates(certificateService.readAllByProvider(principal.getId()))
                     .videos(videoService.readAllByProvider(principal.getId()))
                     .build();

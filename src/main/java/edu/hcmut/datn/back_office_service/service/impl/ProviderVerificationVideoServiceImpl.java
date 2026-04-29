@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.hcmut.datn.back_office_service.common.enums.ReviewStatus;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationMethod;
+import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.common.enums.VideoType;
 import edu.hcmut.datn.back_office_service.dao.Provider;
 import edu.hcmut.datn.back_office_service.dao.ProviderVerificationVideo;
@@ -91,6 +93,19 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
         video.setReviewNote(reviewNote);
         video.setReviewedBy(reviewedBy);
         video.setReviewedAt(LocalDateTime.now());
+
+        if (status == ReviewStatus.APPROVED) {
+            Provider provider = providerRepository.findById(video.getProviderId())
+                    .orElseThrow(() -> new ProviderNotFoundException("Provider not found: " + video.getProviderId()));
+            provider.setVerificationStatus(VerificationStatus.APPROVED);
+            
+            // Only set to VIDEO if not already CERTIFICATE (which is higher priority)
+            if (provider.getVerificationMethod() != VerificationMethod.CERTIFICATE) {
+                provider.setVerificationMethod(VerificationMethod.VIDEO);
+            }
+            
+            providerRepository.save(provider);
+        }
 
         return videoRepository.save(video);
     }
