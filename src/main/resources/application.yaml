@@ -65,6 +65,10 @@ app:
     provider-verification-videos
   provider-video-public-bucket-url:
     https://pub-1b4c6325308a40f68dc9dca3d1771fbd.r2.dev
+  provider-logo-bucket:
+    provider-logos
+  provider-logo-bucket-public-url:
+    https://pub-b5792a8ef25c47838481acc16ac8daec.r2.dev
 
 
 logging:

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
@@ -180,6 +181,21 @@ public class ProviderController {
 
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Delete provider successfully", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("/upload-logo")
+    public ResponseEntity<ApiResponse<Provider>> uploadLogo(
+            @AuthenticationPrincipal AuthenticatedUser principal,
+            @RequestParam("file") MultipartFile file) {
+        try {
+            Provider provider = providerService.uploadLogo(principal.getId(), file);
+
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Upload logo successfully", provider));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));

@@ -2,6 +2,8 @@ package edu.hcmut.datn.back_office_service.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
 
@@ -17,4 +19,6 @@ public interface ProviderService {
     Provider update(Long providerId, Provider provider);
 
     void delete(Long providerId);
+
+    Provider uploadLogo(Long userId, MultipartFile file);
 }

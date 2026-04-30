@@ -64,6 +64,11 @@ public class Provider {
     @Getter
     private Long userId;
 
+    @Column(name = "logo_url")
+    @Setter
+    @Getter
+    private String logoUrl;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

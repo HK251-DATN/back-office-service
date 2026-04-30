@@ -51,7 +51,13 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
                 provider.getProviderId(), certificateType, certificateNumber,
                 issuingAuthority, issuedDate, expiryDate, documentUrl);
 
-        return certificateRepository.save(certificate);
+        ProviderCertificate saved = certificateRepository.save(certificate);
+
+        // Set provider verification status to PENDING after certificate upload
+        provider.setVerificationStatus(VerificationStatus.PENDING);
+        providerRepository.save(provider);
+
+        return saved;
     }
 
     @Override

@@ -38,6 +38,9 @@ public class R2UploadServiceImpl implements R2UploadService {
     @Value("${app.provider-video-public-bucket-url}")
     private String providerVideoPublicBucketUrl;
 
+    @Value("${app.provider-logo-bucket-public-url}")
+    private String providerLogoPublicBucketUrl;
+
     @Override
     public String upload(MultipartFile file, String bucket) {
         try {
@@ -79,6 +82,8 @@ public class R2UploadServiceImpl implements R2UploadService {
                 publicUrl = providerCertPublicBucketUrl;
             case "provider-verification-videos" ->
                 publicUrl = providerVideoPublicBucketUrl;
+            case "provider-logos" ->
+                publicUrl = providerLogoPublicBucketUrl;
             default ->
                 throw new AssertionError();
         }

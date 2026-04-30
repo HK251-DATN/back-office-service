@@ -65,7 +65,15 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
         String videoUrl = r2UploadService.upload(file, videoBucket);
         video.setVideoUrl(videoUrl);
 
-        return videoRepository.save(video);
+        ProviderVerificationVideo saved = videoRepository.save(video);
+
+        // Set provider verification status to PENDING after video upload
+        Provider provider = providerRepository.findById(video.getProviderId())
+                .orElseThrow(() -> new ProviderNotFoundException("Provider not found"));
+        provider.setVerificationStatus(VerificationStatus.PENDING);
+        providerRepository.save(provider);
+
+        return saved;
     }
 
     @Override
