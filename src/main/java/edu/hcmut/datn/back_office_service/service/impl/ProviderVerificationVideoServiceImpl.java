@@ -17,6 +17,7 @@ import edu.hcmut.datn.back_office_service.exception.provider.ProviderNotFoundExc
 import edu.hcmut.datn.back_office_service.exception.providerverificationvideo.ProviderVerificationVideoNotFoundException;
 import edu.hcmut.datn.back_office_service.repository.ProviderRepository;
 import edu.hcmut.datn.back_office_service.repository.ProviderVerificationVideoRepository;
+import edu.hcmut.datn.back_office_service.service.ProviderService;
 import edu.hcmut.datn.back_office_service.service.ProviderVerificationVideoService;
 import edu.hcmut.datn.back_office_service.service.R2UploadService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
 
     private final ProviderVerificationVideoRepository videoRepository;
     private final ProviderRepository providerRepository;
+    private final ProviderService providerService;
     private final R2UploadService r2UploadService;
 
     @Value("${app.provider-video-bucket}")
@@ -102,20 +104,22 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
         video.setReviewedBy(reviewedBy);
         video.setReviewedAt(LocalDateTime.now());
 
+        ProviderVerificationVideo saved = videoRepository.save(video);
+
         if (status == ReviewStatus.APPROVED) {
-            Provider provider = providerRepository.findById(video.getProviderId())
+            Provider current = providerRepository.findById(video.getProviderId())
                     .orElseThrow(() -> new ProviderNotFoundException("Provider not found: " + video.getProviderId()));
-            provider.setVerificationStatus(VerificationStatus.APPROVED);
-            
+
+            Provider patch = new Provider();
+            patch.setVerificationStatus(VerificationStatus.APPROVED);
             // Only set to VIDEO if not already CERTIFICATE (which is higher priority)
-            if (provider.getVerificationMethod() != VerificationMethod.CERTIFICATE) {
-                provider.setVerificationMethod(VerificationMethod.VIDEO);
+            if (current.getVerificationMethod() != VerificationMethod.CERTIFICATE) {
+                patch.setVerificationMethod(VerificationMethod.VIDEO);
             }
-            
-            providerRepository.save(provider);
+            providerService.update(video.getProviderId(), patch);
         }
 
-        return videoRepository.save(video);
+        return saved;
     }
 
     @Override

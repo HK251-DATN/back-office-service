@@ -19,6 +19,7 @@ import edu.hcmut.datn.back_office_service.exception.provider.ProviderNotFoundExc
 import edu.hcmut.datn.back_office_service.repository.ProviderCertificateRepository;
 import edu.hcmut.datn.back_office_service.repository.ProviderRepository;
 import edu.hcmut.datn.back_office_service.service.ProviderCertificateService;
+import edu.hcmut.datn.back_office_service.service.ProviderService;
 import edu.hcmut.datn.back_office_service.service.R2UploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,7 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
 
     private final ProviderCertificateRepository certificateRepository;
     private final ProviderRepository providerRepository;
+    private final ProviderService providerService;
     private final R2UploadService r2UploadService;
 
     @Value("${app.provider-cert-bucket}")
@@ -86,15 +88,16 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
         certificate.setReviewedBy(reviewedBy);
         certificate.setReviewedAt(LocalDateTime.now());
 
+        ProviderCertificate saved = certificateRepository.save(certificate);
+
         if (status == ReviewStatus.APPROVED) {
-            Provider provider = providerRepository.findById(certificate.getProviderId())
-                    .orElseThrow(() -> new ProviderNotFoundException("Provider not found: " + certificate.getProviderId()));
-            provider.setVerificationStatus(VerificationStatus.APPROVED);
-            provider.setVerificationMethod(VerificationMethod.CERTIFICATE);
-            providerRepository.save(provider);
+            Provider patch = new Provider();
+            patch.setVerificationStatus(VerificationStatus.APPROVED);
+            patch.setVerificationMethod(VerificationMethod.CERTIFICATE);
+            providerService.update(certificate.getProviderId(), patch);
         }
 
-        return certificateRepository.save(certificate);
+        return saved;
     }
 
     @Override

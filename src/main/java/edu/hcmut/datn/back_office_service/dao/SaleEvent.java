@@ -27,7 +27,7 @@ public class SaleEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sale_event_id")
     @Getter
-    private String saleEventId;
+    private Long saleEventId;
 
     @Getter
     @Setter

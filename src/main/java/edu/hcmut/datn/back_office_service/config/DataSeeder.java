@@ -91,9 +91,9 @@ public class DataSeeder {
             SubSubcategory lemongrass = createSubSubcategory("Sả", "Sả tươi nguyên cây", null, 9L, 7);
             
             // ==================== CATEGORY 3: Sữa & Trứng ====================
-            Category suaTrung = createCategory("Sữa & Trứng", "Sữa tươi, sản phẩm từ sữa và trứng", 3, null, "N", null);
+            Category suaTrung = createCategory("Sữa & Trứng", "Sữa tươi, sản phẩm từ sữa và trứng", 3, "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/dairy-products.png", "N", null);
             
-            Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/dairy-products.png", "Y", suaTrung.getCategoryId());
+            Category suaTuoi = createCategory("Sữa Tươi", "Các loại sữa tươi nguyên chất", 1, null, "Y", suaTrung.getCategoryId());
             SubSubcategory freshMilkUnsweetened = createSubSubcategory("Sữa Tươi Không Đường", "Sữa tươi tiệt trùng không đường", null, 11L, 7);
             SubSubcategory freshMilkSweetened = createSubSubcategory("Sữa Tươi Có Đường", "Sữa tươi tiệt trùng có đường", null, 11L, 7);
             SubSubcategory organicMilk = createSubSubcategory("Sữa Hữu Cơ", "Sữa tươi hữu cơ nguyên chất", null, 11L, 7);

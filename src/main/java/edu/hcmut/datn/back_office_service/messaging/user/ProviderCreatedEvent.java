@@ -43,6 +43,8 @@ public class ProviderCreatedEvent {
     }
 
     public Provider toProviderEntity() {
-        return new Provider(bankId, bankNum, userId);
+        Provider provider = new Provider(bankId, bankNum, userId);
+        provider.setProviderId(userId);
+        return provider;
     }
 }
