@@ -47,36 +47,8 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
     @Override
     @Transactional
     public ProductGeneral create(ProductGeneral productGeneral) {
-        // Save the product general
         ProductGeneral saved = productGeneralRepository.save(productGeneral);
-        
-        // Query to get the subcategory ID (parent of sub-subcategory)
-        Long subcategoryId = null;
-        if (saved.getSubSubcategoryId() != null) {
-            SubSubcategory subSubcategory = subSubcategoryRepository
-                    .findById(saved.getSubSubcategoryId())
-                    .orElse(null);
-            
-            if (subSubcategory != null) {
-                subcategoryId = subSubcategory.getSubcategoryId();
-            }
-        }
-        
-        // Publish event with both subSubcategoryId and derived categoryId
-        ProductGeneralCreatedEvent event = new ProductGeneralCreatedEvent(
-                saved.getProdGenId(),
-                saved.getProdName(),
-                productGeneralDefaultImgUrl,  // imgUrl
-                saved.getDescription(),  // description
-                saved.getUnit(),
-                saved.getUnitQuantity(),
-                saved.getSubSubcategoryId(),
-                subcategoryId  // This is the subcategory ID for ecommerce
-        );
-        
-        productGeneralProducer.publishProductGeneralCreated(event);
-        log.info("Published ProductGeneralCreatedEvent for product: {}", saved.getProdGenId());
-        
+        // Event is deferred until the image is uploaded (see updateProductMainImage)
         return saved;
     }
 
@@ -146,17 +118,45 @@ public class ProductGeneralServiceImpl implements ProductGeneralService {
     @Override
     public ProductGeneral updateProductMainImage(Long productGeneralId, String imageUrl) {
         ProductGeneral curProductGeneral = read(productGeneralId);
-        
+
         String oldImgUrl = curProductGeneral.getImgUrl();
-        
+        boolean isInitialUpload = oldImgUrl == null || Objects.equals(oldImgUrl, productGeneralDefaultImgUrl);
+
         // Only delete old image if it's not the default one
         if (oldImgUrl != null && !Objects.equals(oldImgUrl, productGeneralDefaultImgUrl)) {
             String key = oldImgUrl.substring(productGeneralImgPubUrlPrefix.length() + 1);
             r2UploadService.delete(key, productGeneralImgBucket);
         }
-        
+
         curProductGeneral.setImgUrl(imageUrl);
-        
-        return productGeneralRepository.save(curProductGeneral);
+        ProductGeneral saved = productGeneralRepository.save(curProductGeneral);
+
+        // Publish the creation event now that the real imgUrl is available
+        if (isInitialUpload) {
+            Long subcategoryId = null;
+            if (saved.getSubSubcategoryId() != null) {
+                SubSubcategory subSubcategory = subSubcategoryRepository
+                        .findById(saved.getSubSubcategoryId())
+                        .orElse(null);
+                if (subSubcategory != null) {
+                    subcategoryId = subSubcategory.getSubcategoryId();
+                }
+            }
+
+            ProductGeneralCreatedEvent event = new ProductGeneralCreatedEvent(
+                    saved.getProdGenId(),
+                    saved.getProdName(),
+                    imageUrl,
+                    saved.getDescription(),
+                    saved.getUnit(),
+                    saved.getUnitQuantity(),
+                    saved.getSubSubcategoryId(),
+                    subcategoryId
+            );
+            productGeneralProducer.publishProductGeneralCreated(event);
+            log.info("Published ProductGeneralCreatedEvent for product: {}", saved.getProdGenId());
+        }
+
+        return saved;
     }
 }

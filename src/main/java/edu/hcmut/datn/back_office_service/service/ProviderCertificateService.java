@@ -20,6 +20,8 @@ public interface ProviderCertificateService {
 
     List<ProviderCertificate> readAllByProviderId(Long providerId);
 
+    List<ProviderCertificate> readApprovedByProviderId(Long providerId);
+
     ProviderCertificate review(Long certificateId, ReviewStatus status, String reviewNote, Long reviewedBy);
 
     void delete(Long certificateId);

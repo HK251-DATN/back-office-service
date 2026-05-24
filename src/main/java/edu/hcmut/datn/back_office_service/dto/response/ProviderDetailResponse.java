@@ -1,6 +1,7 @@
 package edu.hcmut.datn.back_office_service.dto.response;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import edu.hcmut.datn.back_office_service.common.enums.AccountStatus;
 import edu.hcmut.datn.back_office_service.common.enums.Bank;
@@ -8,6 +9,7 @@ import edu.hcmut.datn.back_office_service.common.enums.Gender;
 import edu.hcmut.datn.back_office_service.common.enums.VerificationMethod;
 import edu.hcmut.datn.back_office_service.common.enums.VerificationStatus;
 import edu.hcmut.datn.back_office_service.dao.Provider;
+import edu.hcmut.datn.back_office_service.dao.ProviderCertificate;
 import edu.hcmut.datn.back_office_service.dao.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,6 +41,9 @@ public class ProviderDetailResponse {
     private Gender gender;
     private AccountStatus accStatus;
 
+    /** Approved certificates — populated only when {@code verificationMethod == CERTIFICATE}. */
+    private List<ProviderCertificate> certificates;
+
     public static ProviderDetailResponse from(Provider provider, User user) {
         return ProviderDetailResponse.builder()
                 .providerId(provider.getProviderId())
@@ -57,5 +62,11 @@ public class ProviderDetailResponse {
                 .gender(user.getGender())
                 .accStatus(user.getAccStatus())
                 .build();
+    }
+
+    public static ProviderDetailResponse from(Provider provider, User user, List<ProviderCertificate> certificates) {
+        ProviderDetailResponse response = from(provider, user);
+        response.setCertificates(certificates);
+        return response;
     }
 }

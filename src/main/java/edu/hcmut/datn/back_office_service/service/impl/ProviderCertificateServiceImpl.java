@@ -80,6 +80,11 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
     }
 
     @Override
+    public List<ProviderCertificate> readApprovedByProviderId(Long providerId) {
+        return certificateRepository.findAllByProviderIdAndStatus(providerId, ReviewStatus.APPROVED);
+    }
+
+    @Override
     public ProviderCertificate review(Long certificateId, ReviewStatus status, String reviewNote, Long reviewedBy) {
         ProviderCertificate certificate = read(certificateId);
 
