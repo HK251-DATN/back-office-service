@@ -100,6 +100,10 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
             patch.setVerificationStatus(VerificationStatus.APPROVED);
             patch.setVerificationMethod(VerificationMethod.CERTIFICATE);
             providerService.update(certificate.getProviderId(), patch);
+        } else if (status == ReviewStatus.REJECTED) {
+            Provider patch = new Provider();
+            patch.setVerificationStatus(VerificationStatus.REJECTED);
+            providerService.update(certificate.getProviderId(), patch);
         }
 
         return saved;

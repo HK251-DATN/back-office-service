@@ -117,6 +117,10 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
                 patch.setVerificationMethod(VerificationMethod.VIDEO);
             }
             providerService.update(video.getProviderId(), patch);
+        } else if (status == ReviewStatus.REJECTED) {
+            Provider patch = new Provider();
+            patch.setVerificationStatus(VerificationStatus.REJECTED);
+            providerService.update(video.getProviderId(), patch);
         }
 
         return saved;
