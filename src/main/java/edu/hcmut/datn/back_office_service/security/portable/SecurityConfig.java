@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(authenticationEntryPoint))
                 .authorizeHttpRequests(auth -> auth
                                 .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                                .requestMatchers("/actuator/**").permitAll()
                                 .anyRequest().authenticated()
                 // .requestMatchers(HttpMethod.POST, "/api/user/login").permitAll()
                 // .requestMatchers(HttpMethod.POST, "/api/user/registration").permitAll()
