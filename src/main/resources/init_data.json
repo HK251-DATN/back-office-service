@@ -1,0 +1,1854 @@
+{
+  "Categories": [
+    {
+      "id": 1,
+      "name": "Thịt & Hải Sản",
+      "description": "Thịt tươi, gia cầm và hải sản",
+      "displayOrder": 1,
+      "iconUrl": "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/meat.png",
+      "isSubCategory": "N",
+      "belongToCategoryId": null
+    },
+    {
+      "id": 2,
+      "name": "Gia Cầm",
+      "description": "Các loại thịt gia cầm tươi",
+      "displayOrder": 1,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 1
+    },
+    {
+      "id": 3,
+      "name": "Thịt Đỏ",
+      "description": "Các loại thịt đỏ tươi",
+      "displayOrder": 2,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 1
+    },
+    {
+      "id": 4,
+      "name": "Hải Sản",
+      "description": "Hải sản tươi sống",
+      "displayOrder": 3,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 1
+    },
+    {
+      "id": 5,
+      "name": "Rau Củ Quả",
+      "description": "Rau xanh, củ quả và trái cây tươi",
+      "displayOrder": 2,
+      "iconUrl": "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/vegetable.png",
+      "isSubCategory": "N",
+      "belongToCategoryId": null
+    },
+    {
+      "id": 6,
+      "name": "Rau Ăn Lá",
+      "description": "Các loại rau xanh ăn lá",
+      "displayOrder": 1,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 5
+    },
+    {
+      "id": 7,
+      "name": "Củ Quả",
+      "description": "Các loại củ và quả tươi",
+      "displayOrder": 2,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 5
+    },
+    {
+      "id": 8,
+      "name": "Trái Cây",
+      "description": "Trái cây tươi trong nước và nhập khẩu",
+      "displayOrder": 3,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 5
+    },
+    {
+      "id": 9,
+      "name": "Rau Gia Vị",
+      "description": "Các loại rau và củ gia vị",
+      "displayOrder": 4,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 5
+    },
+    {
+      "id": 10,
+      "name": "Sữa & Trứng",
+      "description": "Sữa tươi, sản phẩm từ sữa và trứng",
+      "displayOrder": 3,
+      "iconUrl": "https://pub-b68fb0743b644089825dfe7eadaf6d7e.r2.dev/dairy-products.png",
+      "isSubCategory": "N",
+      "belongToCategoryId": null
+    },
+    {
+      "id": 11,
+      "name": "Sữa Tươi",
+      "description": "Các loại sữa tươi nguyên chất",
+      "displayOrder": 1,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 10
+    },
+    {
+      "id": 12,
+      "name": "Sản Phẩm Từ Sữa",
+      "description": "Bơ, phô mai, kem và sữa chua",
+      "displayOrder": 2,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 10
+    },
+    {
+      "id": 13,
+      "name": "Trứng",
+      "description": "Các loại trứng tươi",
+      "displayOrder": 3,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 10
+    },
+    {
+      "id": 14,
+      "name": "Đồ Uống Từ Sữa",
+      "description": "Sữa đậu nành, sữa hạt và các loại sữa uống",
+      "displayOrder": 4,
+      "iconUrl": null,
+      "isSubCategory": "Y",
+      "belongToCategoryId": 10
+    }
+  ],
+  "SubSubcategories": [
+    {
+      "id": 1,
+      "name": "Thịt Gà",
+      "description": "Thịt gà tươi nguyên con và các phần",
+      "iconUrl": null,
+      "subcategoryId": 2,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 2,
+      "name": "Thịt Vịt",
+      "description": "Thịt vịt tươi nguyên con và các phần",
+      "iconUrl": null,
+      "subcategoryId": 2,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 3,
+      "name": "Thịt Ngan",
+      "description": "Thịt ngan tươi",
+      "iconUrl": null,
+      "subcategoryId": 2,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 4,
+      "name": "Thịt Chim Cút",
+      "description": "Chim cút tươi nguyên con",
+      "iconUrl": null,
+      "subcategoryId": 2,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 5,
+      "name": "Lòng Gia Cầm",
+      "description": "Gan, mề, tim gia cầm tươi",
+      "iconUrl": null,
+      "subcategoryId": 2,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 6,
+      "name": "Thịt Bò",
+      "description": "Thịt bò tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 3,
+      "avgShelfDays": 4
+    },
+    {
+      "id": 7,
+      "name": "Thịt Heo",
+      "description": "Thịt heo tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 3,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 8,
+      "name": "Thịt Dê",
+      "description": "Thịt dê tươi",
+      "iconUrl": null,
+      "subcategoryId": 3,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 9,
+      "name": "Thịt Cừu",
+      "description": "Thịt cừu tươi nhập khẩu",
+      "iconUrl": null,
+      "subcategoryId": 3,
+      "avgShelfDays": 4
+    },
+    {
+      "id": 10,
+      "name": "Xúc Xích Tươi",
+      "description": "Xúc xích tươi chưa qua chế biến",
+      "iconUrl": null,
+      "subcategoryId": 3,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 11,
+      "name": "Tôm Tươi",
+      "description": "Tôm sú, tôm thẻ tươi sống",
+      "iconUrl": null,
+      "subcategoryId": 4,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 12,
+      "name": "Cá Tươi",
+      "description": "Các loại cá tươi nguyên con và phi lê",
+      "iconUrl": null,
+      "subcategoryId": 4,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 13,
+      "name": "Mực Tươi",
+      "description": "Mực ống, mực nang tươi",
+      "iconUrl": null,
+      "subcategoryId": 4,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 14,
+      "name": "Cua Ghẹ",
+      "description": "Cua biển, ghẹ tươi sống",
+      "iconUrl": null,
+      "subcategoryId": 4,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 15,
+      "name": "Nghêu Sò",
+      "description": "Nghêu, sò, hàu tươi",
+      "iconUrl": null,
+      "subcategoryId": 4,
+      "avgShelfDays": 1
+    },
+    {
+      "id": 16,
+      "name": "Rau Muống",
+      "description": "Rau muống tươi",
+      "iconUrl": null,
+      "subcategoryId": 6,
+      "avgShelfDays": 1
+    },
+    {
+      "id": 17,
+      "name": "Cải Xanh",
+      "description": "Cải xanh, cải ngọt tươi",
+      "iconUrl": null,
+      "subcategoryId": 6,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 18,
+      "name": "Xà Lách",
+      "description": "Xà lách các loại tươi",
+      "iconUrl": null,
+      "subcategoryId": 6,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 19,
+      "name": "Rau Dền",
+      "description": "Rau dền đỏ và rau dền xanh",
+      "iconUrl": null,
+      "subcategoryId": 6,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 20,
+      "name": "Cải Thìa",
+      "description": "Cải thìa, cải bẹ trắng tươi",
+      "iconUrl": null,
+      "subcategoryId": 6,
+      "avgShelfDays": 2
+    },
+    {
+      "id": 21,
+      "name": "Cà Rốt",
+      "description": "Cà rốt tươi",
+      "iconUrl": null,
+      "subcategoryId": 7,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 22,
+      "name": "Khoai Tây",
+      "description": "Khoai tây tươi",
+      "iconUrl": null,
+      "subcategoryId": 7,
+      "avgShelfDays": 30
+    },
+    {
+      "id": 23,
+      "name": "Củ Cải",
+      "description": "Củ cải trắng, củ cải đỏ tươi",
+      "iconUrl": null,
+      "subcategoryId": 7,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 24,
+      "name": "Bắp",
+      "description": "Bắp ngô tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 7,
+      "avgShelfDays": 3
+    },
+    {
+      "id": 25,
+      "name": "Su Su",
+      "description": "Su su tươi",
+      "iconUrl": null,
+      "subcategoryId": 7,
+      "avgShelfDays": 5
+    },
+    {
+      "id": 26,
+      "name": "Xoài",
+      "description": "Xoài tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 8,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 27,
+      "name": "Chuối",
+      "description": "Chuối tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 8,
+      "avgShelfDays": 5
+    },
+    {
+      "id": 28,
+      "name": "Dưa Hấu",
+      "description": "Dưa hấu tươi",
+      "iconUrl": null,
+      "subcategoryId": 8,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 29,
+      "name": "Ổi",
+      "description": "Ổi tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 8,
+      "avgShelfDays": 5
+    },
+    {
+      "id": 30,
+      "name": "Thanh Long",
+      "description": "Thanh long ruột đỏ và ruột trắng",
+      "iconUrl": null,
+      "subcategoryId": 8,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 31,
+      "name": "Hành Lá",
+      "description": "Hành lá tươi",
+      "iconUrl": null,
+      "subcategoryId": 9,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 32,
+      "name": "Tỏi",
+      "description": "Tỏi tươi và tỏi khô",
+      "iconUrl": null,
+      "subcategoryId": 9,
+      "avgShelfDays": 30
+    },
+    {
+      "id": 33,
+      "name": "Gừng",
+      "description": "Gừng tươi",
+      "iconUrl": null,
+      "subcategoryId": 9,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 34,
+      "name": "Ớt",
+      "description": "Ớt sừng, ớt hiểm tươi",
+      "iconUrl": null,
+      "subcategoryId": 9,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 35,
+      "name": "Sả",
+      "description": "Sả tươi nguyên cây",
+      "iconUrl": null,
+      "subcategoryId": 9,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 36,
+      "name": "Sữa Tươi Không Đường",
+      "description": "Sữa tươi tiệt trùng không đường",
+      "iconUrl": null,
+      "subcategoryId": 11,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 37,
+      "name": "Sữa Tươi Có Đường",
+      "description": "Sữa tươi tiệt trùng có đường",
+      "iconUrl": null,
+      "subcategoryId": 11,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 38,
+      "name": "Sữa Hữu Cơ",
+      "description": "Sữa tươi hữu cơ nguyên chất",
+      "iconUrl": null,
+      "subcategoryId": 11,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 39,
+      "name": "Sữa Ít Béo",
+      "description": "Sữa tươi ít béo tách một phần kem",
+      "iconUrl": null,
+      "subcategoryId": 11,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 40,
+      "name": "Sữa Tách Béo",
+      "description": "Sữa tươi tách hoàn toàn chất béo",
+      "iconUrl": null,
+      "subcategoryId": 11,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 41,
+      "name": "Bơ Tươi",
+      "description": "Bơ động vật tươi các loại",
+      "iconUrl": null,
+      "subcategoryId": 12,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 42,
+      "name": "Phô Mai",
+      "description": "Phô mai tươi và phô mai chế biến",
+      "iconUrl": null,
+      "subcategoryId": 12,
+      "avgShelfDays": 30
+    },
+    {
+      "id": 43,
+      "name": "Kem Tươi",
+      "description": "Kem tươi whipping cream",
+      "iconUrl": null,
+      "subcategoryId": 12,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 44,
+      "name": "Sữa Chua",
+      "description": "Sữa chua ăn các loại",
+      "iconUrl": null,
+      "subcategoryId": 12,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 45,
+      "name": "Sữa Đặc",
+      "description": "Sữa đặc có đường và không đường",
+      "iconUrl": null,
+      "subcategoryId": 12,
+      "avgShelfDays": 180
+    },
+    {
+      "id": 46,
+      "name": "Trứng Gà Công Nghiệp",
+      "description": "Trứng gà tươi công nghiệp",
+      "iconUrl": null,
+      "subcategoryId": 13,
+      "avgShelfDays": 21
+    },
+    {
+      "id": 47,
+      "name": "Trứng Gà Ta",
+      "description": "Trứng gà ta thả vườn",
+      "iconUrl": null,
+      "subcategoryId": 13,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 48,
+      "name": "Trứng Vịt",
+      "description": "Trứng vịt tươi",
+      "iconUrl": null,
+      "subcategoryId": 13,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 49,
+      "name": "Trứng Cút",
+      "description": "Trứng cút tươi",
+      "iconUrl": null,
+      "subcategoryId": 13,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 50,
+      "name": "Trứng Vịt Lộn",
+      "description": "Trứng vịt lộn ấp sẵn",
+      "iconUrl": null,
+      "subcategoryId": 13,
+      "avgShelfDays": 1
+    },
+    {
+      "id": 51,
+      "name": "Sữa Đậu Nành",
+      "description": "Sữa đậu nành tươi nguyên chất",
+      "iconUrl": null,
+      "subcategoryId": 14,
+      "avgShelfDays": 5
+    },
+    {
+      "id": 52,
+      "name": "Sữa Hạt",
+      "description": "Sữa hạnh nhân, sữa óc chó, sữa hạt điều",
+      "iconUrl": null,
+      "subcategoryId": 14,
+      "avgShelfDays": 7
+    },
+    {
+      "id": 53,
+      "name": "Yaourt Uống",
+      "description": "Sữa chua uống các loại",
+      "iconUrl": null,
+      "subcategoryId": 14,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 54,
+      "name": "Kefir",
+      "description": "Kefir lên men tự nhiên",
+      "iconUrl": null,
+      "subcategoryId": 14,
+      "avgShelfDays": 14
+    },
+    {
+      "id": 55,
+      "name": "Sữa Chua Uống Nha Đam",
+      "description": "Sữa chua uống kết hợp nha đam",
+      "iconUrl": null,
+      "subcategoryId": 14,
+      "avgShelfDays": 14
+    }
+  ],
+  "PaymentMethods": [
+    {
+      "paymentType": "E_WALLET",
+      "paymentProvider": "MOMO",
+      "accountNum": "MOMO_ACCOUNT",
+      "isActive": true
+    },
+    {
+      "paymentType": "E_WALLET",
+      "paymentProvider": "ZALOPAY",
+      "accountNum": "ZALOPAY_ACCOUNT",
+      "isActive": true
+    },
+    {
+      "paymentType": "COD",
+      "paymentProvider": "COD",
+      "accountNum": "N/A",
+      "isActive": true
+    }
+  ],
+  "ProductGenerals": [
+    {
+      "name": "Gà Ta Nguyên Con",
+      "description": "Gà ta thả vườn tươi ngon, thịt chắc thơm ngon",
+      "tags": [
+        "gà ta",
+        "gà nguyên con",
+        "thịt gà"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 1
+    },
+    {
+      "name": "Ức Gà Phi Lê",
+      "description": "Ức gà phi lê không xương, thịt trắng mềm",
+      "tags": [
+        "ức gà",
+        "phi lê",
+        "thịt gà"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 1
+    },
+    {
+      "name": "Đùi Gà Tươi",
+      "description": "Đùi gà tươi có xương, thịt ngọt đậm đà",
+      "tags": [
+        "đùi gà",
+        "thịt gà",
+        "gà tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 1
+    },
+    {
+      "name": "Vịt Trời Nguyên Con",
+      "description": "Vịt trời tươi nguyên con, thịt chắc thơm",
+      "tags": [
+        "vịt trời",
+        "vịt nguyên con",
+        "thịt vịt"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 2
+    },
+    {
+      "name": "Ức Vịt Phi Lê",
+      "description": "Ức vịt phi lê không da, ít mỡ",
+      "tags": [
+        "ức vịt",
+        "phi lê",
+        "thịt vịt"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 2
+    },
+    {
+      "name": "Đùi Vịt Bó Xôi",
+      "description": "Đùi vịt bó xôi tươi ngon, thịt đậm đà",
+      "tags": [
+        "đùi vịt",
+        "vịt bó xôi",
+        "thịt vịt"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 2
+    },
+    {
+      "name": "Ngan Nguyên Con",
+      "description": "Ngan tươi nguyên con, thịt thơm béo",
+      "tags": [
+        "ngan",
+        "ngan nguyên con",
+        "thịt ngan"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 3
+    },
+    {
+      "name": "Ức Ngan Phi Lê",
+      "description": "Ức ngan phi lê cao cấp, thịt đỏ thơm",
+      "tags": [
+        "ức ngan",
+        "phi lê",
+        "thịt ngan"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 3
+    },
+    {
+      "name": "Đùi Ngan Tươi",
+      "description": "Đùi ngan tươi ngon, thịt chắc",
+      "tags": [
+        "đùi ngan",
+        "thịt ngan",
+        "ngan tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 3
+    },
+    {
+      "name": "Chim Cút Nguyên Con",
+      "description": "Chim cút tươi nguyên con, thịt thơm ngọt",
+      "tags": [
+        "chim cút",
+        "cút nguyên con",
+        "thịt cút"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 4
+    },
+    {
+      "name": "Chim Cút Rút Xương",
+      "description": "Chim cút rút xương sẵn, tiện chế biến",
+      "tags": [
+        "chim cút",
+        "rút xương",
+        "thịt cút"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 4
+    },
+    {
+      "name": "Chim Cút Loại 1",
+      "description": "Chim cút loại 1 to đều, tươi ngon",
+      "tags": [
+        "chim cút",
+        "cút loại 1",
+        "thịt cút"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 4
+    },
+    {
+      "name": "Gan Gà Tươi",
+      "description": "Gan gà tươi ngon, giàu dinh dưỡng",
+      "tags": [
+        "gan gà",
+        "lòng gà",
+        "nội tạng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 5
+    },
+    {
+      "name": "Mề Gà Tươi",
+      "description": "Mề gà tươi sạch, giòn ngọt",
+      "tags": [
+        "mề gà",
+        "lòng gà",
+        "dạ dày gà"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 5
+    },
+    {
+      "name": "Tim Gà Tươi",
+      "description": "Tim gà tươi ngon, dai giòn",
+      "tags": [
+        "tim gà",
+        "lòng gà",
+        "nội tạng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 5
+    },
+    {
+      "name": "Thịt Bò Úc Phi Lê",
+      "description": "Thịt bò Úc nhập khẩu phi lê mềm",
+      "tags": [
+        "thịt bò",
+        "bò Úc",
+        "phi lê"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 6
+    },
+    {
+      "name": "Thịt Bò Nạm",
+      "description": "Thịt bò nạm tươi, thích hợp nấu phở",
+      "tags": [
+        "thịt bò",
+        "bò nạm",
+        "bò tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 6
+    },
+    {
+      "name": "Thịt Bò Vai",
+      "description": "Thịt bò vai tươi ngon, thơm mềm",
+      "tags": [
+        "thịt bò",
+        "bò vai",
+        "bò tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 6
+    },
+    {
+      "name": "Thịt Heo Ba Chỉ",
+      "description": "Thịt heo ba chỉ tươi, vừa nạc vừa mỡ",
+      "tags": [
+        "thịt heo",
+        "ba chỉ",
+        "thịt lợn"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 7
+    },
+    {
+      "name": "Thịt Heo Nạc Vai",
+      "description": "Thịt heo nạc vai tươi, ít mỡ",
+      "tags": [
+        "thịt heo",
+        "nạc vai",
+        "thịt lợn"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 7
+    },
+    {
+      "name": "Thịt Heo Nạc Dăm",
+      "description": "Thịt heo nạc dăm tươi ngon",
+      "tags": [
+        "thịt heo",
+        "nạc dăm",
+        "thịt lợn"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 7
+    },
+    {
+      "name": "Thịt Dê Nạc",
+      "description": "Thịt dê nạc tươi, thơm ngon bổ dưỡng",
+      "tags": [
+        "thịt dê",
+        "dê nạc",
+        "dê tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 8
+    },
+    {
+      "name": "Thịt Dê Có Xương",
+      "description": "Thịt dê có xương nấu cháo, hầm",
+      "tags": [
+        "thịt dê",
+        "dê xương",
+        "dê tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 8
+    },
+    {
+      "name": "Sườn Dê Tươi",
+      "description": "Sườn dê tươi ngon, nướng hoặc hầm",
+      "tags": [
+        "sườn dê",
+        "thịt dê",
+        "dê tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 8
+    },
+    {
+      "name": "Thịt Cừu Úc Phi Lê",
+      "description": "Thịt cừu Úc nhập khẩu phi lê cao cấp",
+      "tags": [
+        "thịt cừu",
+        "cừu Úc",
+        "phi lê"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 9
+    },
+    {
+      "name": "Thịt Cừu New Zealand",
+      "description": "Thịt cừu New Zealand tươi ngon",
+      "tags": [
+        "thịt cừu",
+        "cừu NZ",
+        "cừu nhập khẩu"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 9
+    },
+    {
+      "name": "Sườn Cừu Cao Cấp",
+      "description": "Sườn cừu cao cấp nướng BBQ",
+      "tags": [
+        "sườn cừu",
+        "thịt cừu",
+        "cừu nướng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 9
+    },
+    {
+      "name": "Xúc Xích Heo Tươi",
+      "description": "Xúc xích heo tươi chưa nướng",
+      "tags": [
+        "xúc xích",
+        "xúc xích heo",
+        "lạp xưởng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 10
+    },
+    {
+      "name": "Xúc Xích Bò Tươi",
+      "description": "Xúc xích bò tươi nguyên chất",
+      "tags": [
+        "xúc xích",
+        "xúc xích bò",
+        "lạp xưởng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 10
+    },
+    {
+      "name": "Xúc Xích Gà Tươi",
+      "description": "Xúc xích gà tươi ít béo, healthy",
+      "tags": [
+        "xúc xích",
+        "xúc xích gà",
+        "lạp xưởng"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 10
+    },
+    {
+      "name": "Tôm Sú Tươi Sống",
+      "description": "Tôm sú tươi sống size lớn",
+      "tags": [
+        "tôm sú",
+        "tôm tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 11
+    },
+    {
+      "name": "Tôm Thẻ Tươi",
+      "description": "Tôm thẻ tươi ngọt thịt chắc",
+      "tags": [
+        "tôm thẻ",
+        "tôm tươi",
+        "hải sản"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 11
+    },
+    {
+      "name": "Tôm Càng Xanh",
+      "description": "Tôm càng xanh tươi sống to",
+      "tags": [
+        "tôm càng",
+        "tôm tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 11
+    },
+    {
+      "name": "Cá Hồi Phi Lê",
+      "description": "Cá hồi phi lê tươi Nauy",
+      "tags": [
+        "cá hồi",
+        "phi lê",
+        "cá tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 12
+    },
+    {
+      "name": "Cá Basa Phi Lê",
+      "description": "Cá basa phi lê không xương",
+      "tags": [
+        "cá basa",
+        "phi lê",
+        "cá tươi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 12
+    },
+    {
+      "name": "Cá Diêu Hồng Tươi",
+      "description": "Cá diêu hồng tươi nguyên con",
+      "tags": [
+        "cá diêu hồng",
+        "cá nguyên con",
+        "cá tươi"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 12
+    },
+    {
+      "name": "Mực Ống Tươi",
+      "description": "Mực ống tươi size lớn",
+      "tags": [
+        "mực ống",
+        "mực tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 13
+    },
+    {
+      "name": "Mực Nang Tươi",
+      "description": "Mực nang tươi ngọt thịt dai",
+      "tags": [
+        "mực nang",
+        "mực tươi",
+        "hải sản"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 13
+    },
+    {
+      "name": "Mực Lá Tươi",
+      "description": "Mực lá tươi sống nhỏ",
+      "tags": [
+        "mực lá",
+        "mực tươi",
+        "hải sản"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 13
+    },
+    {
+      "name": "Cua Biển Tươi Sống",
+      "description": "Cua biển tươi sống size to",
+      "tags": [
+        "cua biển",
+        "cua tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 14
+    },
+    {
+      "name": "Ghẹ Xanh Tươi",
+      "description": "Ghẹ xanh tươi sống thịt ngọt",
+      "tags": [
+        "ghẹ",
+        "cua tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 14
+    },
+    {
+      "name": "Cua Gạch Tươi",
+      "description": "Cua gạch tươi đầy gạch béo ngậy",
+      "tags": [
+        "cua gạch",
+        "cua tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 14
+    },
+    {
+      "name": "Nghêu Tươi Sống",
+      "description": "Nghêu tươi sống vỏ to thịt ngọt",
+      "tags": [
+        "nghêu",
+        "sò tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 15
+    },
+    {
+      "name": "Sò Huyết Tươi",
+      "description": "Sò huyết tươi sống ngon ngọt",
+      "tags": [
+        "sò huyết",
+        "sò tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 15
+    },
+    {
+      "name": "Hàu Sữa Tươi",
+      "description": "Hàu sữa tươi sống béo ngậy",
+      "tags": [
+        "hàu",
+        "sò tươi",
+        "hải sản"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 15
+    },
+    {
+      "name": "Rau Muống Xanh",
+      "description": "Rau muống xanh tươi non mơn mởn",
+      "tags": [
+        "rau muống",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 16
+    },
+    {
+      "name": "Rau Muống Dại",
+      "description": "Rau muống dại tươi thơm ngon",
+      "tags": [
+        "rau muống",
+        "rau dại",
+        "rau xanh"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 16
+    },
+    {
+      "name": "Rau Muống Cọng To",
+      "description": "Rau muống cọng to tươi giòn",
+      "tags": [
+        "rau muống",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 16
+    },
+    {
+      "name": "Cải Xanh Tươi",
+      "description": "Cải xanh tươi ngọt mát",
+      "tags": [
+        "cải xanh",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 17
+    },
+    {
+      "name": "Cải Ngọt Baby",
+      "description": "Cải ngọt baby non mềm",
+      "tags": [
+        "cải ngọt",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 17
+    },
+    {
+      "name": "Cải Ngồng Tươi",
+      "description": "Cải ngồng tươi giòn ngọt",
+      "tags": [
+        "cải ngồng",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 17
+    },
+    {
+      "name": "Xà Lách Xoong",
+      "description": "Xà lách xoong tươi giòn",
+      "tags": [
+        "xà lách",
+        "rau xanh",
+        "rau salad"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 18
+    },
+    {
+      "name": "Xà Lách Lô Lô",
+      "description": "Xà lách lô lô đỏ tím tươi",
+      "tags": [
+        "xà lách",
+        "rau xanh",
+        "rau salad"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 18
+    },
+    {
+      "name": "Xà Lách Tím",
+      "description": "Xà lách tím tươi giàu anthocyanin",
+      "tags": [
+        "xà lách",
+        "rau xanh",
+        "rau salad"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 18
+    },
+    {
+      "name": "Rau Dền Đỏ",
+      "description": "Rau dền đỏ tươi giàu sắt",
+      "tags": [
+        "rau dền",
+        "rau đỏ",
+        "rau xanh"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 19
+    },
+    {
+      "name": "Rau Dền Xanh",
+      "description": "Rau dền xanh tươi mát",
+      "tags": [
+        "rau dền",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 19
+    },
+    {
+      "name": "Rau Dền Cơm",
+      "description": "Rau dền cơm non mềm thơm",
+      "tags": [
+        "rau dền",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 19
+    },
+    {
+      "name": "Cải Thìa Tươi",
+      "description": "Cải thìa tươi ngọt mát",
+      "tags": [
+        "cải thìa",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 20
+    },
+    {
+      "name": "Cải Bẹ Trắng",
+      "description": "Cải bẹ trắng tươi giòn ngọt",
+      "tags": [
+        "cải bẹ",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 20
+    },
+    {
+      "name": "Cải Thìa Baby",
+      "description": "Cải thìa baby non mềm",
+      "tags": [
+        "cải thìa",
+        "rau xanh",
+        "rau ăn lá"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 20
+    },
+    {
+      "name": "Cà Rốt Đà Lạt",
+      "description": "Cà rốt Đà Lạt tươi giòn ngọt",
+      "tags": [
+        "cà rốt",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 21
+    },
+    {
+      "name": "Cà Rốt Nhật",
+      "description": "Cà rốt Nhật to đều màu đẹp",
+      "tags": [
+        "cà rốt",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 21
+    },
+    {
+      "name": "Cà Rốt Baby",
+      "description": "Cà rốt baby nhỏ xinh ăn salad",
+      "tags": [
+        "cà rốt",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 21
+    },
+    {
+      "name": "Khoai Tây Đà Lạt",
+      "description": "Khoai tây Đà Lạt tươi ngon",
+      "tags": [
+        "khoai tây",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 22
+    },
+    {
+      "name": "Khoai Tây Ai Cập",
+      "description": "Khoai tây Ai Cập nhập khẩu",
+      "tags": [
+        "khoai tây",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 22
+    },
+    {
+      "name": "Khoai Tây Tím",
+      "description": "Khoai tây tím giàu chất chống oxy hóa",
+      "tags": [
+        "khoai tây",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 22
+    },
+    {
+      "name": "Củ Cải Trắng",
+      "description": "Củ cải trắng tươi giòn ngọt",
+      "tags": [
+        "củ cải",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 23
+    },
+    {
+      "name": "Củ Cải Đỏ",
+      "description": "Củ cải đỏ tươi giàu vitamin",
+      "tags": [
+        "củ cải",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 23
+    },
+    {
+      "name": "Củ Cải Muối",
+      "description": "Củ cải trắng dùng làm dưa muối",
+      "tags": [
+        "củ cải",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 23
+    },
+    {
+      "name": "Bắp Ngọt Tươi",
+      "description": "Bắp ngọt tươi hạt vàng căng mọng",
+      "tags": [
+        "bắp ngô",
+        "ngô",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 24
+    },
+    {
+      "name": "Bắp Nếp Tươi",
+      "description": "Bắp nếp tươi dẻo thơm",
+      "tags": [
+        "bắp nếp",
+        "ngô",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 24
+    },
+    {
+      "name": "Bắp Mỹ Tươi",
+      "description": "Bắp Mỹ tươi hạt to ngọt",
+      "tags": [
+        "bắp ngô",
+        "ngô Mỹ",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 24
+    },
+    {
+      "name": "Su Su Xanh",
+      "description": "Su su xanh tươi giòn ngọt",
+      "tags": [
+        "su su",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 25
+    },
+    {
+      "name": "Su Su Trắng",
+      "description": "Su su trắng tươi mềm ngọt",
+      "tags": [
+        "su su",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 25
+    },
+    {
+      "name": "Su Su Non",
+      "description": "Su su non tươi giòn ăn salad",
+      "tags": [
+        "su su",
+        "củ quả",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 25
+    },
+    {
+      "name": "Xoài Cát Hòa Lộc",
+      "description": "Xoài cát Hòa Lộc ngọt thơm",
+      "tags": [
+        "xoài",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 26
+    },
+    {
+      "name": "Xoài Úc",
+      "description": "Xoài Úc nhập khẩu to ngọt",
+      "tags": [
+        "xoài",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 26
+    },
+    {
+      "name": "Xoài Tượng",
+      "description": "Xoài tượng xanh giòn chua ngọt",
+      "tags": [
+        "xoài",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 26
+    },
+    {
+      "name": "Chuối Già",
+      "description": "Chuối già ngọt thơm bổ dưỡng",
+      "tags": [
+        "chuối",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 27
+    },
+    {
+      "name": "Chuối Tiêu Hương",
+      "description": "Chuối tiêu hương thơm ngọt",
+      "tags": [
+        "chuối",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 27
+    },
+    {
+      "name": "Chuối Sứ",
+      "description": "Chuối sứ nhỏ ngọt đậm",
+      "tags": [
+        "chuối",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 27
+    },
+    {
+      "name": "Dưa Hấu Không Hạt",
+      "description": "Dưa hấu không hạt ngọt mát",
+      "tags": [
+        "dưa hấu",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 28
+    },
+    {
+      "name": "Dưa Hấu Ruột Đỏ",
+      "description": "Dưa hấu ruột đỏ ngọt tươi",
+      "tags": [
+        "dưa hấu",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 28
+    },
+    {
+      "name": "Dưa Hấu Vàng",
+      "description": "Dưa hấu vàng giòn ngọt thanh",
+      "tags": [
+        "dưa hấu",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 28
+    },
+    {
+      "name": "Ổi Nữ Hoàng",
+      "description": "Ổi nữ hoàng giòn ngọt thơm",
+      "tags": [
+        "ổi",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 29
+    },
+    {
+      "name": "Ổi Ruột Đỏ",
+      "description": "Ổi ruột đỏ ngọt giàu lycopene",
+      "tags": [
+        "ổi",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 29
+    },
+    {
+      "name": "Ổi Xanh",
+      "description": "Ổi xanh giòn chua nhẹ",
+      "tags": [
+        "ổi",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 29
+    },
+    {
+      "name": "Thanh Long Ruột Đỏ",
+      "description": "Thanh long ruột đỏ ngọt thơm",
+      "tags": [
+        "thanh long",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 30
+    },
+    {
+      "name": "Thanh Long Ruột Trắng",
+      "description": "Thanh long ruột trắng ngọt mát",
+      "tags": [
+        "thanh long",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 30
+    },
+    {
+      "name": "Thanh Long Vàng",
+      "description": "Thanh long vàng Ecuador cao cấp",
+      "tags": [
+        "thanh long",
+        "trái cây",
+        "hoa quả"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 30
+    },
+    {
+      "name": "Hành Lá Tươi",
+      "description": "Hành lá tươi thơm dùng nêm nếm",
+      "tags": [
+        "hành lá",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 31
+    },
+    {
+      "name": "Hành Tây Tươi",
+      "description": "Hành tây tươi cay thơm",
+      "tags": [
+        "hành tây",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "KILOGRAM",
+      "unitQuantity": 1,
+      "subSubcategoryId": 31
+    },
+    {
+      "name": "Hành Tím Tươi",
+      "description": "Hành tím tươi cay nồng",
+      "tags": [
+        "hành tím",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 31
+    },
+    {
+      "name": "Tỏi Lý Sơn",
+      "description": "Tỏi Lý Sơn đặc sản thơm cay",
+      "tags": [
+        "tỏi",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 32
+    },
+    {
+      "name": "Tỏi Tươi Cà Mau",
+      "description": "Tỏi tươi Cà Mau múi to",
+      "tags": [
+        "tỏi",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 32
+    },
+    {
+      "name": "Tỏi Tây",
+      "description": "Tỏi tây nhập khẩu múi lớn",
+      "tags": [
+        "tỏi",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 32
+    },
+    {
+      "name": "Gừng Già",
+      "description": "Gừng già cay nồng dùng nấu ăn",
+      "tags": [
+        "gừng",
+        "gia vị",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 33
+    },
+    {
+      "name": "Gừng Non",
+      "description": "Gừng non ít cay giòn ngọt",
+      "tags": [
+        "gừng",
+        "gia vị",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 33
+    },
+    {
+      "name": "Gừng Khô",
+      "description": "Gừng khô cay thơm lâu",
+      "tags": [
+        "gừng",
+        "gia vị",
+        "rau củ"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 33
+    },
+    {
+      "name": "Ớt Sừng Xanh",
+      "description": "Ớt sừng xanh tươi cay nhẹ",
+      "tags": [
+        "ớt",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 34
+    },
+    {
+      "name": "Ớt Hiểm Đỏ",
+      "description": "Ớt hiểm đỏ tươi cay nồng",
+      "tags": [
+        "ớt",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 34
+    },
+    {
+      "name": "Ớt Chuông",
+      "description": "Ớt chuông tươi ngọt màu sắc",
+      "tags": [
+        "ớt",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 500,
+      "subSubcategoryId": 34
+    },
+    {
+      "name": "Sả Tươi Nguyên Cây",
+      "description": "Sả tươi nguyên cây thơm nồng",
+      "tags": [
+        "sả",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 35
+    },
+    {
+      "name": "Sả Tía Tươi",
+      "description": "Sả tía tươi thơm đặc biệt",
+      "tags": [
+        "sả",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 35
+    },
+    {
+      "name": "Sả Tôm Tươi",
+      "description": "Sả tôm tươi thơm nhẹ",
+      "tags": [
+        "sả",
+        "gia vị",
+        "rau thơm"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 300,
+      "subSubcategoryId": 35
+    }
+  ]
+}
