@@ -63,6 +63,24 @@ public class ProviderCertificateServiceImpl implements ProviderCertificateServic
     }
 
     @Override
+    public ProviderCertificate uploadByUrl(Long userId, CertificateType certificateType, String certificateNumber,
+            String issuingAuthority, LocalDate issuedDate, LocalDate expiryDate, String documentUrl) {
+        Provider provider = findProviderByUserId(userId);
+
+        ProviderCertificate certificate = new ProviderCertificate(
+                provider.getProviderId(), certificateType, certificateNumber,
+                issuingAuthority, issuedDate, expiryDate, documentUrl);
+
+        ProviderCertificate saved = certificateRepository.save(certificate);
+
+        // Set provider verification status to PENDING after certificate registration
+        provider.setVerificationStatus(VerificationStatus.PENDING);
+        providerRepository.save(provider);
+
+        return saved;
+    }
+
+    @Override
     public ProviderCertificate read(Long certificateId) {
         return certificateRepository.findById(certificateId)
                 .orElseThrow(() -> new ProviderCertificateNotFoundException("Certificate not found: " + certificateId));

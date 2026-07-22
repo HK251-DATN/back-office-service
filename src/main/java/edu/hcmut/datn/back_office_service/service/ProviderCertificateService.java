@@ -14,6 +14,9 @@ public interface ProviderCertificateService {
     ProviderCertificate upload(Long userId, CertificateType certificateType, String certificateNumber,
             String issuingAuthority, LocalDate issuedDate, LocalDate expiryDate, MultipartFile file);
 
+    ProviderCertificate uploadByUrl(Long userId, CertificateType certificateType, String certificateNumber,
+            String issuingAuthority, LocalDate issuedDate, LocalDate expiryDate, String documentUrl);
+
     ProviderCertificate read(Long certificateId);
 
     List<ProviderCertificate> readAllByProvider(Long userId);

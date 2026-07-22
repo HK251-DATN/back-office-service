@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.hcmut.datn.back_office_service.common.enums.CertificateType;
 import edu.hcmut.datn.back_office_service.dao.ProviderCertificate;
 import edu.hcmut.datn.back_office_service.dto.request.ProviderCertificateReviewRequest;
+import edu.hcmut.datn.back_office_service.dto.request.ProviderCertificateUrlUploadRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.security.portable.AuthenticatedUser;
 import edu.hcmut.datn.back_office_service.service.ProviderCertificateService;
@@ -49,6 +50,24 @@ public class ProviderCertificateController {
 
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Certificate uploaded successfully", certificate));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("/url")
+    public ResponseEntity<ApiResponse<ProviderCertificate>> uploadByUrl(
+            @AuthenticationPrincipal AuthenticatedUser principal,
+            @RequestBody ProviderCertificateUrlUploadRequest request) {
+        try {
+            ProviderCertificate certificate = certificateService.uploadByUrl(
+                    principal.getId(), request.getCertificateType(), request.getCertificateNumber(),
+                    request.getIssuingAuthority(), request.getIssuedDate(), request.getExpiryDate(),
+                    request.getDocumentUrl());
+
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Certificate registered successfully", certificate));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));

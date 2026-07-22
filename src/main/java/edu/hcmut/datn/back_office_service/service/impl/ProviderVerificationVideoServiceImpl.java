@@ -52,6 +52,22 @@ public class ProviderVerificationVideoServiceImpl implements ProviderVerificatio
     }
 
     @Override
+    public ProviderVerificationVideo createByUrl(Long userId, VideoType videoType, String description, String videoUrl) {
+        Provider provider = findProviderByUserId(userId);
+
+        ProviderVerificationVideo video = new ProviderVerificationVideo(
+                provider.getProviderId(), videoType, videoUrl, description);
+
+        ProviderVerificationVideo saved = videoRepository.save(video);
+
+        // Set provider verification status to PENDING, same as uploadFile()
+        provider.setVerificationStatus(VerificationStatus.PENDING);
+        providerRepository.save(provider);
+
+        return saved;
+    }
+
+    @Override
     public ProviderVerificationVideo uploadFile(Long videoId, MultipartFile file) {
         ProviderVerificationVideo video = read(videoId);
 

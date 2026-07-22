@@ -146,11 +146,13 @@ Providers submit food-safety evidence for manual review by back-office staff.
 | `GET` | `/api/provider/me` | Check if current user has a provider account; returns SKIP_AS_GOOD if not |
 | `GET` | `/api/provider/my-status` | Provider's verification status + all certs + all videos |
 | `POST` | `/api/provider/certificates` | Upload a certificate (multipart: type, number, authority, dates, file) |
+| `POST` | `/api/provider/certificates/url` | Register a certificate by URL (JSON: type, number, authority, dates, documentUrl) — skips R2 |
 | `GET` | `/api/provider/certificates` | List own certificates |
 | `GET` | `/api/provider/certificates/{id}` | Get a certificate |
 | `DELETE` | `/api/provider/certificates/{id}` | Delete own certificate + R2 file |
 | `POST` | `/api/provider/videos` | Create video record (JSON: videoType, description); videoUrl=null |
 | `POST` | `/api/provider/videos/{videoId}/upload` | Upload the video file (multipart); updates videoUrl |
+| `POST` | `/api/provider/videos/url` | Create video record with URL already set (JSON: videoType, description, videoUrl) — skips R2 |
 | `GET` | `/api/provider/videos` | List own videos |
 | `GET` | `/api/provider/videos/{id}` | Get a video |
 | `DELETE` | `/api/provider/videos/{id}` | Delete own video + R2 file |

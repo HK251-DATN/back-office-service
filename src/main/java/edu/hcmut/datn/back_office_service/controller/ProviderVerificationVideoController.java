@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.hcmut.datn.back_office_service.dao.ProviderVerificationVideo;
 import edu.hcmut.datn.back_office_service.dto.request.ProviderVerificationVideoCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.request.ProviderVerificationVideoReviewRequest;
+import edu.hcmut.datn.back_office_service.dto.request.ProviderVerificationVideoUrlCreateRequest;
 import edu.hcmut.datn.back_office_service.dto.response.ApiResponse;
 import edu.hcmut.datn.back_office_service.security.portable.AuthenticatedUser;
 import edu.hcmut.datn.back_office_service.service.ProviderVerificationVideoService;
@@ -41,6 +42,22 @@ public class ProviderVerificationVideoController {
 
             return ResponseEntity.ok()
                     .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Video record created successfully", video));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));
+        }
+    }
+
+    @PostMapping("/url")
+    public ResponseEntity<ApiResponse<ProviderVerificationVideo>> createByUrl(
+            @AuthenticationPrincipal AuthenticatedUser principal,
+            @RequestBody ProviderVerificationVideoUrlCreateRequest request) {
+        try {
+            ProviderVerificationVideo video = videoService.createByUrl(
+                    principal.getId(), request.getVideoType(), request.getDescription(), request.getVideoUrl());
+
+            return ResponseEntity.ok()
+                    .body(ApiResponse.SUCCESS(HttpStatus.OK.toString(), "Video registered successfully", video));
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.ERROR(HttpStatus.BAD_REQUEST.toString(), e.getMessage(), null));

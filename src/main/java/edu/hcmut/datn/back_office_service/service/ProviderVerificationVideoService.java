@@ -12,6 +12,8 @@ public interface ProviderVerificationVideoService {
 
     ProviderVerificationVideo create(Long userId, VideoType videoType, String description);
 
+    ProviderVerificationVideo createByUrl(Long userId, VideoType videoType, String description, String videoUrl);
+
     ProviderVerificationVideo uploadFile(Long videoId, MultipartFile file);
 
     ProviderVerificationVideo read(Long videoId);
