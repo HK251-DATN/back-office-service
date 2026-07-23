@@ -1849,6 +1849,114 @@
       "unit": "GRAM",
       "unitQuantity": 300,
       "subSubcategoryId": 35
+    },
+    {
+      "name": "Sữa Tươi Không Đường Hộp 1L",
+      "description": "Sữa tươi tiệt trùng không đường, hộp 1 lít",
+      "tags": [
+        "sữa tươi",
+        "không đường",
+        "sữa"
+      ],
+      "unit": "LITER",
+      "unitQuantity": 1,
+      "subSubcategoryId": 36
+    },
+    {
+      "name": "Sữa Tươi Không Đường Chai 900ml",
+      "description": "Sữa tươi tiệt trùng không đường, chai nhựa 900ml",
+      "tags": [
+        "sữa tươi",
+        "không đường",
+        "sữa"
+      ],
+      "unit": "MILLILITER",
+      "unitQuantity": 900,
+      "subSubcategoryId": 36
+    },
+    {
+      "name": "Sữa Tươi Không Đường Lốc 4 Hộp",
+      "description": "Sữa tươi tiệt trùng không đường, lốc 4 hộp 180ml",
+      "tags": [
+        "sữa tươi",
+        "không đường",
+        "sữa"
+      ],
+      "unit": "MILLILITER",
+      "unitQuantity": 720,
+      "subSubcategoryId": 36
+    },
+    {
+      "name": "Phô Mai Con Bò Cười",
+      "description": "Phô mai miếng tam giác nhập khẩu, hộp 200g",
+      "tags": [
+        "phô mai",
+        "sữa",
+        "nhập khẩu"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 200,
+      "subSubcategoryId": 42
+    },
+    {
+      "name": "Phô Mai Lát Cheddar",
+      "description": "Phô mai lát Cheddar dùng làm bánh mì, kẹp burger",
+      "tags": [
+        "phô mai",
+        "cheddar",
+        "phô mai lát"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 150,
+      "subSubcategoryId": 42
+    },
+    {
+      "name": "Phô Mai Mozzarella Bào Sợi",
+      "description": "Phô mai Mozzarella bào sợi dùng cho pizza, bánh nướng",
+      "tags": [
+        "phô mai",
+        "mozzarella",
+        "phô mai bào sợi"
+      ],
+      "unit": "GRAM",
+      "unitQuantity": 250,
+      "subSubcategoryId": 42
+    },
+    {
+      "name": "Trứng Gà Ta Vỉ 10",
+      "description": "Trứng gà ta tươi, vỉ 10 quả",
+      "tags": [
+        "trứng gà ta",
+        "trứng",
+        "vỉ trứng"
+      ],
+      "unit": "PIECE",
+      "unitQuantity": 10,
+      "subSubcategoryId": 47
+    },
+    {
+      "name": "Trứng Gà Ta Size Lớn",
+      "description": "Trứng gà ta size lớn, 1 tá (12 quả)",
+      "tags": [
+        "trứng gà ta",
+        "trứng",
+        "size lớn"
+      ],
+      "unit": "DOZEN",
+      "unitQuantity": 1,
+      "subSubcategoryId": 47
+    },
+    {
+      "name": "Trứng Gà Ta Hữu Cơ",
+      "description": "Trứng gà ta nuôi thả vườn hữu cơ, hộp 6 quả",
+      "tags": [
+        "trứng gà ta",
+        "trứng",
+        "hữu cơ"
+      ],
+      "unit": "PIECE",
+      "unitQuantity": 6,
+      "subSubcategoryId": 47
     }
   ]
 }
