@@ -25,6 +25,7 @@ spring:
 
 server:
   port: 9100
+  forward-headers-strategy: framework
 
 management:
   endpoint:
